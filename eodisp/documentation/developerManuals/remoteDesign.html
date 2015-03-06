@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EODiSP remote Design</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="remoteDesign.html">EODiSP remote Design</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EODiSP remote Design</h1><div class="section">
+    <p>
+      This page describes the design of the EODiSP remote software package. For a better 
+      understanding, it is recommended to read the <a href="generalArchitecture.html">EODiSP 
+      general architecture page</a> first. Additionally, this document is best read in 
+      combination with the <a href="remoteJavadoc/index.html">EODiSP remote API documentation</a>. 
+      This page contains references to the classes described in the API documentation.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Overview">Overview</a></li><li><a href="#JXTATransportLayerforJeri">JXTA Transport Layer for Jeri</a></li><li><a href="#JXTANetworkInfrastructure">JXTA Network Infrastructure</a></li></ul><div class="section"><a name="Overview"></a><h2>Overview</h2>
+    <p>
+      The EODiSP remote software package provides two items: A JXTA transport layer implementation 
+      for the Java extensible remote method invocation (Jeri) and a means to configure 
+      and startup the JXTA network infrastructure. The next sections discuss these two 
+      items in detail.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="JXTATransportLayerforJeri"></a><h2>JXTA Transport Layer for Jeri</h2>
+    <p>
+      EODiSP remote uses the Java extensible remote method invocation (Jeri) to implement 
+      remote method calls. Jeri is an implementation of the <a href="http://java.sun.com/products/jdk/rmi/" class="external">Java 
+      Remote Method Invocation</a> (Java RMI) programming model and provides an architecture 
+      that allows customization at different levels of the protocol stack. Please consult 
+      the <a href="http://java.sun.com/products/jini/2.1/doc/api/net/jini/jeri/package-summary.html" class="external">Jeri 
+      documentation</a> for more information about its architecture and design.
+    </p>
+    <p>
+      One of the main EODiSP requirements is to allow communication across firewalls and 
+      NAT. Jeri does not directly provide this feature. To overcome this, a new transport 
+      layer for Jeri was written based on <a href="http://www.jxta.org" class="external">JXTA</a>. Implementing 
+      a transport layer for Jeri basically comes down to implementing two interfaces of the 
+      Jeri framework, namely the <a href="http://java.sun.com/products/jini/2.1/doc/api/net/jini/jeri/Endpoint.html" class="external">Endpoint</a> 
+      and <a href="http://java.sun.com/products/jini/2.1/doc/api/net/jini/jeri/ServerEndpoint.html" class="external">ServerEndpoint</a> 
+      interfaces.
+    </p>
+    <p>
+      The classes that implement these two interfaces are <a href="remoteJavadoc/org/eodisp/remote/jeri/jxta/JxtaEndpoint.html">JxtaEndpoint</a> 
+      and <a href="remoteJavadoc/org/eodisp/remote/jeri/jxta/JxtaServerEndpoint.html">JxtaServerEndpoint</a>. 
+      The <a href="remoteJavadoc/org/eodisp/remote/jeri/jxta/JxtaNetwork.html">JxtaNetwork</a> class 
+      is a helper class that carries information about the JXTA network infrastructure. 
+      The Jeri-JXTA transport layer doesn't provide any utility classes to configure and 
+      startup the JXTA network infrastructure by itself. This makes the JXTA transport layer 
+      independent of the configuration and startup of the JXTA network infrastructure. 
+      The only configuration parameter of the JXTA transport layer is the <i>peer group</i>. 
+      It needs to be set by calling the <code>registerJeriPeerGroup(PeerGroup jeriPeerGroup)</code> 
+      method of the <code>JxtaNetwork</code> class before any use of the JXTA transport 
+      layer.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="JXTANetworkInfrastructure"></a><h2>JXTA Network Infrastructure</h2>
+    <p>
+      Before an application can communicate with JXTA it needs to set up a JXTA network 
+      infrastructure. The EODiSP remote provides an implementation of the <a href="utilJavadoc/org/eodisp/util/AppModule.html">AppModule</a> 
+      interface that creates a configuration of a JXTA peer and starts up the JXTA platform. 
+      Please refer to the Javadoc documentation of the <a href="remoteJavadoc/org/eodisp/remote/application/RemoteAppModule.html">RemoteAppModule</a> 
+      class for a detailed description and the <a href="utilJavadoc/index.html">EODiSP 
+      util Javadoc</a> for a general description of the application framework.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-02 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

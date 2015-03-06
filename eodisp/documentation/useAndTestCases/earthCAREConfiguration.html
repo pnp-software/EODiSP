@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EarthCARE Simulator Configuration</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../useAndTestCases.html">Use And Test Cases</a> » <a href="earthCAREConfiguration.html">EarthCARE Simulator Configuration</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="active" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EarthCARE Simulator Configuration</h1><div class="section">
+    <p>
+      Some of the <a href="../userManuals.html#TestCases">test cases</a> defined for the EODiSP use the 
+      <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE 
+      Simulator</a> as a 
+      demonstration platform. This page describes the configuration of the EarthCARE Simulator
+      that is assumed for the test cases.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#ModelRepositories">Model Repositories</a></li><li><a href="#SimulatorFederates">Simulator Federates</a></li><li><a href="#SimulationManagerApplication">Simulation Manager Application</a></li><li><a href="#ModelManagerApplications">Model Manager Applications</a></li><li><a href="#EarthCARESimulationExperiment">EarthCARE Simulation Experiment</a></li></ul><div class="section"><a name="ModelRepositories"></a><h2>Model Repositories</h2>
+    Two <a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationRepository" class="external">simulation 
+    repositories</a> 
+    have been created for the EODiSP test cases: a local repository 
+    useful for operating the EODiSP in local mode, and a remote repository useful for operating the
+    EODiSP in remote mode.
+   <p>
+    The local repository is installed on the platform of the ETH_2 
+    <a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationFederateOwners" class="external">federate owner</a>.
+   </p> 
+   <p>
+    The remote repository is installed on the platform of the ETH_3
+    <a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationFederateOwners" class="external">federate owner</a>.   </p> 
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulatorFederates"></a><h2>Simulator Federates</h2>
+    Two simulation federates are installed on the platforms of the 
+    <a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationFederateOwners" class="external">federate owner</a>.
+    The simulation requires all federates to be installed at the same relative path on their respective
+    platform. This path is TBD. 
+   <p>
+    All simulation federates are configured to be unconditionally available to all simulation managers
+    with the exception of the TBD federate that is configured not to be available to the PnP_1
+    simulation manager (see next section). This allows the simulator to be used to test the ability of the EODiSP to 
+    limit availability of a certain federate to selected simulation managers.
+   </p>  
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationManagerApplication"></a><h2>Simulation Manager Application</h2><p>
+    One single simulation manager application is needed for the EODiSP test cases. It is
+    installed on the the platform of the PnP_1 
+    <a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationFederateOwners" class="external">federate owner</a>
+    at the following location: TBD. This simulation manager application and the simulation manager
+    operating it are referred to as 'PnP_1'.
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ModelManagerApplications"></a><h2>Model Manager Applications</h2><p>
+    The EODiSP test cases require one model manager application to be installed on each 
+    <a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationFederateOwners" class="external">federate owner</a>
+    platform. The model manager applications are installed at the following location: TBD.
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="EarthCARESimulationExperiment"></a><h2>EarthCARE Simulation Experiment</h2>
+    A number of EODiSP test cases require a simulation experiment to be run. The simulation experiment
+    is referred to as 'EarthCARE Simulation Experiment'. The experiment uses all the models of the
+    EarthCARE Simulator. Its FOM can be downloaded from <a href="TBD">here</a>. 
+    <p>
+    The simulation experiment includes two simulation runs. TBD: links to the files that define 
+    the simulation experiment and their initialization data.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-17 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

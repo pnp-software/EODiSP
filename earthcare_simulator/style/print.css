@@ -1,0 +1,87 @@
+@page {
+	margin: 2cm 0 1.5cm 2cm;
+}
+
+div#navigation,div#header,div#footer,div#nav-path {
+	display: none;
+}
+
+div#content {
+	padding: 0;
+	margin: 0 2cm 0 2cm;
+}
+
+#content p {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 10pt;
+	margin: 10pt 0 0 0;
+}
+
+#content h1, h2, h3, h4 {
+	font-family: Arial, sans;
+	margin: 18pt 0 5pt 0;
+}
+
+#content h1 {
+	font-size: 16pt;
+}
+
+#content h2 {
+	font-size: 14pt;
+}
+
+#content h3 {
+	font-size: 13pt;
+}
+
+#content h4 {
+	font-size: 11pt;
+}
+
+div#content a {
+	color: #69010F;
+	text-decoration: underline;
+}
+
+a.external {
+	background: none;
+	padding-right: 0;
+	margin-right: 0;
+}
+
+div#content a:visited {
+	color: #69010F;
+	text-decoration: underline;
+}
+
+body {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 10pt;
+	margin: 2pt 0 0 0;
+}
+
+div#main {
+	border: none;
+}
+
+div#content div.gotToTop {
+	display: none;
+}
+
+img {
+	border: none;
+}
+
+div#content div.figure {
+	margin-top: 12pt;
+	margin-bottom: 12pt;
+	float: none;
+	text-align: center;
+}
+
+div#content div.figure p {
+	text-align: center;
+	font-style: italic;
+	text-indent: 0;
+	margin-top: 8pt;
+}

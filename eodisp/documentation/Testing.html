@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Testing</title><link rel="stylesheet" href="../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../index.html">Home</a> » Documentation » <a href="Testing.html">Testing</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="userManuals.html">User Manuals</a></li></ul><ul><li class="active-leaf"><a class="active" href="Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Testing</h1><div class="section"><p>
+      This page documents the tests that were performed on the EODiSP. It describes the 
+      testing approach adopted for the EODiSP and presents the traceability matrix that 
+      demonstrates how all EODiSP requirements are covered by the proposed testing approach.
+  </p></div><h2>Contents</h2><ul id="index"><li><a href="#TestingApproach">Testing Approach</a></li><li><a href="#Unit-LevelTests">Unit-Level Tests</a></li><li><a href="#System-LevelTests">System-Level Tests</a></li><li><a href="#TraceabilityMatrix">Traceability Matrix</a></li></ul><div class="section"><a name="TestingApproach"></a><h2>Testing Approach</h2>
+    <p>
+      The EODiSP is delivered with a set of pre-defined tests. In general, these tests 
+      are intended to increase users' confidence in the quality of the EODiSP's implementation. 
+      Two levels of testing are defined: <i>unit level testing</i> and <i>system level 
+      testing</i>.
+    </p>
+    <p>
+      The EODiSP is designed as a set of object-oriented applications. Its software is 
+      therefore organized as a set of cooperating classes. Unit level tests check the implementation 
+      of individual classes or of small clusters of tightly coupled classes.
+    </p>
+    <p>
+      Unit tests are embedded within a <i>regression test suite</i>. This is an application 
+      that can run all unit tests in sequence and automatically generates a test report. 
+      Unit tests can be run whenever there are doubts about the integrity of the EODiSP 
+      software or when modifications have been made to the EODiSP software and it is desired 
+      to verify that these modifications do not undermine the EODiSP functionality.
+    </p>
+    <p>
+      System-level tests exercise the EODiSP as a complete system. They are performed on 
+      a fully instantiated EODiSP environment. They must be performed by a human operator 
+      following <a href="userManuals.html#TestCases">the instructions</a> provided in the 
+      EODiSP user manual. The instructions also specify the pass-fail criteria that define 
+      whether the test was successful.
+    </p>
+    <p>
+      The system-level tests were used for the formal acceptance of the EODiSP by the European 
+      Space Agency (which funded the initial development of the EODiSP). They are now <a href="userManuals.html#TestCases">embedded</a> within the EODiSP User Manual where 
+      they serve as a tutorial-like guide on how to use the EODiSP.
+    </p>
+    <p>
+      It is noted that no integration tests have been defined for the EODiSP. Integration 
+      of the various components of the EODiSP is verified through the system-level tests.
+    </p>
+    <p>
+      Unit-level and system-level tests verify the functionality of the EODiSP against its 
+      requirements. In order to ensure completeness of coverage, a <a href="#TraceabilityMatrix">traceability 
+      matrix</a> defines the link between the EODiSP requirements and the unit- and system-level
+      tests.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Unit-LevelTests"></a><h2>Unit-Level Tests</h2>
+    <p>
+      The EODiSP software is implemented in Java. Unit-level tests are therefore naturally 
+      implemented using the <a href="http://www.junit.org/index.htm" class="external">JUnit Framework</a>.
+    </p>
+    <p>The JUnit tests are implemented in a set of <i>test classes</i>. Each test class
+    implements the unit tests for a particular target class. Individual tests are implemented in
+    <i>test methods</i>. The following naming conventions are 
+    adopted and define the link between a class that is being tested and the JUnit class that is
+    responsible for testing it:</p>
+    <ul>
+      <li style="margin-bottom: 10px">The test class is named as 
+      follows:<br></br> <code>&lt;TestedClass&gt;Test.java</code></li>
+      <li style="margin-bottom: 10px">The test methods in a test class are named as follows: 
+      <br></br> <code>test&lt;TestedMethod&gt;</code>
+      </li>
+      <li style="margin-bottom: 10px">The test methods in a test class that are aimed at
+      testing the exception raising mechanism are named as follows: 
+      <br></br> <code>test&lt;TestedMethod&gt;_&lt;TestedException&gt;</code>
+      </li>
+    </ul>
+    <p>In addition to testing classes, <i>test object classes</i> are sometimes defined to implement
+    support functions for a particular test class (see the book 
+        "JUnit in Action" for more details). Test object classes have names 
+        like:<code>Test&lt;Class&gt;.java</code>
+    </p>
+    <p>
+    The JUnit tests can be run automatically and in sequence. Such a run results in the generation of
+    a JUnit test report that describes the outcome of the test. For each EODiSP package, a JUnit 
+    test report is available at the following locations:</p>
+    <ul>
+      <li><a class="external" href="developerManuals/hlaJUnit/index.html">EODiSP HLA JUnit 
+        Report</a>: EODiSP HLA JUnit Report.</li>
+      <li><a class="external" href="developerManuals/utilJUnit/index.html">EODiSP util JUnit 
+        Report</a>: EODiSP util JUnit Report.</li>
+    </ul> 
+    <p>The Javadoc documentation of the JUnit test classes is available at the following
+    locations:</p>
+    <ul>
+      <li><a class="external" href="developerManuals/hlaJUnitJavadoc/index.html">EODiSP HLA JUnit 
+        Javadoc</a>: EODiSP HLA JUnit Javadoc.</li>
+      <li><a class="external" href="developerManuals/utilJUnitJavadoc/index.html">EODiSP util JUnit 
+        Javadoc</a>: EODiSP util JUnit Javadoc.</li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="System-LevelTests"></a><h2>System-Level Tests</h2>
+    <p>
+      The definition of the system-level tests largely mirrors the definition of the use cases 
+      in the <a href="requirements.html">EODiSP Requirements</a> 
+      page. For each use case defined in the software requirements document, an 
+      equivalent test case is defined. Wherever possible, the test cases are kept very close 
+      to the associated use case. Since the use cases were used to specify the EODiSP, 
+      successful execution of the test cases automatically verifies the correct implementation 
+      of the EODiSP specifications.
+    </p>
+    <p>
+      Additional system-level test cases are also defined to cover features of the EODiSP that are not
+      explicitly covered by the use cases.   
+      The full list of system-level test cases is presented in a
+      <a href="useAndTestCases.html#EODiSPTestCases">dedicated page</a>. 
+    </p>
+    <p>  
+      Note that, in addition to providing
+      a means to verify the implementation of the EODiSP requirements, the system-level
+      test cases can also be used as a "how-to" guide giving tutorial-like 
+      explanations of how to operate the EODiSP.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TraceabilityMatrix"></a><h2>Traceability Matrix</h2>
+    <p>Traceability information that demonstrats how each EODiSP requirement has been verified 
+    either by analysis or through testing is included in the <a href="requirements.html">list 
+    of EODiSP requirements</a>.</p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-11-06 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

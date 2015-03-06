@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EODiSP GUI Architecture</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="guiArchitecture.html">EODiSP GUI Architecture</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EODiSP GUI Architecture</h1><div class="section"><p>
+    This page describes the architecture of the 
+    <a href="generalArchitecture.html#EODiSPGUIApplications">EODiSP GUI applications</a>, the 
+    <i>simulation manager application</i> and the <i>model manager application</i>.
+    The two GUI applications are built as the instantiation of a framework which is referred to
+    as the <i>EODiSP 
+    GUI base framework</i>. 
+  </p></div><h2>Contents</h2><ul id="index"><li><a href="#GeneralApproach">General Approach</a></li><li><a href="#TheEODiSPGUIFramework">The EODiSP GUI Framework</a></li></ul><div class="section"><a name="GeneralApproach"></a><h2>General Approach</h2>
+    <p>
+      The EODiSP GUI package consists of two independent applications. The first is the 
+      simulation manager application, the second is the model manager application. The 
+      purpose of the simulation manager application is to let a user - the simulation owner 
+      - control the simulation experiment. The purpose of the model manager application 
+      is to let a user - the model owner - control which of his owned model can participate 
+      in which simulations. The implementation of this functionality is mostly done in 
+      the <a href="./coreArchitecture.html">EODiSP core</a> software package. The GUI applications 
+      provide just a graphical interface to this implementation.
+    </p>
+    <p>
+      Even though most of the functional requirements are covered in the EODiSP core implementation, 
+      some functionality is directly incorporated in the GUI applications. The most essential 
+      functionality is the ability to manage the respective project file. This project 
+      file, depending on the application, serves a different purpose:
+    </p>
+    <ul>
+      <li>The simulation manager's project file handles the creation and the management of 
+        federations and simulation experiments.</li>
+      <li>The model manager's project file handles the management of the federates.</li>
+    </ul>
+    These project files are stored as XML documents. The manipulation of these files 
+    is done through the use of the
+  
+    <a href="#TheGUIandEMF">EMF framework</a>.
+    <p>
+      Apart from manipulating the project files, the GUI applications are used to control 
+      the core application. All the functionality (such as starting and stopping a simulation, 
+      step-by-step simulation mode, etc.) provided by the core application can be accessed. 
+      It is also possible to monitor a currently running simulation. The monitoring facility 
+      of the simulation manager application provides informations about the current state 
+      of a running simulation, whereas the monitoring facility of the model manager provides 
+      information about the participation state of a specific model in a currently running 
+      simulation.
+    </p>
+    <div class="subsection"><a name="TheGUIandEMF"></a><h3>The GUI and EMF</h3>
+      <p>
+        Since the crucial feature of an EODiSP GUI application is the manipulation of its 
+        project file, the implementation for manipulating XML files is also crucial. Instead 
+        of implementing an own mechanism for XML manipulation, the EODiSP assigns this task 
+        to the <a class="external" href="http://www.eclipse.org/emf/">EMF framework</a>. 
+        EMF is a code generation facility for building tools based on a structured data model, 
+        such as XML. Therefore, it is well suited for this task. The code generated by EMF 
+        is split into three parts:
+      </p>
+      <ol>
+        <li>The model code: This code is a representation of the actual model (i.e. the XML file).</li>
+        <li>The edit code: This code is built on top of the model code and facilitates the manipulation 
+          of the model by providing commands such as insert object, delete object, undo and 
+          redo commands, etc.</li>
+        <li>The editor code: This code generates either an eclipse plug-in or a rich client application. 
+          It is built on top of the edit code and provides a complete solution to edit the 
+          model in a graphical environment.</li>
+      </ol>
+      <p>
+        This possibilities are tempting, and in fact, the EODiSP uses the first two parts 
+        of the above mentioned list, the model and the edit code, to manipulate the XML data. 
+        The third part of the EMF generation process, however, is not used by the EODiSP 
+        GUI. This stems from the fact that one requirement for the EODiSP is, that it shall 
+        run under as many platforms as possible. The problem with this requirement and the 
+        generated EMF editor code is, that it depends on the eclipse platform, which is not 
+        platform independent. As a matter of fact, the eclipse platform runs on many platforms, 
+        but the decision has been taken to use pure Java for the implementation of the EODiSP, 
+        which runs on even more platforms. As a consequence, the decision felt on using Java 
+        Swing for the implementation of the EODiSP GUI.
+      </p>
+      <p>
+        Figure 1 shows the connection between the Java Swing and the EMF framework. It shows 
+        that the EODiSP uses the model code and the edit code generated by the EMF framework. 
+        The editor code, however, cannot be used because it does not use the Swing graphic 
+        library, but the SWT library instead. For the reasons mentioned above, the EODiSP 
+        privileges the Swing graphic library. Since the interface of the SWT components and 
+        the Swing components are different and because EMF provides code generation for the 
+        SWT library only, there arises the need to wrap the generated EMF code to make it 
+        usable for the Swing library. This is done in the EODiSP model code. It uses the 
+        generated EMF code to access the actual model data. It then transforms this data 
+        and exposes an interface to the transformed data which is usable by the swing components.
+      </p>
+      <div class="figure"><a name="./emf-swing.png"><img border="0" src="../../images/./emf-swing.png" alt="The connection between EMF and Java Swing."></img></a><p>Figure 1: The connection between EMF and Java Swing.</p></div>
+    </div>
+    <div class="subsection"><a name="BaseFramework"></a><h3>Base Framework</h3>
+      <p>
+        Since many design considerations are very similar for each and every GUI application, 
+        the two EODiSP applications are instantiated from a base GUI framework that has been 
+        developed for the EODiSP. The base framework has been implemented from scratch and 
+        is a lightweight implementation following a slightly modified version of the <a href="#TheMVCPattern">MVC 
+        pattern</a>. The decision not to use an existing GUI framework for the EODiSP has 
+        been made in order to have a framework that has as few dependencies as possible and 
+        to exactly reflect the needs for the EODiSP at the same time.
+      </p>
+    </div>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TheEODiSPGUIFramework"></a><h2>The EODiSP GUI Framework</h2>
+    <p></p>
+    <div class="subsection"><a name="TheMVCPattern"></a><h3>The MVC Pattern</h3>
+      <p>
+        The Model-View-Controller pattern is a widely used pattern in GUI frameworks and 
+        envisages three main components; The model, the controller and the views. It is used 
+        to separate an application's data model, user interface and control logic into three 
+        distinct components. The three main components can be described as follows:
+      </p>
+      <ul>
+        <li>The model: A domain specific representation of information. The information itself 
+          is usually stored persistently (e.g. in a database or in a file). The model adds 
+          meaning to this data by providing mechanism to work with it.</li>
+        <li>The view: This is the component that presents the data held by the model to the user. 
+          This is typically a user interface element. Several views can access the same model 
+          data and represent it.</li>
+        <li>The controller: This is the component that receives events (such as a click on a 
+          menu item) and processes them. It invokes changes on the model, and sometimes also 
+          on the view.</li>
+      </ul>
+      Figure 2 illustrates the MVC pattern with the main components and their interactions.
+    
+      <div class="figure"><a name="./mvc-original.png"><img border="0" src="../../images/./mvc-original.png" alt="The original Model-View-Controller Pattern"></img></a><p>Figure 2: The original Model-View-Controller Pattern</p></div>
+      <p>
+        Using this architecture to build a GUI framework assures that the components are 
+        decoupled. It is also a good architecture to ensure maintainability of the code even 
+        if the code base grows.
+      </p>
+    </div>
+    <div class="subsection"><a name="TheMVCPatternadaptedfortheEODiSPGUI"></a><h3>The MVC Pattern adapted for the EODiSP GUI</h3>
+      <p>
+        The EODiSP GUI framework is implemented on the basis of a slightly modified MVC architecture. 
+        The difference is only in the view component, where an additional component has been 
+        added. This additional component is the frame.
+      </p>
+      <p>
+        The idea behind a frame is, that it is a container for several views. It is able 
+        to manage these views independently, releasing the controller component from this 
+        task. The functionality of a frame can be summarized as follows:
+      </p>
+      <ul>
+        <li>It is a container for several views.</li>
+        <li>It can set, unset, or change the currently active view.</li>
+        <li>It knows how to display a view component.</li>
+        <li>It defines the overall look and feel.</li>
+      </ul>
+      <p>
+        Hence, the frame is actually the view component in the sense of the original MVC 
+        architecture. Therefore, the addition would rather be that the view component has 
+        been degraded to be only a component that can display data from the model. As an 
+        analogy, the frame can be considered as a picture's frame, whereas the view would 
+        be the picture itself. Since it is a modern picture frame, the picture in the frame 
+        can be replaced by another picture.
+      </p>
+      <p>
+        Using frames as containers for views creates new possibilities. For instance, a view 
+        can be displayed in another frame without much work, or if a frame is disposed, it 
+        will dispose all included views automatically.
+      </p>
+      <p>
+        Figure 3 shows the structure of the MVC architecture as it is used in the EODiSP 
+        GUI base framework. Apart from the frame component which has been added, it is identical 
+        to the original MVC pattern.
+      </p>
+      <div class="figure"><a name="./mvc-eodisp.png"><img border="0" src="../../images/./mvc-eodisp.png" alt="The Model-View-Controller Pattern as it has been adapted for the EODiSP"></img></a><p>Figure 3: The Model-View-Controller Pattern as it has been adapted for the EODiSP</p></div>
+      <p>
+        It should be noted that this architecture allows a controller to send commands directly 
+        to a view. This can be useful in some situations (e.g. to send a command to update 
+        the registered actions). However, whenever a command involves the view's model, it 
+        is considered as a more structured way if controllers send their command only to 
+        the models, which in turn update the views by sending a notification.
+      </p>
+    </div>
+    <div class="subsection"><a name="InteractionswiththeUser"></a><h3>Interactions with the User</h3>
+      <p>
+        Another important feature of a GUI application are the interactions with the user. 
+        For the EODiSP GUI, these interactions are mostly done through actions. Actions can 
+        appear as a menu bar item, a tool bar item, or as an entry in the context menu. In 
+        this documentation, we will refer to all of these item as the interaction interface. 
+        Apart from actions, obvious interaction components such as text boxes, etc. are also 
+        supported. Because the interesting part are the actions, they are described here 
+        a bit more detailed.
+      </p>
+      <p>
+        Actions are a Java Swing construct which can be used to define centralized control 
+        of functionality. Hence, actions can be used to create an item in an interaction 
+        interface with only one instance of an action. For instance, an action can declare 
+        an "OnExit" functionality, which is available from the menu bar and the tool bar. 
+        Whenever the action is performed, the same code will be executed.
+      </p>
+      <p>
+        Handling these actions is quite a large task for a GUI application. For this reason, 
+        the EODiSP GUI base framework has a built-in lightweight interaction interface management. 
+        It is described in more detail in the <a href="./guiDesign.html#Actions">Actions 
+        section of the GUI Design page</a>
+      </p>
+    </div>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-16 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

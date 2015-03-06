@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - User Manuals</title><link rel="stylesheet" href="../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../index.html">Home</a> » Documentation » <a href="userManuals.html">User Manuals</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="developerManuals.html">Developer Manuals</a></li></ul><ul><li class="active-leaf"><a class="active" href="userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>User Manuals</h1><div class="section">
+    <p>
+      This page gives access to user-level information describing how to install and operate 
+      the EODiSP. This information is organized as a set of pages that cover various aspects 
+      of EODiSP usage. The information in these pages is intended for end users of the 
+      EODiSP. Developer-level information is available <a href="developerManuals.html">elsewhere</a> 
+      on the EODiSP web site.
+    </p>
+    <p>
+      The EODiSP is a simulation framework built on the <a HREF="https://www.dmso.mil/public/transition/hla/">High 
+      Level Architecture</a> (HLA). The HLA is defined by an IEEE standard. In order to 
+      understand the information presented in this page and, indeed, in order to use the 
+      EODiSP, familiarity with the HLA is necessary. It is not the purpose of this page 
+      or of this web site to provide an introduction to the HLA. This can be found in several 
+      publicly accessible documents. However, a brief description of the HLA together with 
+      a description of the general EODiSP concept is available in the <a href="../overview.html">project 
+      overview page</a>.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Installation">Installation</a></li><li><a href="#Usage">Usage</a></li><li><a href="#ConfigurationFiles">Configuration Files</a></li><li><a href="#TestCases">Test Cases</a></li><li><a href="#SampleCode">Sample Code</a></li><li><a href="#EODiSPInstantiation">EODiSP Instantiation</a></li><li><a href="#EODiSPExtension">EODiSP Extension</a></li></ul><div class="section"><a name="Installation"></a><h2>Installation</h2>
+  <p>
+  The programs are available either as source code from a svn repository or as self-contained <i>.jar</i> files.
+  Here it is assumed that you download the jar files from the website.
+  </p>
+  <p>
+  You will find all programs on the <a href="../download.html#BinaryPackages">download page</a> of this 
+  website. There a six main programs available. You can download and run them independently by issuing 
+  the following command on a command line:
+  </p>
+  <code>
+java -jar &lt;eodisp_xxx&gt;.jar [options]
+  </code>
+  <p>
+  On windows, running the program is even simpler and can be done by double-clicking directly on the <i>.jar</i> file.
+  </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Usage"></a><h2>Usage</h2><p>
+    <ul>
+      <li><a href="./userManuals/simulationManagerUsage.html">Simulation Manager</a>: usage 
+        of the simulation manager application.</li>
+      <li><a href="./userManuals/modelManagerUsage.html">Model Manager</a>: usage of the model 
+        manager application.</li>
+      <li><a href="./userManuals/repositoryManagerUsage.html">Repository Manager</a>: usage 
+        of the repository manager application.</li>
+      <li><a href="./userManuals/supportApplicationsUsage.html">Support Applications</a>: usage 
+        of the support applications.</li>
+    </ul>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ConfigurationFiles"></a><h2>Configuration Files</h2>
+    <p>
+      The mode of operation of the EODiSP is defined by a set of configuration files. The 
+      configuration files are simple text-based files with [key, value] pairs, each identifying 
+      and setting a specific value. A description of each value is given in the respective file 
+      and will not be repeated here. All required configuration files are automatically created
+      by the application itself if it is missing (i.e. the first time the application is started).
+    </p>
+    <p>
+      Several configuration files are defined, each covering a particular aspect of the 
+      EODiSP operation. A single EODiSP application may therefore be controlled by several
+      configuration files. 
+    </p>  
+    <p>
+      Configuration files have names like: <code>xxx.conf</code> and they are all located in the
+      same directory <code>&lt;working-dir&gt;/conf</code> where <code>&lt;working-dir&gt;</code>
+      is the working directory of the EODiSP application (recall that the working directory 
+      of an EODiSP application can be set as a startup parameter for every EODiSP 
+      application by providing a value to the <i>--working-dir</i> parameter).
+    </p>
+    
+    <p>  
+      The table below lists all the EODiSP configuration files:
+    </p>  
+    <table>
+      <tr>
+        <th>Name of Configuration File</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>remote.conf</td>
+        <td>Configuration parameters for distribution aspects</td>
+      </tr>
+      <tr>
+        <td>jxta.conf</td>
+        <td>JXTA configuration parameters</td>
+      </tr>
+      <tr>
+        <td>log4j.conf</td>
+        <td>Configuration parameters for data logging</td>
+      </tr>
+      <tr>
+        <td>sm_core.conf</td>
+        <td>Configuration parameters for Simulation Manager core</td>
+      </tr>
+      <tr>
+        <td>sm_gui.conf</td>
+        <td>Configuration parameters for Simulation Manager GUI</td>
+      </tr>
+      <tr>
+        <td>mm_core.conf</td>
+        <td>Configuration parameters for Model Manager core</td>
+      </tr>
+      <tr>
+        <td>mm_gui.conf</td>
+        <td>Configuration parameters for Model Manager GUI</td>
+      </tr>
+      <tr>
+        <td>repos.conf</td>
+        <td>Configuration parameters for Repository core</td>
+      </tr>
+      <tr>
+        <td>rm_gui.conf</td>
+        <td>Configuration parameters for Repository GUI</td>
+      </tr>
+      <tr>
+        <td>rti.conf</td>
+        <td>Configuration parameters for Runtime Infrastructure (RTI)</td>
+      </tr>
+      <tr>
+        <td>crc.conf</td>
+        <td>Configuration parameters for Central RTI Component (CRC)</td>
+      </tr>
+      <tr>
+        <td>lrc.conf</td>
+        <td>Configuration parameters for Local RTI Component (LRC)</td>
+      </tr>
+    </table>
+    
+    <p>
+      As an example, suppose you wish to find the configuration file covering distribution issues
+      for the Model Manager application. 
+      Suppose too that the model manager runs on a Unix machine and that it is started with the default
+      working directory (which is <code>~/.eodisp/model_manager</code>). The desired configuration
+      file would then be:
+      <code>~/.eodisp/model_manager/conf/remote.conf</code>.
+    </p>
+    
+    
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TestCases"></a><h2>Test Cases</h2>
+      The EODiSP test cases describe various aspects of the operation 
+      of the EODiSP. Each test case defines a step-by-step procedure to achieve a certain 
+      objective and it specifies the criteria to determine whether the test case was successful. 
+      The test cases may depend on each other in the sense that execution of test case 
+      A may first require the successful execution of test case B. Such dependencies are 
+      clearly spelt out in the test case description. 
+    <p>  
+      Four groups of test cases are identified, one for each of the four applications
+      provided by the EODiSP: the simulation manager application, the model manager application,
+      the repository application, and the support application.
+    </p>
+    <p>  
+      The full set of EODiSP test cases is presented in list form in a 
+      <a href="useAndTestCases.html#EODiSPTestCases">dedicated page</a> which also contains
+      the links to the individual test case descriptions.
+    </p>
+    <p>
+    Many of the test cases rely on the
+    <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE Simulator</a>as a demonstration platform.
+    <a href="./useAndTestCases/earthCAREConfiguration.html">This page</a>
+    describes the configuration of the EarthCARE Simulator that is assumed for the test 
+    cases.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SampleCode"></a><h2>Sample Code</h2><p>
+    <ul>
+      <li><a href="./userManuals/sampleFederates.html">Sample Federates</a>: sample HLA federates 
+        ready for integration in the EODiSP.</li>
+      <li><a href="./userManuals/sampleWrappers.html">Sample Wrappers</a>: sample wrappers 
+        to transform generic simulation packages into HLA-compliant federates.</li>
+    </ul>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="EODiSPInstantiation"></a><h2>EODiSP Instantiation</h2>
+    <p>
+      The EODiSP is a platform that simulation developers can use to build a simulation 
+      application. The process whereby the EODiSP deliverables as provided in this web 
+      site are used to build a simulation application is called <i>instantiation</i>.
+    </p>
+    <p>
+      The input to the instantiation process is the set of simulation packages that must 
+      be integrated together to build the target simulation. The basic steps in the instantiation 
+      process are:
+    </p>
+    <ul>
+      <li>the definition of the simulation architecture,</li>
+      <li>the development of the wrappers for the simulation packages, and</li>
+      <li>the registration of the resulting HLA federates in the EODiSP repository.</li>
+    </ul>
+    <p>
+      Given the <a href="../overview.html">data-driven paradigm</a> underlying the EODiSP, 
+      the first step basically entails identifying the input and output data of each simulation 
+      package. More formally, it entails defining the interface of the federates that will 
+      represent the simulation packages in the EODiSP simulation. The description of these 
+      interfaces can first be done informally but must eventually be done using a formalism 
+      prescribed by the HLA. For this purpose, the HLA defines an XML-based language and 
+      for each federate a <i>Simulation Object Model</i> or SOM must be defined. The SOM 
+      is an XML-based document that fully describes the type of information that an individual 
+      federate can provide to an HLA federation as well as the information that an individual 
+      federate can receive from other federates in the HLA federation. The structure of 
+      the SOM is defined by the HLA standard.
+    </p>
+    <p>
+      In the second step in the instantiation process, <a href="../overview.html#Wrappers">wrappers</a> 
+      are developed that transform the simulation packages into HLA federates that comply 
+      with the SOM's defined in the first step.
+    </p>
+    <p>
+      Once the simulation packages have been wrapped as HLA federates, they can be registered 
+      into the EODiSP repository from where they are available to participate in an EODiSP 
+      application. This registration process is done through the <a href="../overview.html#EODiSPUserInterface">EODiSP 
+      model manager application</a>.
+    </p>
+    <p>
+      For demonstration purposes, a complete instantiation of the EODiSP has been done 
+      to build the <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE 
+      Simulator</a>. Readers can refer to the simulator web site for concrete examples of how 
+      the above three steps can be carried out.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="EODiSPExtension"></a><h2>EODiSP Extension</h2>
+    <p>
+      The EODiSP is provided under a free and open software licence. Users can therefore 
+      extend it by modifying its implementation or by adding new functionalities to it.
+    </p>  
+    <p>
+      Developers who wish to extend the EODiSP need to understand its architecture. This 
+      is described in the EODiSP <a href="developerManuals.html">developer's guide</a>. 
+      This page also gives access to the detailed design documentation for the EODiSP in 
+      Javadoc format. The EODiSP software can be accessed from the <a href="../download.html">download 
+      page</a>.
+    </p>  
+      Typical extensions that users may want to do include:
+    <ul>
+      <li>At present, the EODiSP only implements a <a href="developerManuals/implementedHLAServices.html">subset 
+        of the HLA services</a>. This subset could be extended to improve the coverage of the
+        HLA standard. This extension would only affect the HLA layer of the <a href="developerManuals/generalArchitecture.html">EODiSP architecture</a>.</li>
+      <li>The EODiSP networking 
+        layer could be upgraded or replaced. This layer is currently based on the JXTA framework 
+        and its definition was driven 
+        by the requirements that the EODiSP be able to support the development of distributed 
+        simulations where some of the simulation models are located behind firewalls. Accommodating 
+        this requirement has led to design choices that are marginally suboptimal in terms 
+        of execution speed. Users who are interested in maximizing performance may want to 
+        replace or modify the EODiSP network layer. Note that the EODiSP has a layered <a href="developerManuals/generalArchitecture.html">architecture</a> that is intended 
+        to allow this kind of selective upgrades or replacements.</li>
+      <li>Tthe backend in the <a href="../overview.html#EODiSPRepository">repository 
+        implementation</a> could be replaced. Currently, EMF is used to store the data in the repository. The 
+        format in which this data is stored is XML. This implementation is stable and suits 
+        the need of the current requirements of the EODiSP. However, if a repository grows 
+        very large, it could be beneficial to replace this implementation with a relational 
+        database to increase data handling performance as well as improve memory footprint of the 
+        repository application. Note that such a change would not be trivial, since it affects not 
+        only the repository code itself, but also the code in the client applications (i.e. 
+        the manager applications).</li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-11-06 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

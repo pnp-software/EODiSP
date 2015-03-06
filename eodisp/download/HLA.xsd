@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" elementFormDefault="qualified"
+  ecore:package="org.eodisp.hla.crc.omt"> 
+
+  <!-- ************************************************************** -->
+  <!--  Root Element                                                  -->
+  <!-- ************************************************************** -->
+
+  <xs:element name="objectModel" type="ObjectModel" />
+
+
+  <!-- ************************************************************** -->
+  <!--  Complex Types                                                 -->
+  <!-- ************************************************************** -->
+
+  <xs:complexType name="ObjectModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="objects" type="Objects" />
+      <xs:element minOccurs="0" name="interactions" type="Interactions" />
+      <xs:element minOccurs="0" name="dimensions" type="Dimensions" />
+      <xs:element minOccurs="0" name="time" type="Time" />
+      <xs:element minOccurs="0" name="tags" type="Tags" />
+      <xs:element minOccurs="0" name="synchronizations" type="Synchronizations" />
+      <xs:element minOccurs="0" name="transportations" type="Transportations" />
+      <xs:element minOccurs="0" name="switches" type="Switches" />
+      <xs:element minOccurs="0" name="dataTypes" type="DataTypes" />
+      <xs:element minOccurs="0" name="notes" type="Notes" />
+    </xs:sequence>
+    <xs:attribute name="DTDversion" default="1516.2" type="DTDVersionEnum" />
+    <xs:attribute name="name" use="required" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="type" use="required" type="ObjectModelTypeEnum" />
+    <xs:attribute name="typeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="version" />
+    <xs:attribute name="versionNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="date" />
+    <xs:attribute name="dateNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="purpose" />
+    <xs:attribute name="purposeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="appDomain" />
+    <xs:attribute name="appDomainNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="sponsor" />
+    <xs:attribute name="sponsorNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="pocName" />
+    <xs:attribute name="pocNameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="pocOrg" />
+    <xs:attribute name="pocOrgNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="pocPhone" />
+    <xs:attribute name="pocPhoneNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="pocEmail" />
+    <xs:attribute name="pocEmailNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="references" />
+    <xs:attribute name="referencesNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="other" />
+    <xs:attribute name="otherNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+
+  <xs:complexType name="Objects">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="objectClass" type="ObjectClass" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ObjectClass">
+    <xs:sequence>
+      <xs:element ecore:name="attributes" minOccurs="0" maxOccurs="unbounded" name="attribute" type="Attribute" />
+      <xs:element ecore:name="subClasses" minOccurs="0" maxOccurs="unbounded" name="objectClass" type="ObjectClass" />
+    </xs:sequence>
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="sharing" type="SharingEnum" />
+    <xs:attribute name="sharingNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+
+  <xs:complexType name="Attribute">
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="updateType" type="UpdateTypeEnum" />
+    <xs:attribute name="updateTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="updateCondition" />
+    <xs:attribute name="updateConditionNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="ownership" type="OwnershipEnum" />
+    <xs:attribute name="ownershipNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="sharing" type="SharingEnum" />
+    <xs:attribute name="sharingNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dimensions" type="xs:NMTOKENS" />
+    <xs:attribute name="dimensionsNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="transportation" type="xs:NMTOKEN" />
+    <xs:attribute name="transportationNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="order" type="OrderEnum" />
+    <xs:attribute name="orderNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Interactions">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="interactionClass" type="InteractionClass" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="InteractionClass">
+    <xs:sequence>
+      <xs:element ecore:name="parameters" minOccurs="0" maxOccurs="unbounded" name="parameter" type="Parameter" />
+      <xs:element ecore:name="subClasses" minOccurs="0" maxOccurs="unbounded" name="interactionClass"
+        type="InteractionClass" />
+    </xs:sequence>
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="sharing" type="SharingEnum" />
+    <xs:attribute name="sharingNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dimensions" type="xs:NMTOKENS" />
+    <xs:attribute name="dimensionsNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="transportation" type="xs:NMTOKEN" />
+    <xs:attribute name="transportationNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="order" type="OrderEnum" />
+    <xs:attribute name="orderNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Parameter">
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Dimensions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dimension" type="Dimension" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="Dimension">
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="upperBound" />
+    <xs:attribute name="upperBoundNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="normalization" />
+    <xs:attribute name="normalizationNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="value" />
+    <xs:attribute name="valueNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Time">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="timeStamp" type="TimeStamp" />
+      <xs:element minOccurs="0" name="lookahead" type="Lookahead" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="TimeStamp">
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Lookahead">
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Tags">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="updateReflectTag" type="UpdateReflectTag" />
+      <xs:element minOccurs="0" name="sendReceiveTag" type="SendReceiveTag" />
+      <xs:element minOccurs="0" name="deleteRemoveTag" type="DeleteRemoveTag" />
+      <xs:element minOccurs="0" name="divestitureRequestTag" type="DivestitureRequestTag" />
+      <xs:element minOccurs="0" name="divestitureCompletionTag" type="DivestitureCompletionTag" />
+      <xs:element minOccurs="0" name="acquisitionRequestTag" type="AcquisitionRequestTag" />
+      <xs:element minOccurs="0" name="requestUpdateTag" type="RequestUpdateTag" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="UpdateReflectTag">
+    <xs:attribute name="dataType" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="SendReceiveTag">
+    <xs:attribute name="dataType" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="DeleteRemoveTag">
+    <xs:attribute name="dataType" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="DivestitureRequestTag">
+    <xs:attribute name="dataType" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="DivestitureCompletionTag">
+    <xs:attribute name="dataType" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="AcquisitionRequestTag">
+    <xs:attribute name="dataType" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="RequestUpdateTag">
+    <xs:attribute name="dataType" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Synchronizations">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="synchronization" type="Synchronization" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="Synchronization">
+    <xs:attribute name="label" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="labelNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="capability" type="SyncCapabilityEnum" />
+    <xs:attribute name="capabilityNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Transportations">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="transportation" type="Transportation" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="Transportation">
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="description" />
+    <xs:attribute name="descriptionNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Switches">
+    <xs:attribute name="autoProvide" type="StateEnum" />
+    <xs:attribute name="autoProvideNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="conveyRegionDesignatorSets" type="StateEnum" />
+    <xs:attribute name="conveyRegionDesignatorSetsNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="attributeScopeAdvisory" type="StateEnum" />
+    <xs:attribute name="attributeScopeAdvisoryNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="attributeRelevanceAdvisory" type="StateEnum" />
+    <xs:attribute name="attributeRelevanceAdvisoryNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="objectClassRelevanceAdvisory" type="StateEnum" />
+    <xs:attribute name="objectClassRelevanceAdvisoryNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="interactionRelevanceAdvisory" type="StateEnum" />
+    <xs:attribute name="interactionRelevanceAdvisoryNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="serviceReporting" type="StateEnum" />
+    <xs:attribute name="serviceReportingNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="DataTypes">
+    <xs:sequence>
+      <xs:element name="basicDataRepresentations" type="BasicDataRepresentations" />
+      <xs:element minOccurs="0" name="simpleDataTypes" type="SimpleDataTypes" />
+      <xs:element minOccurs="0" name="enumeratedDataTypes" type="EnumeratedDataTypes" />
+      <xs:element minOccurs="0" name="arrayDataTypes" type="ArrayDataTypes" />
+      <xs:element minOccurs="0" name="fixedRecordDataTypes" type="FixedRecordDataTypes" />
+      <xs:element minOccurs="0" name="variantRecordDataTypes" type="VariantRecordDataTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="BasicDataRepresentations">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="basicData" type="BasicData" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="BasicData">
+    <xs:attribute name="name" use="required" type="xs:ID" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="size" />
+    <xs:attribute name="sizeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="interpretation" />
+    <xs:attribute name="interpretationNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="endian" type="EndianEnum" />
+    <xs:attribute name="endianNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="encoding" />
+    <xs:attribute name="encodingNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="SimpleDataTypes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="simpleData" type="SimpleData" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="SimpleData">
+    <xs:attribute name="name" use="required" type="xs:ID" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="representation" type="xs:NMTOKEN" />
+    <xs:attribute name="representationNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="units" />
+    <xs:attribute name="unitsNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="resolution" />
+    <xs:attribute name="resolutionNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="accuracy" />
+    <xs:attribute name="accuracyNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="EnumeratedDataTypes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="enumeratedData" type="EnumeratedData" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EnumeratedData">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="enumerator" type="Enumerator" />
+    </xs:sequence>
+    <xs:attribute name="name" use="required" type="xs:ID" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="representation" type="xs:NMTOKEN" />
+    <xs:attribute name="representationNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Enumerator">
+    <xs:attribute name="name" use="required" type="xs:ID" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="values" type="xs:NMTOKENS" />
+    <xs:attribute name="valuesNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="ArrayDataTypes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="arrayData" type="ArrayData" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ArrayData">
+    <xs:attribute name="name" use="required" type="xs:ID" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:IDREF" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="cardinality" />
+    <xs:attribute name="cardinalityNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="encoding" />
+    <xs:attribute name="encodingNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="FixedRecordDataTypes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="fixedRecordData" type="FixedRecordData" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="FixedRecordData">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="field" type="Field" />
+    </xs:sequence>
+    <xs:attribute name="name" use="required" type="xs:ID" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="encoding" />
+    <xs:attribute name="encodingNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Field">
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:IDREF" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="VariantRecordDataTypes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="variantRecordData" type="VariantRecordData" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="VariantRecordData">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="alternative" type="Alternative" />
+    </xs:sequence>
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="discriminant" />
+    <xs:attribute name="discriminantNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="encoding" />
+    <xs:attribute name="encodingNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Alternative">
+    <xs:attribute name="enumerator" use="required" />
+    <xs:attribute name="enumeratorNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="name" type="xs:NMTOKEN" />
+    <xs:attribute name="nameNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="dataType" type="xs:NMTOKEN" />
+    <xs:attribute name="dataTypeNotes" type="xs:NMTOKENS" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+  
+  <xs:complexType name="Notes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="note" type="Note" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="Note">
+    <xs:attribute name="name" use="required" type="xs:NMTOKEN" />
+    <xs:attribute name="semantics" />
+    <xs:attribute name="semanticsNotes" type="xs:NMTOKENS" />
+  </xs:complexType>
+
+
+  <!-- ************************************************************** -->
+  <!--  Simple Types                                                  -->
+  <!-- ************************************************************** -->
+
+  <xs:simpleType name="SharingEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Publish" />
+      <xs:enumeration value="Subscribe" />
+      <xs:enumeration value="PublishSubscribe" />
+      <xs:enumeration value="Neither" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="OrderEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Receive" />
+      <xs:enumeration value="TimeStamp" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DTDVersionEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1516.2" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ObjectModelTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="FOM" />
+      <xs:enumeration value="SOM" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="UpdateTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Static" />
+      <xs:enumeration value="Periodic" />
+      <xs:enumeration value="Conditional" />
+      <xs:enumeration value="NA" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="OwnershipEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Divest" />
+      <xs:enumeration value="Acquire" />
+      <xs:enumeration value="DivestAcquire" />
+      <xs:enumeration value="NoTransfer" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SyncCapabilityEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Register" />
+      <xs:enumeration value="Achieve" />
+      <xs:enumeration value="RegisterAchieve" />
+      <xs:enumeration value="NoSynch" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="StateEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Enabled" />
+      <xs:enumeration value="Disabled" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EndianEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Big" />
+      <xs:enumeration value="Little" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

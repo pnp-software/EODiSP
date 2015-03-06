@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - General Architecture</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="generalArchitecture.html">General Architecture</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>General Architecture</h1><div class="section">
+    <p>
+      This page describes the overall architecture of the EODiSP. The intention is to give 
+      a description of what each of the EODiSP software package does and how these software 
+      packages interact and work together. This description is fairly high-level. Please 
+      refer to the documentation of each software package for a more detailed description 
+      of its architecture.
+    </p>
+    <p>
+      The EODiSP software packages are also referred to as EODiSP applications. This is 
+      because each EODiSP software package is an EODiSP application. In general, in this 
+      page, the term 'EODiSP' is used to refer to the set of applications that are required 
+      to configure and run a simulation. The EODiSP environment also provides a set of 
+      so-called 'support applications'. The support applications are intended to help users 
+      perform off-line tasks that are required prior to running a simulation (such as the 
+      generation of wrappers to transform generic simulation packages into HLA-compliant 
+      models ready to be integrated in the EODiSP) or after a simulation as terminated 
+      (such as post-processing of simulation data). This page does not document the support 
+      applications which are instead covered in a <a href="supportApplications.html">dedicated 
+      page</a>.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#OverallEODiSPStructure">Overall EODiSP Structure</a></li><li><a href="#TheEODiSPSoftwarePackages">The EODiSP Software Packages</a></li></ul><div class="section"><a name="OverallEODiSPStructure"></a><h2>Overall EODiSP Structure</h2>
+    <p>
+      The overall EODiSP structure is presented
+      in the EODiSP <a href="../../overview.html">overview page</a> and in particular
+      in the description of the
+      <a href="../..overview.html#ConceptualStructureofanEODiSPSimulator">conceptual structure</a> and 
+      the <a href="../../overview.html#HLAStructureofanEODiSPSimulator">HLA structure</a> of a
+      simulation instantiated from the EODiSP.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TheEODiSPSoftwarePackages"></a><h2>The EODiSP Software Packages</h2>
+    <p>
+      The EODiSP project consists of five major software packages. These software packages 
+      encapsulate major EODiSP functionalities and are
+      intended to be decoupled from each other. The five software packages are: the <i>EODiSP core</i>, 
+      the <i>EODiSP 
+      HLA</i>, the <i>EODiSP remote</i>, the <i>EODiSP GUI</i>, and a package defining a set of 
+      <i>wrapper applications</i>. In addition, 
+      an EODiSP <i>utility package</i> is provided. This latter package is not regarded as a major software 
+      package since it implements low-level common tasks for all other software packages.
+    </p>
+    <p>
+      The first three packages - the core package, the HLA package, and the remote package -
+      implement the <i>EODiSP core framework</i>. The GUI package and the wrapper package are support packages
+      that facilitate the use of the 
+      EODiSP framework, but would, technically speaking, not be necessary. The figure shows 
+      all these packages and how they depend on each other.
+    </p>
+    <div class="figure"><a name="package-dependencies.png"><img border="0" src="../../images/package-dependencies.png" alt="Structure of a Simulator Instantiated from the EODiSP"></img></a><p>Figure 1: Structure of a Simulator Instantiated from the EODiSP</p></div>
+    <p>
+      The arrow in the figure indicate that a package uses or controls another one. The arrows 
+      should not be taken to mean that the data flow is uni-directional. It will be noted that all packages can 
+      make use of the utility package which includes an implementation of common code implementing
+      low level functionalities like 
+      configuration, data conversions, etc.
+    </p>
+    <p>These packages are described in the following sections.</p>
+    <div class="subsection"><a name="EODiSPCoreFramework"></a><h3>EODiSP Core Framework</h3>
+      <p>
+        As mentioned earlier, the core framework of the EODiSP consists of three packages 
+        - the core package, the HLA package and the remote package. These three packages are kept
+        separate because they implement logically distinct functionalities and because there may be
+        a desire to use them independently of each other or to replace them within the EODiSP. 
+      </p>
+      <div class="subsubsection"><a name="EODiSPHLA"></a><h4>EODiSP HLA</h4>
+        <p>
+          The EODiSP is built as an implementation of the <a class="external" href="https://www.dmso.mil/public/public/transition/hla/">High-Level 
+          Architecture</a> (HLA). The HLA is the most widely used simulation architecture and 
+          is formally defined in the IEEE standard 1516. Adherence to the standard allows interoperability 
+          and reusability of simulation models. The HLA is a modular architecture. It is defined 
+          as a bundle of services that support various aspects of a simulation. In general, 
+          a particular simulator will only need a subset of all the services defined by the 
+          HLA. The set of services supported by the EODiSP is defined on the <a href="./implementedHLAServices.html">HLA 
+          Services</a> page. The selection of the services was done keeping in mind the intended 
+          usage of the EODiSP as a platform for earth observation end-to-end mission simulations.
+        </p>
+        <p>
+          the advantage of providing a dedicated HLA package is that, at least in principle, it gives developers the option to
+          use this package sepaately from the other EODiSP packages as a self-standing implementation
+          of the HLA standard. It also gives the option to developers to replace the HLA implementation
+          provided with the EODiSP and to use an alternative HLA implementation.
+        </p>
+        <p>  
+          As shown in the figure above, the HLA package uses the EODiSP remote package which implements 
+          the network infrastructure part of the EODiSP. Note that the HLA standard does not specify a network 
+          infrastructure for the HLA. Also for this reason, the network infrastructure for the EODiSP is
+          implemented in a dedicated package leaving again open the option to replace it.
+        </p>
+        <p>
+          The HLA implementation is the central part of the EODiSP, since all other packages 
+          are built around it. It in particular specifies the interfaces to which simulation models 
+          must comply. Furthermore, it implicitly defines the minimal features supported by 
+          the EODiSP. 
+         </p>
+        <p>
+          The implementation of the HLA services in the HLA package is split into a CRC (Central RTI Component) 
+          and a LRC (Local RTI Component). See the <a href="./hlaArchitecture.html">HLA Architecture</a> 
+          for more detailed description.
+        </p>
+      </div>
+      <div class="subsubsection"><a name="EODiSPCore"></a><h4>EODiSP Core</h4>
+        <p>This is the non-HLA part of the core of the EODiSP framework. Its purpose is:</p>
+        <ul>
+          <li>To control the HLA implementation, and</li>
+          <li>To implement additional functionalities on top of the HLA implementation.</li>
+        </ul>
+        <p>
+          The need for the former purpose is obvious since there must be a component which can control the 
+          HLA functionality and which implement functions such as creating and managing a simulation. 
+          The latter purpose 
+          stems from the fact that not all requirements for the EODiSP can be covered by an 
+          HLA implementation. For instance, the EODiSP needs to be able to find other applications 
+          that participate in a currently running simulation. This - and other - functionalities cannot be covered
+          at HLA level and are therefore provided by the core package.
+        </p>
+        <p>
+          The fact that there is additional functionality on top of the HLA led to the decision 
+          to decouple this package from the HLA implementation. Decoupling these two packages 
+          has the further advantage that the HLA implementation remains a self-contained package 
+          that complies to the HLA standard which can, at least potentially, be used separately
+          from the EODiSP.
+        </p>
+        <p>
+          The core package provides the code implementing three separate applications - the <i>simulation 
+          manager application</i>, the <i>model manager application</i>, and the 
+          <i>repository application</i>. The simulation manager and model manager applications are
+          provided to allow a user to configure and control the execution of a simulation 
+          (see the description of the <a href="../../overview.html#EODiSPUserInterface">EODiSP
+          user interface</a>). Note that GUI-based front-end for these two applications is defined in
+          the <a href="#EODiSPGuiApplications">GUI application package</a>. The repository application
+          encapsulates and provides access to a centralized repository holding the description of all 
+          the simulation models potentially accessible to the EODiSP users. 
+         </p>
+         <p>
+          Additionally, the core package includes several modules that allow the simulation manager,
+          model manager, and repository applications to exchange information and to control each other.
+          Note that these three applications must be able to communicate with each other directly 
+          without the HLA package. 
+          This architecture is necessary because the simulation manager, model manager, and
+          repository applications must provide functionalities on top of the HLA. 
+          </p>
+         <p>
+          A detailed 
+          explanation of the core package is given in the <a href="./coreArchitecture.html">EODiSP core 
+          Architecture</a> documentation.
+        </p>
+      </div>
+      <div class="subsubsection"><a name="EODiSPRemote"></a><h4>EODiSP Remote</h4>
+        <p>
+          As its name suggests, this package is responsible for transferring simulation data 
+          over a network. The network can be local, a LAN (local area network), or the Internet. 
+          The remote package is built on top of a JXTA network infrastructure and implements 
+          a remote method invocation mechanism (similar to the RMI implementation in Java). 
+          Note that the JXTA infrastructure can be used to establish a connection between two nodes even 
+          if they are behind a firewall or a NAT server. This allows the creation of distributed
+          simulations where some of the simulation nodes are located behind firewalls.
+        </p>
+        <p>
+          Since both the core and the HLA packages can send data over a network, both packages 
+          use the remote package. They do not have any network code directly integrated within them. This 
+          also ensures that the remote package could, in principle, be replaced with another 
+          package providing a different implementation of the networking infrastructure.
+        </p>
+      </div>
+    </div>
+    <div class="subsection"><a name="EODiSPGUIApplications"></a><h3>EODiSP GUI Applications</h3>
+      <p>
+        The EODiSP core application is operated through two 
+        <a href="../../overview.html#EODiSPUserInterface">GUI applications</a>: 
+        the simulation manager and the model manager applications.
+      </p>
+      <p>
+        The simulation manager GUI can only be instantiated once. It controls the simulation 
+        environment. The model manager GUI is instantiated at least once for every distribution 
+        node that participates in a simulation.
+      </p>
+      <p>
+        A model manager application controls a set of simulation models (or HLA federates) 
+        that reside on the same node. The model managers act as clients to the simulation 
+        manager (the server).
+      </p>
+      <p>
+        The two GUI applications work tightly together with the corresponding applications in 
+        the <a href="">core package</a>. The GUI application and its counterpart in the core package
+        run on the same node without any need for a remote connection 
+        in order to communicate with each other. The communication between the two applications is 
+        through the Java interfaces 
+        that they expose. This implies that the simulation manager (from the EODiSP 
+        core package) and the simulation manager GUI (from the EODiSP GUI package) cannot 
+        run on different nodes. The same is true for the respective model manager applications. 
+        In principle, it would be possible to separate these applications and let them run on different
+        nodes but this would add considerable complexity and it was therefore decided to keep these
+		applications tightly coupled.
+      </p>
+      <p>
+        Most of the functionality to run a simulation experiment is implemented in the core package
+        application. The GUI applications are primarily aimed at providing an environment where
+        the use can set up a simulation
+        and control its execution. The two most important features of the GUI applications therefore
+        are:
+      </p>
+      <ul>
+        <li>To assemble a simulation experiment through a graphical user interface, and</li>
+        <li>To control the core application through a graphical user interface</li>
+      </ul>
+      <p>
+        The two GUI applications share certain common features and it is desirable they should have
+        a similar look and feel. For this reason, a
+        small GUI framework has been built as a common basis from which the two GUI applications
+        are instantiated. This is described 
+        in the <a href="./guiArchitecture.html">GUI Architecture</a> documentation.
+      </p>
+    </div>
+    <div class="subsection"><a name="EODiSPWrapperApplications"></a><h3>EODiSP Wrapper Applications</h3>
+      <p>
+        The HLA, among other things, defines the interface between the simulation models 
+        and the simulation infrastructure (i.e. the EODiSP core). Hence, in order to be integrated 
+        with the EODiSP core, simulation models must comply with an HLA interface.
+      </p>
+      <p>
+        The EODiSP explicitly supports the concept of model wrappers. A wrapper is a piece 
+        of code that transforms a given simulation model into an HLA-compliant model. The wrapper typically 
+        changes the external interface of a model to make it comply with the HLA interface 
+        requirements. Wrappers obviously depend on the structure of the model they wrap. 
+        For this reason, it is not possible to provide a wrapper for every possible kind 
+        of model.
+      </p>
+      <p>
+        However, the EODiSP recognizes that there are some types of models that are more likely 
+        to occur in earth observation missions and, for these types of models, it provides 
+        predefined wrappers. It additionally provide a number of 
+        <a href="../developerManuals.html#supportApplications">support applications</a>
+        that can automatically generate all or part of the wrappers. The EODiSP Wrapper Application
+        package contains the code that implements the wrapper generators. Note that most of this 
+        code is XSL-based rather than Java-based as for the rest of the EODiSP.
+      </p>
+    </div>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-08-18 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

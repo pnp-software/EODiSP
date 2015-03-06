@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Test Case TC_104</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../useAndTestCases.html">Use And Test Cases</a> » <a href="TC_104.html">Test Case TC_104</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="active" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Test Case TC_104</h1><div class="section">This page describes one of the
+    <a href="../userManuals.html#TestCases">test cases</a>
+    of the EODiSP. The test case described in this page instantiates a nominal scenario 
+    of the use case
+  
+    <a href="UC_104.html">UC_104</a>. Test case
+    <p>
+      This test case uses the <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE 
+      Simulator</a> as a test platform. The simulator is operated in its <a href="earthCAREConfiguration.html">default 
+      configuration</a>.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Overview">Overview</a></li><li><a href="#Steps">Steps</a></li></ul><div class="section"><a name="Overview"></a><h2>Overview</h2><p>
+    <table WIDTH="90%" BORDER="1" CELLPADDING="4" CELLSPACING="0">
+      <tr>
+        <td><i>Identifier</i></td>
+        <td>TC_104</td>
+      </tr>
+      <tr>
+        <td><i>Name</i></td>
+        <td>Configure EarthCARE Simulation Experiment</td>
+      </tr>
+      <tr>
+        <td><i>Primary Actor</i></td>
+        <td>
+          <a href="earthCAREConfiguration.html#SimulationManagerApplication">PnP_1 Simulation Owner</a>
+        </td>
+      </tr>
+      <tr>
+        <td><i>Description</i></td>
+        <td>
+          Describes the configuration of an experiment to be run with the EarthCARE Simulator.
+        </td>
+      </tr>
+      <tr>
+        <td><i>Pre-Condition</i></td>
+        <td>
+          Test case <a href="TC_102.html">TC_102</a> (set-up simulation manager application) 
+          has been successfully completed.
+        </td>
+      </tr>
+      <tr>
+        <td><i>Post-Condition</i></td>
+        <td>The EarthCARE simulation experiment is configured and ready to be run.</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Steps"></a><h2>Steps</h2><p>
+    <ol>
+      <li>Actor chooses to create a new experiment by selecting <i>New Experiment</i> from 
+        the File menu. The actor may alternatively use the currently open experiment.</li>
+      <li>System creates a new experiment and displays its initial name in the current experiment 
+        view.</li>
+      <li>Actor sets a name for the experiment. This can be done by either clicking on the 
+        experiment node (which will change to text input mode) or by changing the appropriate 
+        value in the property sheet view.</li>
+      <li>System sets the name of the experiment</li>
+      <li>User adds a federation by right-clicking the mouse when over the experiment node 
+        and selecting <i>Add Federation Execution</i>.</li>
+      <li>System will add a node that represents the new federation execution.</li>
+      <li>Actor sets a name for the newly created federation with the same procedure as used for setting 
+        the name for the experiment.</li>
+      <li>System sets the name of the federation execution.</li>
+      <li>Actor adds all federates required to run the EarthCARE simulation to the federation. 
+        This can be done by right-clicking on the federation node and selecting <i>Add Federate</i> 
+        from the pop-up menu.</li>
+      <li>System will show a dialog that displays a list of federates which are registered 
+        in the repository.</li>
+      <li>Actor chooses all federates from the list and selects <i>Add Selected</i>.</li>
+      <li>System closes the dialog and adds the selected federates to the federation.</li>
+      <li>Actor may wish to add a file with initialization data to each federate. This can 
+        be done by right-clicking on the federate node and selecting <i>Add Init Data</i> 
+        from the pop-up menu.</li>
+      <li>System shows a dialog that lets the actor choose a file to add as init data to the 
+        selected federate.</li>
+      <li>Actor chooses <i>Select &amp; Exit</i> button.</li>
+      <li>System adds an initialization data node to the appropriate federate.</li>
+      <li>Actor may wish to add more federation to form an experiment that performs multiple 
+      simulation runs consecutively.</li>
+    </ol>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-17 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

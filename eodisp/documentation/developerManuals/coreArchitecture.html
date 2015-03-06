@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EODiSP core Architecture</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="coreArchitecture.html">EODiSP core Architecture</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EODiSP core Architecture</h1><div class="section">
+    <p>
+      This page describes the architectural design of the EODiSP core software. Please 
+      refer to the <a href="generalArchitecture.html">General Architecture</a> documentation 
+      for a description of the overall EODiSP architecture.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#ManagerApplications">Manager Applications</a></li><li><a href="#Repository">Repository</a></li></ul><div class="section"><a name="ManagerApplications"></a><h2>Manager Applications</h2>
+      <p>
+        The core package provides an implementation of two manager applications - the <i>simulation 
+        manager application</i> and the <i>model manager application</i>. The primary purpose of the two manager 
+        applications is to:
+      </p>
+      <ul>
+        <li>Control the HLA implementation, and</li>
+        <li>Extend the functionality provided by the HLA implementation.</li>
+      </ul>
+      <p>
+        The need to extend the functionality of the HLA stems from the fact that not all 
+        requirements for the EODiSP can be covered by the HLA implementation. In order to 
+        keep the HLA part of the EODiSP implementation compliant to the HLA standard, all 
+        these non-HLA requirements are implemented in the two manager applications.
+      </p>
+      <p>
+        Requirements that are not covered by the HLA are, for instance, a facility to remotely 
+        start and stop a federate, setting a simulation to a hold state, etc. In order to 
+        be able to fulfill these requirements, the two manager applications need to be able 
+        to directly exchange data. Therefore, the EODiSP remote package is not only needed 
+        on the level of the HLA, but also on the level of the manager applications. Figure 
+        1 illustrates the connection between the two manager applications. In addition to 
+        extending the functionality, the other purpose of the manager applications is to 
+        control the HLA implementation. This is, for instance, to start the RTI, add federates 
+        to a simulation, retrieve informations about a running simulation, etc. These functionalities 
+        is covered directly on the level of the HLA.
+      </p>
+      <div class="figure"><a name="package-manager-applications.png"><img border="0" src="../../images/package-manager-applications.png" alt="Architecture of the manager applications"></img></a><p>Figure 1: Architecture of the manager applications</p></div>
+      <p>
+        The figure shows how the two manager applications are connected. Another important 
+        point that the figure illustrates are the virtual machines in which the applications 
+        run. As illustrated in the figure, the simulation and the model manager applications 
+        run in different virtual 
+        machines. These virtual machines could be located on one physical computer 
+        or on different computers. The EODiSP remote package works in both situations 
+        transparently.
+      </p>
+      <p>
+        The two manager applications do not implement any GUI-based functionality. The GUI
+        part of the simulation and model managers are implemented in a separate software
+        package (<a href="guiArchitecture.html">EODiSP GUI package</a>). 
+        To each manager application, a GUI application is
+        associated. Thus, to the simulation manager application, a GUI simulation
+        manager application is associated and to each model manager application, a dedicated
+        GUI model manager application is associated.
+        </p>
+      <p>
+        An important point to note is that the manager applications and their associated
+        GUI implementations 
+        run in the same virtual machine. Since the EODiSP does not include a requirements 
+        to physically separate the GUI from the core implementation, this architecture is 
+        more effective. However, some data must be accessible to both, the GUI and the core 
+        implementation. In this situations, access blocks (indicated by dark green boxes 
+        in the figure) are created. All of these access blocks expose a well defined interface 
+        with which both the GUI and manager applications can work. This has been chosen as 
+        a baseline architecture since it is regarded as more effective, especially from the
+        point of view of the 
+        GUI implementation.
+      </p>
+      <p>
+        As indicated in the figure, the simulation manager application can exchange data 
+        with the model manager application through a well defined interface, the 'Model Manager 
+        Remote API'. On the other side, the model manager application can exchange data with 
+        the simulation manager application through the 'Simulation Manager Remote API'.
+      </p>
+      <p>
+        As already mentioned, the manager applications do not have a graphical user interface 
+        but provide a management 
+        interface built on top of JMX. The manager applications are configurable and manageable 
+        by using this interface. However, a graphical user interface in Java Swing is implemented 
+        separately in the <a href="guiArchitecture.html">EODiSP GUI</a> software package.
+      </p>
+    <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Repository"></a><h2>Repository</h2>
+      <p>
+        The model repository provides a facility to keep track of the simulation models (encapsulated
+        as HLA federates) that have already been created and that are potentially available for inclusion
+        in an EODiSP simulation. The repository also allow the model managers (the 'owners' of the
+        simulation models) to restrict access to the their models to selected simulation managers.
+        </p>
+      <p>
+        Depending on the application, the repository serves 
+        different purposes. For the simulation manager, these are:
+      </p>
+      <ul>
+        <li>Registering/unregistering itself in the repository as a simulation manager.</li>
+        <li>Retrieving a list of all registered federates in order to integrate them in a simulation.</li>
+        <li>Validate the federates and their interconnections for a particular simulation prior 
+          to starting a simulation experiment.</li>
+      </ul>
+      <p>And for the model manager:</p>
+      <ul>
+        <li>Register/unregister the federates that are integrated in the model manager application 
+          as being available.</li>
+        <li>Retrieving a list of simulation manager applications in order to restrict access 
+          to the federates.</li>
+      </ul>
+      <p>
+        Having such a repository has many advantages. The most prominent advantage is that 
+        a simulation manager can access information about federates even if they are not 
+        running. The only thing that needs to run and also needs to be accessible is the 
+        repository itself. This means that the repository needs to run on a machine that is publicly 
+        accessible. The next figure shows how the repository is accessed by the different applications.
+      </p>
+      <div class="figure"><a name="core-repository-access.png"><img border="0" src="../../images/core-repository-access.png" alt="Access to the repository"></img></a><p>Figure 2: Access to the repository</p></div>
+      <p>
+        Since both the manager applications and the GUI need to access the repository, a 
+        separate access block is implemented (the 'Repository Access'). This access code 
+        belongs to the core package implementation but exposes an interface which also the 
+        GUI can work with. As shown in the figure, all three components run in a different 
+        virtual machine. This usually means that they run on physically separated machines. 
+        But again, it is also possible to run them on a single machine.
+      </p>
+    <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-16 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

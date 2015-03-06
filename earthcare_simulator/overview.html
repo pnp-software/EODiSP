@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EarthCARE Simulator - Overview</title><link rel="stylesheet" href="style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="EODiSP, EarhCARE, distributed, HLA"></meta><meta name="description" content="EarthCARE Simulator based on the EODiSP"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="index.html">EarthCARE Simulator</a></h1></div><div id="nav-path"><a href="index.html">Home</a> » <a href="overview.html">Overview</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="active-leaf"><a class="active" href="overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="simulationPackages.html">Simulation Packages</a></li></ul><ul><li class="leaf"><a class="" href="HLAFederates.html">HLA Federates</a></li></ul><ul><li class="leaf"><a class="" href="download.html">Download / Install</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Overview</h1><div class="section">
+    <p>
+      This page introduces the <i>EarthCARE Simulator</i>. The EarthCARE Simulator was created by
+      instantiating the <a href="http://www.pnp-software.com/eodisp" class="external">EODiSP platform</a>. 
+      The EarthCARE Simulator is end-to-end performance mission
+      simulator for the EarthCARE mission. The EarthCARE mission is
+	  an earth observation satellite mission under development at <a href="http://www.esa.int" class="external">ESA</a>.
+	  Most of the simulation packages integrated in the EarthCARE Simulator were developed by 
+	  <a href="http://www.knmi.nl/" class="external">KNMI</a> 
+      as part of their contribution to the phase A EarthCARE study.
+    </p>
+    <p> 
+	  This page assumes the reader to be familiar with the
+      <a href="http://www.pnp-software.com/eodisp/overview.html" class="external">EODiSP concept</a>. 
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Objectives">Objectives</a></li><li><a href="#SimulatorArchitecture">Simulator Architecture</a></li><li><a href="#FileAccessModes">File Access Modes</a></li><li><a href="#ExecutionMode">Execution Mode</a></li><li><a href="#FailureModes">Failure Modes</a></li><li><a href="#DummyFederates">Dummy Federates</a></li><li><a href="#SimulationParameters">Simulation Parameters</a></li><li><a href="#SimulationExperiments">Simulation Experiments</a></li><li><a href="#SimulationRepository">Simulation Repository</a></li><li><a href="#SimulationFederateOwners">Simulation Federate Owners</a></li></ul><div class="section"><a name="Objectives"></a><h2>Objectives</h2>
+    <p>
+     The instantiation of the EODiSP to build the EarthCARE Simulator has two objectives.
+     <ul>
+     <li>To create a simulator that can be used to perform the
+     <a href="http://www.pnp-software.com/eodisp/documentation/Testing.html" class="external">system-level 
+     verification of the EODiSP</a>.</li>
+     <li>To provide a blueprint for prospective users of the EODiSP of how they can use 
+     the EODiSP to create their own simulators.</li>
+     </ul>
+     An EODiSP simulation is built by integrating a set of <i>simulation packages</i> 
+      with the EODiSP infrastructure. A simulation package is a piece of software that 
+      implements part of the functionalities required for an end-to-end simulation and 
+      that is delivered as a single unit. A simulation package encapsulates one or more 
+      <i>simulation models</i>.
+    </p>
+    <p>
+      The simulation models normally take the forms of algorithms, possibly defined in 
+      some modelling environment such as Matlab. The simulation packages implement the simulation 
+      model algorithms in software. Simulation packages can take a variety of forms: source 
+      code in a high-level language, binary level executable, macros in an excel spreadsheet, 
+      etc. In the EarthCARE Simulator, three kinds of simulation packages are used: excel
+      spreadsheets, linux executables available in binary form only, and Java source code.
+    </p>
+    <p>
+     With reference to the above objectives, this web site describes:
+     <ul>
+     <li>The <a href="simulationPackages.html">simulation packages</a> that 
+     compose the EarthCARE Simulator;</li>
+     <li>The <a href="HLAFederates.html">wrappers</a> that transform the simulation
+     packages into HLA Federates ready to be integrated with the EODiSP infrastructure;
+     </li>
+     <li>The repositories where the HLA Federates are registered.</li>
+     </ul>
+     Note that this web site is intended to describe a <i>simulator</i>, not a particular
+     <i>simulation</i>. The simulator described here can be used to perform several
+     simulations. Some of these simulations were used to 
+     <a href="http://www.pnp-software.com/eodisp/documentation/Testing.html" class="external">demonstrate</a> the correct implementation
+     of the EODiSP and are described in the EODiSP web site.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulatorArchitecture"></a><h2>Simulator Architecture</h2>
+    <p>  
+     The EarthCARE simulator is based on the end-to-end performance simulator developed at 
+      <a href="http://www.knmi.nl/" class="external">KNMI</a> for the 
+	  phase A EarthCARE mission. The KNMI simulator
+	  consists of a set of stand-alone programs running on a Linux platform. Each program
+	  models one element of the end-to-end observation chain. 
+	</p>   
+    <p>
+	  The starting point of the observation chain is a <i>scene creator</i> 
+	  program that generates a <i>scene file</i>. The scene file models the physical scene that 
+	  is observed
+	  by the EarthCARE instruments. The next item in the chain is a set of <i>forward models 
+	  programs</i>
+	  which simulate the propagation of signals from the scene to the satellite instruments. 
+	  The third
+	  item in the chain is a set of <i>instrument model programs</i> that simulate the satellite instruments.
+	  The last item in the chain is a set of <i>retrieval model programs</i> that simulate the post processing 
+	  of the instrument data. A set of utility programs are also available to plot the results of the
+	  data retrieval and to extract geophysical data from scene files.
+	  The simulator programs
+	  exchange information through data files. 
+    </p>   
+    <p>  	  
+	  The KNMI simulator is described in detail in a publicly available 
+	  <a href="download/Sim_ug.pdf">user guide</a>. 
+	</p>   
+    <p>
+      The EODiSP EarthCARE simulator is based on a nearly complete subset of the programs 
+      in the KNMI EarthCARE simulator.
+      Its architecture is shown in the figure below. Blue boxes in the 
+      figure represent KNMI simulator programs wrapped as HLA federates. The names in the boxes are 
+      the same as the names used in
+      the KNMI documentation. 
+      Red boxes represent federates that were developed specifically for the
+      EODiSP EarthCARE Simulator and do not therefore come from KNMI. 
+    </p>   
+    <p>  
+      The arrows in the figure represent data flows. The structure of the data
+      generated and consumed by the KNMI programs is too complex to be represented graphically.
+      The arrows therefore only indicate which program is providing data to which other program but they
+      do not say anything about the kind of data that is being exchanged. The <code>sim_controller</code>
+      federate sends data to and receives data from all the other federates in the simulator.
+      For simplicity, its connections are not shown in the figure.
+    </p>
+     <div class="figure"><a name="simulatorArchitecture_1.png"><img border="0" src="images/simulatorArchitecture_1.png" alt="EarthCARE Simulator Architecture"></img></a><p>Figure 1: EarthCARE Simulator Architecture</p></div>
+    <p>  
+      The starting point of the processing chain simulated by the demonstrator is 
+      the <code>scene_creator</code> utility that is used 
+      to generate a scene file. 
+      The scene file defines the physical scene to be observed by the EarthCARE instruments.  
+      The scene data are processed, in four parallel branches, by the 
+      four EarthCARE forward models: <code>lid_filter</code>, <code>rad_filter</code>, 
+      <code>MC_sim_main</code>, and <code>MC_LW_sim_main</code>. The phase A EarthCARE 
+      mission included four instruments (RADAR, LIDAR, BBR and MSI). Of these, only two - the RADAR
+      and the LIDAR - are explicitly modelled in the simulator (federates <code>lidar</code>
+      and <code>radar</code>). Finally, the simulator includes three retrieval models:
+      <code>lidar_ret1</code>, <code>msi_ret</code>, and <code>lw_msi_lidar_radar</code>.
+    </p>   
+    <p>
+      In addition to the federates built around KNMI models, the EarthCARE Simulator includes 
+      two federates that were developed specifically for it:
+      <ul>
+      <li>The <code>orbit_propagator</code> federate provides the spacecraft orbital 
+      position as an input for other models. The present version is a dummy intended for
+      demonstration purposes that 
+      outputs hard-coded values for the sun aspect angles.</li>
+      <li>The <code>sim_controller</code> federate is built around a set of excel spreadsheets
+      that allow the user to control and display the simulation parameters through a simple 
+      graphical interface. Dynamic update of simulation parameters while a simulation is running is
+      also possible.</li>
+      </ul>
+    </p>   
+    <p>  
+      Note that the EODiSP EarthCARE simulator - like the KNMI simulator from which it is 
+      derived - only simulates the 
+      processing of one single
+      scene. Hence, the data flows shown in the figure are only executed once in a single 
+      simulation run. 
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="FileAccessModes"></a><h2>File Access Modes</h2>
+    <p>  
+      The EarthCARE Simulation federates are implemented by wrapping the corresponding KNMI programs
+      as HLA federates. No changes are made to the original KNMI code. 
+     </p>
+     <p> 
+      The HLA interfaces of the 
+      EarthCARE federates are defined by the attributes the federates publish and
+      by the attributes they subscribe to.
+     </p>
+     <p>  
+      The attributes that an EarthCARE federate publishes and subscribes to are implicitly defined by the inputs 
+      and outputs of the associated KNMI program. These inputs and outputs take the form of files.
+	  Conceptually, the HLA wrappers map        
+      each file that is produced by one of the KNMI programs to an HLA attribute. 
+      At implementation level, two options are possible for managing these input and output files:
+      <ul>
+      <li>A file remains on the same distribution node as the program that generates it. The
+      federates that encapsulate the programs that read the file must then provide mechanisms to
+      allow a remote access to the file. In this case, it is only the URL of the file that is
+      physically transferred from a federate to another.</li>
+      <li>
+      A file is represented as a sequence of bytes (an HLA attribute of type 
+      <code>HLAopaqueData</code>) that is transferred from one federate to the next. In this case,
+      the entire content of the file is transferred from the federate producing the file to the
+      federates consuming it. Note that if several federates are using the same file as an
+      input, then the file content is transferred several times and multiple copies of the file
+      are created (possibly residing on the same computational node).</li>
+      </ul>
+      The choice between the two approaches depends on the pattern of access to a file on the part
+      of the KNMI programs, on the size of the files, and on the distribution architecture of a
+      simulation. 
+    </p>
+    <p>
+      If a federate needs to access a file several times during its execution and
+      if the file is generated at a remote location, 
+      then the transfer of the file content to the federate that needs it may be
+      the most efficient solution. If, on the other hand, the files are very large and used by
+      several federates, then it may be more advantageous to keep them where they are 
+      created and to simply transfer their URL to the federates that need to access them.
+      The latter solution, quite obviously, is also the optimal solution in case 
+      all federates reside on the same computational node.
+    </p>
+    <p>
+      The EarthCARE Simulator currently supports only the latter mode, the <i>file transfer mode</i>.
+      Thus, the data is always transfered
+      between federates, even if they reside on the same node. 
+      </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ExecutionMode"></a><h2>Execution Mode</h2>
+    <p>  
+      The original KNMI simulator was intended to run sequentially on a single processing
+      nodes. The KNMI simulation models are encapsulated in executable programs that run
+      one after the other. Each executable runs to completion before handing over to the
+      next executable in the processing chain.
+    </p>   
+    <p>
+      The EODiSP supports distributed simulations where various elements of a simulation
+      may run in parallel. Such a distributed approach makes eminent sense in the case
+      of the EarthCARE simulation for at least two reasons.  Firstly, the forwad
+      models are typically very computationally intensive. It is therefore advantageous to 
+      locate them on different nodes because this allows them to execute in parallel thus 
+      reducing the overall duration of a complete simulation. Secondly, it is often the
+      case that some of the models that participate in a simulation are proprietary. 
+      The EODiSP approach allows their owners to keep control over them while still allowing 
+      them to be included in a simulation.
+    </p>   
+    <p> 
+      The EarthCARE Simulator is designed in the EODiSP spirit to support 
+      <a href="http://www.pnp-software.com/eodisp/overview.html#DistributedSimulationPackages" class="external">distributed 
+      simulation</a> if the simulation packages are located on distributed nodes. 
+    </p>  
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="FailureModes"></a><h2>Failure Modes</h2>
+    <p>  
+      It is common for simulation models to support the concept of <i>failure modes</i>.
+      The failure mode is a flag that the user of the model can set to ask the model
+      to emulate a failure condition. The KNMI models do not support failure modes.
+      However, for purposes of demonstration, the EarthCARE Simulator includes a facility
+      to handle failure modes. 
+    </p>   
+    <p>
+      To each federate (with the exception of the 
+      <code>sim_controller</code>), a <code>failureMode</code> flag is associated. The
+      value of this flag is visualized by the <code>sim_controller</code> federate and,
+      through this same federate, the simulation manager can also ask for the value of
+      the flag to be changed. 
+    </p>   
+    <p>
+      Since the KNMI models do not support failure modes, changes
+      to the value of the <code>failureMode</code> flag have no effect. However, this
+      facility simulates a situation where the simulation manager
+      can control, in real-time and while a simulation is running, the failure mode
+      of the models that participate in a simulation.
+    </p>   
+    <p>
+      The visualization and change in the value of the failure
+      flag is done through the excel interface of the <code>sim_controller</code> federate.
+      This demonstrates how excel can be used to build a simple GUI-based control
+      interface for an EODiSP federation.
+    </p>  
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="DummyFederates"></a><h2>Dummy Federates</h2>
+      Some of the KNMI programs that form the heart of the EarthCARE Simulator have very long
+      execution times (tens of minutes or more). This is inconvenient for debugging or
+      demonstration purposes. For this reason, the EarthCARE Simulator include <i>
+      dummy versions</i> of some of the federates that wrap the KNMI programs. 
+    <p>
+      The KNMI federates wrap an executable that reads one or more input files and generates
+      one or more output files. The dummy versions of the KNMI federates do not include any
+      executable but they can output an out put file with the same format as the output
+      file generated by the KNMI executable.
+    </p>
+    <p>  
+      The dummy federates implement the same HLA interface as the KNMI federate they replace
+      (i.e. they comply with the same SOM). The dummy federates are therefore interchangeable
+      with the KNMI federates. 
+    </p>
+    <p>  
+      The EarthCARE Demonstrator delivery includes dummy federates for several KNMI
+      programs. 
+      The dummy federates are characterized by names like <code>xxx_dummy</code> where 
+      'xxx' is the name of a KNMI program.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationParameters"></a><h2>Simulation Parameters</h2>
+    <p>  
+      The behaviour of simulation models is normally controlled by specifying the values of certain
+      parameters. The EarthCARE Simulator supports this type of configuration of its
+      models. 
+    </p>   
+    <p>
+      The model parameter values are displayed through the excel interface of the 
+      <code>sim_controller</code> federate and, through this same interface, the simulation
+      controller can also update their values or load an entire new set of default values for the
+      simulation parameters. 
+    </p>   
+    <p>
+      In view of the demonstrator status of the EarthCARE Simulator, the set of simulation 
+      parameters that are displayed through the <code>sim_controller</code> 
+      federate is only a subset of all the parameters that are defined for the 
+      KNMI models. The intention is to demonstrate how simulation parameters can be
+      displayed and updated in an EODiSP simulation, rather than to provide access to 
+      the full set of KNMI parameters.
+    </p>  
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationExperiments"></a><h2>Simulation Experiments</h2>
+    <p>  
+      The EODiSP is designed to support the execution of <i>simulation experiments</i>. 
+      A simulation experiment is a set of simulation 
+      runs executed in sequence with different configurations. A configuration is defined
+      by a set of initialization files. An initialization file is a file that is read 
+      by the federate during
+      the federate initialization phase (i.e. prior to the federate achieving its
+      EODISP_START synchronization point). In the EODiSP,
+      a federate can have multiple initialization files. These files can be added to a federate
+      in the simulation manager application, retaining the order of the files.
+    </p>  
+    <p>  
+      In the case of the 
+      EarthCARE Simulator, a simulation configuration is defined by a set of values for the
+      <a href="#SimulationParameters">simulation parameters</a>. This set of values is stored
+      in the excel file that is embedded within the <code>sim_controller</code> federate.
+      This federate is designed to take the excel file as its initialization file. No other
+      federate in the EarthCARE Simulator has an initialization file. Hence the 
+      <code>sim_controller</code> initialization file defines a configuration in a
+      simulation run.
+    </p>  
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationRepository"></a><h2>Simulation Repository</h2>
+    <p>  
+      In the EODiSP concept, at least one centralized repository must exist where all federates 
+      that may take part 
+      in a simulation are registered. The <i>EarthCARE Simulation Repository</i> is the 
+      centralized repository where the EarthCARE Simulator federates are registered. 
+     </p>
+     <p> 
+	  The EODiSP can operate in two basic modes. In <i>remote mode</i>, one or more of the 
+	  federates
+	  are located on a remote node (with respect to the simulation manager application). In <i>local mode</i>,
+	  all the federates are located on the same platform as the simulation manager application.
+	  Operation in remote mode requires the repository to be installed on a publicly accessible server.
+	  Operation in local mode requires the repository to be installed locally on the same machine on
+	  which the simulation models and the simulation manager application are located. 
+	 </p>
+     <p> 
+      The EarthCARE Simulator is designed for remote mode operation. Its repository is 
+	  installed on the P&amp;P Software server located in Germany. Obviously, users who wish to 
+	  run an EarthCARE simulation in local mode can do so by setting up a local repository on
+	  their own machine. 
+     </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationFederateOwners"></a><h2>Simulation Federate Owners</h2>
+   <p>
+      In the EODiSP concept, all federates that may take part in a simulation are owned by a
+      person or entity. The <i>EarthCARE simulation federate owners</i> are the owners of the 
+      federates of the EarthCARE Simulation.
+    </p>
+    <p>
+      In the EODiSP concept, federates are located on some platform and a simulation can be built by
+      integrating federates that reside on different - distributed - platforms. Federate owners must 
+      therefore
+      be associated to a particular platform where their federates they own are located. 
+      The federate owners and their associated platforms for the EarthCARE Simulator are 
+      as follows:</p>
+      <ul>
+      <li>PnP_1: federate owner residing at P&amp;P Software associated to a Linux laptop. </li>
+      <li>ETH_2: federate owner residing at ETH-Zurich associated to a Windows laptop.</li>
+      <li>Estec_4: federate owner residing at ESA-Estec associated to a Linux desktop.</li>
+      <li>Estec_5: federate owner residing at ESA-Estec associated to a Windows desktop.</li>
+      </ul>
+      <p>
+      Federate owners manage their models through the <a href="overview.html#EODiSPUserInterface">EODiSP 
+      model manager application</a>. This application is therefore installed on 
+      each of the demonstrator owner platforms. Note that the laptop-based federate owners can be physically
+      anywhere as long as they have access to the Internet.
+    </p>
+    <p>
+        The figure below illustrates on which node a federate is running for the EarthCARE Simulator.
+        It is the same figure as above, extended with a box for each federate. This box shows the
+        federate owner, according to the list given above.
+    </p>
+     <div class="figure"><a name="federateOwners.png"><img border="0" src="images/federateOwners.png" alt="EarthCARE Simulator Architecture with Federate Owners"></img></a><p>Figure 2: EarthCARE Simulator Architecture with Federate Owners</p></div>
+    
+    <p>  
+      Normally, the various owners contributing federates to a simulator own disjoint subsets of
+      federates. In the case of the EarthCARE Simulation, and in view of its demonstrative 
+      character, federates are duplicated. This is not shown in the figure above. The figure only
+      shows the federates that will be used nominally.
+    </p>
+    <p> 
+      The KNMI programs are designed to run under Linux. Their associated federates can therefore
+      only be allocated to Linux-based federate owners. The <code>sim_controller</code> federate
+      is built around an excel spreadsheet and must therefore be allocated to a Windows-based
+      federate owner. The <code>orbit_propagator</code> federate is implemented as a Java class
+      and is therefore platform-independent.
+    </p>
+    <p>
+      The EarthCARE Simulator provides two copies of each KNMI federate, with
+      each copy allocated to the PnP_1 and Estec_4 federate owners. Similarly, the <code>orbit_propagator</code> federate is provided in four copies
+      allocated to each of the four federate owners.
+    </p>
+    <p>     
+      This duplication of federates gives great flexibility in building simulations as it allows
+      the simulation manager to select different mixes of federates representing different 
+      distribution architecture. Mixing of federates from different platforms is possible and easy
+      because federates that implement the same HLA interface are interchangeable and because
+      the EODiSP allows seamless integration of distributed simulation packages.      
+    </p> 
+    <p>
+    There is another node that participates in the EarthCARE simulation:</p>
+    <ul>
+    <li>ETH_3: Running the JXTA rendezvous and relay server, the repository application, and the CRC on a Linux server.</li>
+    </ul>
+    <p>
+    This node does not run any model manager application but is also important for a functional EarthCARE simulation since it provides
+    services needed by all EODiSP simulations. It has been chosen to run this services on a publicly accessible server. However, these
+    services could also be run on a local node if the simulation is to be executed locally.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-11-02 by 
+                   pasetti </td></tr></table></div></div></body></html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Test Case TC_316</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../useAndTestCases.html">Use And Test Cases</a> » <a href="TC_316.html">Test Case TC_316</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="active" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Test Case TC_316</h1><div class="section">This page describes one of the
+    <a href="../userManuals.html#TestCases">test cases</a>
+    of the EODiSP. The test case described in this page instantiates a nominal scenario 
+    of the use case
+  
+    <a href="UC_316.html">UC_316</a>.
+    <p>
+      This test case uses the <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE 
+      Simulator</a> as a test platform. The simulator is operated in its <a href="earthCAREConfiguration.html">default 
+      configuration</a>.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Overview">Overview</a></li><li><a href="#Steps">Steps</a></li></ul><div class="section"><a name="Overview"></a><h2>Overview</h2><p>
+    <table>
+      <tr>
+        <td><i>Identifier</i></td>
+        <td>TC_316</td>
+      </tr>
+      <tr>
+        <td><i>Name</i></td>
+        <td>Create a new SOM file</td>
+      </tr>
+      <tr>
+        <td><i>Primary Actor</i></td>
+         <td><a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationFederateOwners" class="external">ETH_2 Model Owner</a></td>
+      </tr>
+      <tr>
+        <td><i>Description</i></td>
+        <td>
+          Describes the steps required to create a new SOM file for the <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE 
+          Simulator</a>.
+        </td>
+      </tr>
+      <tr>
+        <td><i>Pre-Condition</i></td>
+        <td>none.</td>
+      </tr>
+      <tr>
+        <td><i>Post-Condition</i></td>
+        <td>
+          A SOM file that defines the desired object classes and their attributes and the ability 
+          of the federate for publishing them or subscribing to them.
+        </td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Steps"></a><h2>Steps</h2><p>
+    <ol>
+      <li>Actor opens an XML and XML Schema capable editor of his choice.</li>
+      <li>Actor makes the XML Schema for EODiSP SOMs available to the editor. The <a href="../../download/HLA.xsd">XML 
+        Schema</a> is available from the <a href="../../download.html#OtherResources">download</a> 
+        section of this web page. </li>
+      <li>Actor inspects the <a href="../../download/mom.fdd">Management 
+        Object Model (MOM)</a> file provided in the <a href="../../download.html">download</a> 
+        section. The MOM includes all possible data types that can be used for a SOM. <br></br> </li>
+      <li>Actor inspects the orbit_propagator SOM file defined for the EarthCARE Simulator which can be found on the 
+      dedicated <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE Simulator</a> page. 
+        This SOM file is a good starting point and can be used as a template for other 
+        SOMs.</li>
+        <li>Actor defines his SOM.</li>
+    </ol>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-17 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

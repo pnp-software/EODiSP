@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+	<provider id="org.tigris.subversion.subclipse.core.svnnature">
+		<project reference="0.9.3,svn://svn.ee.ethz.ch/eodisp/core/trunk,eodisp_core"/>
+		<project reference="0.9.3,svn://svn.ee.ethz.ch/eodisp/gui/trunk,eodisp_gui"/>
+		<project reference="0.9.3,svn://svn.ee.ethz.ch/eodisp/hla/trunk,eodisp_hla"/>
+		<project reference="0.9.3,svn://svn.ee.ethz.ch/eodisp/remote/trunk,eodisp_remote"/>
+		<project reference="0.9.3,svn://svn.ee.ethz.ch/eodisp/util/trunk,eodisp_util"/>
+		<project reference="0.9.3,svn://svn.ee.ethz.ch/eodisp/wrapper/trunk,eodisp_wrapper"/>
+	</provider>
+</psf>

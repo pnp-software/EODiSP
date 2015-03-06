@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EarthCARE Simulator - Simulation Packages</title><link rel="stylesheet" href="style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="EODiSP, EarhCARE, distributed, HLA"></meta><meta name="description" content="EarthCARE Simulator based on the EODiSP"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="index.html">EarthCARE Simulator</a></h1></div><div id="nav-path"><a href="index.html">Home</a> » <a href="simulationPackages.html">Simulation Packages</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="overview.html">Overview</a></li></ul><ul><li class="active-leaf"><a class="active" href="simulationPackages.html">Simulation Packages</a></li></ul><ul><li class="leaf"><a class="" href="HLAFederates.html">HLA Federates</a></li></ul><ul><li class="leaf"><a class="" href="download.html">Download / Install</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Simulation Packages</h1><div class="section">
+    <p>
+      This page describes the simulation packages that are provided with the EarthCARE
+      Simulator. The simulation packages are available (wrapped as HLA Federates) from a centralized 
+      <a href="overview.html#SimulationRepository">repository</a>. 
+    </p>
+    <p>  
+      In the EODiSP <a href="http://www.pnp-software.com/eodisp/glossary.html" class="external">terminogy</a>, a 
+      simulation package is a piece of software that implements 
+      part of the functionalities required for an end-to-end simulation and that is delivered 
+      as a single unit. Prior to integration with the EODiSP, simulation packages may have
+      to be wrapped to be transformed into HLA Federates. The federates that wrap the 
+      simulation EarthCARE Simulator packages are described in a <a href="HLAFederates.html">dedicated
+      page</a>.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#KNMISimulationPackages">KNMI Simulation Packages</a></li><li><a href="#SimulationController">Simulation Controller</a></li><li><a href="#OrbitPropagator">Orbit Propagator</a></li><li><a href="#SimulationCode">Simulation Code</a></li></ul><div class="section"><a name="KNMISimulationPackages"></a><h2>KNMI Simulation Packages</h2>
+    <p>
+     The KNMI simulation packages are Linux binary executables that implement the KNMI models.
+     They are fully described in their <a href="download/Sim_ug.pdf">user guide</a>. No
+     further documentation is provided here.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationController"></a><h2>Simulation Controller</h2>
+    <p>
+     The simulation controller (or <code>sim_controller</code>) is implemented as two excel
+     spreadsheets gathered together in the same excel workbook. The excel workbook is called
+     <code>sim_controller.xls</code>. The two excel spreadsheets are called <code>Model_Configuration</code>
+     and <code>Simulation_Overview</code>.
+    </p>
+    <p> 
+     The <code>Model_Configuration</code> spredsheet lists the 
+     <a href="overview.html#simulationParameters">configuration parameters</a> of the
+     EarthCARE Federates. Its function is to display the values of the configuration
+     parameters and to allow the user to update these values.
+    </p>
+    <p> 
+     After start-up, the <code>Model_Configuration</code> spredsheet (see screenshot below)
+     displays the default 
+     values of the configuration parameters (this is indicated by the status field that
+     contains the string 'DEFAULT'). The user can update this value by editing the
+     excel cell where the value is displayed. A new value only becomes effective when
+     the update field is set to 'DO'. After the update operation has been completed (i.e.
+     after other federates have been notified of the change in value of the parameter),
+     the content of the status field changes to 'UPDATE n' where 'n' is an integer that
+     counts the number of updates.
+    </p>
+    <div class="figure"><a name="screenshot_model_configuration_1.gif"><img border="0" src="images/screenshot_model_configuration_1.gif" alt="Screenshot of Simulator Overview Panel"></img></a><p>Figure 1: Screenshot of Simulator Overview Panel</p></div>
+    <p>
+     The mechanism described in the previous paragraph allows parameters to be updated
+     individually one by one. If the value of the 'update all' field is changed to 'YES',
+     then all configuration values are updated simultaneously. This is the option that
+     will normally be used to start a simulation (see the description of the
+     simulator <a href="HLAFederates.html#SynchronizationPoints">synchronization points</a>).
+    </p>
+    <p>
+     If the simulation is intended to run as part of a <a href="">simulation experiment</a>,
+     then the option 'automatic update' should be set to 'YES'. This implies that
+     all configuration values will be sent to the simulation federates as soon as the
+     simulation has started (i.e. immediately after the EODiSP_START synchronization
+     point has been reached). 
+    </p>
+    <p>
+     The update of simulation parameters can also be done while a simulation is running.
+     In this case, however, there is no guarantee that the new value will be used since
+     a federate might already have read in and used the previous value.
+    </p>
+    <p>
+     The <code>Simulation_Overview</code> spredsheet (see screeshot below) displays 
+     the status of a running
+     simulation and allows the user to change the status of a running simulation. 
+     For each federate, three information items are displayed: the federate version,
+     the federate execution status, and the federate failure mode. All three information
+     items come from the <a href="HLAFederates.html#TheFederateInfoObjectClass">federate 
+     info</a> object class that all federates
+     (except, of course, the <code>sim_controller</code>) publish. The first two items
+     are read-only items that are read from the other federates as soon as a simulation
+     starts. The failure mode can instead be changed by the user. The change can be done
+     either at initialization, or while a simulation is running to simulate a fault in 
+     a running model.
+    </p>
+     <div class="figure"><a name="screenshot_simulation_overview_1.gif"><img border="0" src="images/screenshot_simulation_overview_1.gif" alt="Screenshot of Simulator Overview Panel"></img></a><p>Figure 2: Screenshot of Simulator Overview Panel</p></div>
+    
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="OrbitPropagator"></a><h2>Orbit Propagator</h2>
+    <p>
+     The orbit propagator (or <code>orbit_propagator</code>) is implemented as a single Java
+     class called <code>orbit_propagator.java</code>.
+    </p>
+    <p> 
+     The <code>orbit_propagator</code> class only provides the solar position angles as
+     an output since this is the only orbital information that is required as an input
+     by the KNMI models. The value of the two angles are read in as 
+     input parameters. Thus, the orbit propagator model simply passes on the values of
+     the solar position angles which it receives as an input.   
+    </p>
+    <p> 
+     The <code>orbit_propagator</code> class only implements a dummy orbit model. Its
+     purpose is to show how source code can be integrated into an EODiSP simulation
+     rather than to provide a realistic orbit model.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationCode"></a><h2>Simulation Code</h2>
+    <p>
+     All the code implementing the EarthCARE Simulator is accessible from the
+     <a href="download.html">download page</a>. For each federate - and hence for each
+     simulation package - a dedicated subdirectory is defined. The federate subdirectories
+     can be found in the <code>federates</code> directory. The code for both the wrappers
+     and the simulation packages they wrap is stored in dedicated subdirectories. 
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-07-24 by 
+                   ibirrer </td></tr></table></div></div></body></html>

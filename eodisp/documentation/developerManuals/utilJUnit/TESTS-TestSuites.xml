@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" id="0" name="ArrayUtilTest" package="org.eodisp.util" tests="10" time="0.137">
+  
+    <properties>
+    
+      <property name="java.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="eclipse.pdebuild.templates" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/templates//"></property>
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+
+          <property name="os.name" value="Linux"></property>
+
+          <property name="sun.boot.class.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/rt.jar:/opt/sun-jdk-1.5.0.07/jre/lib/i18n.jar:/opt/sun-jdk-1.5.0.07/jre/lib/sunrsasign.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jsse.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jce.jar:/opt/sun-jdk-1.5.0.07/jre/lib/charsets.jar:/opt/sun-jdk-1.5.0.07/jre/classes"></property>
+
+          <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="ant.home" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5"></property>
+
+          <property name="java.runtime.version" value="1.5.0_07-b03"></property>
+
+          <property name="flag.deleteTmp" value="true"></property>
+
+          <property name="user.name" value="ibirrer"></property>
+
+          <property name="src.java" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java"></property>
+
+          <property name="gen.doc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc"></property>
+
+          <property name="user.language" value="de"></property>
+
+          <property name="sun.boot.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386"></property>
+
+          <property name="ant.project.name" value="eodisp_util"></property>
+
+          <property name="java.version" value="1.5.0_07"></property>
+
+          <property name="user.timezone" value=""></property>
+
+          <property name="sun.arch.data.model" value="32"></property>
+
+          <property name="gen.java.classes" value="/home/ibirrer/workspaces/eodisp/eodisp_util/classes"></property>
+
+          <property name="gen.classDiagrams" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/class-diagrams"></property>
+
+          <property name="java.endorsed.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/endorsed"></property>
+
+          <property name="sun.cpu.isalist" value=""></property>
+
+          <property name="sun.jnu.encoding" value="UTF-8"></property>
+
+          <property name="file.encoding.pkg" value="sun.io"></property>
+
+          <property name="file.separator" value="/"></property>
+
+          <property name="java.specification.name" value="Java Platform API Specification"></property>
+
+          <property name="java.class.version" value="49.0"></property>
+
+          <property name="src" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src"></property>
+
+          <property name="user.country" value="CH"></property>
+
+          <property name="java.home" value="/opt/sun-jdk-1.5.0.07/jre"></property>
+
+          <property name="java.vm.info" value="mixed mode"></property>
+
+          <property name="ant.file" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="os.version" value="2.6.16-gentoo-r3"></property>
+
+          <property name="ant.file.eodisp_doc" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/build.xml"></property>
+
+          <property name="path.separator" value=":"></property>
+
+          <property name="java.vm.version" value="1.5.0_07-b03"></property>
+
+          <property name="src.javaTest" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java_test"></property>
+
+          <property name="ant.library.dir" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib"></property>
+
+          <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"></property>
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+
+          <property name="destDir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/website_gen/documentation/developerManuals/utilJUnit"></property>
+
+          <property name="eclipse.pdebuild.scripts" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/scripts//"></property>
+
+          <property name="user.home" value="/home/ibirrer"></property>
+
+          <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386/client:/opt/sun-jdk-1.5.0.07/jre/lib/i386:/opt/sun-jdk-1.5.0.07/jre/../lib/i386::/usr/lib/wine/lib:/usr/lib/mozilla-firefox"></property>
+
+          <property name="java.vendor.url" value="http://java.sun.com/"></property>
+
+          <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition"></property>
+
+          <property name="java.class.path" value="/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar"></property>
+
+          <property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+
+          <property name="java.vm.specification.version" value="1.0"></property>
+
+          <property name="sun.cpu.endian" value="little"></property>
+
+          <property name="sun.os.patch.level" value="unknown"></property>
+
+          <property name="gen.javadoc.test" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadocTest"></property>
+
+          <property name="eclipse.pdebuild.home" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/.//"></property>
+
+          <property name="java.io.tmpdir" value="/tmp"></property>
+
+          <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+
+          <property name="os.arch" value="i386"></property>
+
+          <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"></property>
+
+          <property name="java.ext.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/ext"></property>
+
+          <property name="user.dir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc"></property>
+
+          <property name="line.separator" value=" "></property>
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+
+          <property name="gen.doc.junit.xml" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp/junit_xml"></property>
+
+          <property name="ant.file.eodisp_util" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="basedir" value="/home/ibirrer/workspaces/eodisp/eodisp_util"></property>
+
+          <property name="ant.java.version" value="1.5"></property>
+
+          <property name="file.encoding" value="UTF-8"></property>
+
+          <property name="gen.javadoc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadoc"></property>
+
+          <property name="java.specification.version" value="1.5"></property>
+
+          <property name="gen.doc.junit.html" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/junit"></property>
+
+          <property name="gen.tmp" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp"></property>
+
+      </properties>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testListToString_0" time="0.024"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testListToString_1" time="0.0"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testListToString_2" time="0.0"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testListToString_3" time="0.0010"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testStringToList_0" time="0.0010"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testStringToList_1" time="0.0010"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testStringToList_2" time="0.0060"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testStringToList_3" time="0.0010"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testStringToList_4" time="0.0"></testcase>
+
+      <testcase classname="org.eodisp.util.ArrayUtilTest" name="testStringToList_5" time="0.0070"></testcase>
+
+      <system-out></system-out>
+
+      <system-err></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" id="1" name="RootAppTest" package="org.eodisp.util" tests="10" time="0.366">
+  
+    <properties>
+    
+      <property name="java.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="eclipse.pdebuild.templates" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/templates//"></property>
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+
+          <property name="os.name" value="Linux"></property>
+
+          <property name="sun.boot.class.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/rt.jar:/opt/sun-jdk-1.5.0.07/jre/lib/i18n.jar:/opt/sun-jdk-1.5.0.07/jre/lib/sunrsasign.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jsse.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jce.jar:/opt/sun-jdk-1.5.0.07/jre/lib/charsets.jar:/opt/sun-jdk-1.5.0.07/jre/classes"></property>
+
+          <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="ant.home" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5"></property>
+
+          <property name="java.runtime.version" value="1.5.0_07-b03"></property>
+
+          <property name="flag.deleteTmp" value="true"></property>
+
+          <property name="user.name" value="ibirrer"></property>
+
+          <property name="src.java" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java"></property>
+
+          <property name="gen.doc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc"></property>
+
+          <property name="user.language" value="de"></property>
+
+          <property name="sun.boot.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386"></property>
+
+          <property name="ant.project.name" value="eodisp_util"></property>
+
+          <property name="java.version" value="1.5.0_07"></property>
+
+          <property name="user.timezone" value=""></property>
+
+          <property name="sun.arch.data.model" value="32"></property>
+
+          <property name="gen.java.classes" value="/home/ibirrer/workspaces/eodisp/eodisp_util/classes"></property>
+
+          <property name="gen.classDiagrams" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/class-diagrams"></property>
+
+          <property name="java.endorsed.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/endorsed"></property>
+
+          <property name="sun.cpu.isalist" value=""></property>
+
+          <property name="sun.jnu.encoding" value="UTF-8"></property>
+
+          <property name="file.encoding.pkg" value="sun.io"></property>
+
+          <property name="file.separator" value="/"></property>
+
+          <property name="java.specification.name" value="Java Platform API Specification"></property>
+
+          <property name="java.class.version" value="49.0"></property>
+
+          <property name="src" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src"></property>
+
+          <property name="user.country" value="CH"></property>
+
+          <property name="java.home" value="/opt/sun-jdk-1.5.0.07/jre"></property>
+
+          <property name="java.vm.info" value="mixed mode"></property>
+
+          <property name="ant.file" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="os.version" value="2.6.16-gentoo-r3"></property>
+
+          <property name="ant.file.eodisp_doc" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/build.xml"></property>
+
+          <property name="path.separator" value=":"></property>
+
+          <property name="java.vm.version" value="1.5.0_07-b03"></property>
+
+          <property name="src.javaTest" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java_test"></property>
+
+          <property name="ant.library.dir" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib"></property>
+
+          <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"></property>
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+
+          <property name="destDir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/website_gen/documentation/developerManuals/utilJUnit"></property>
+
+          <property name="eclipse.pdebuild.scripts" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/scripts//"></property>
+
+          <property name="user.home" value="/home/ibirrer"></property>
+
+          <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386/client:/opt/sun-jdk-1.5.0.07/jre/lib/i386:/opt/sun-jdk-1.5.0.07/jre/../lib/i386::/usr/lib/wine/lib:/usr/lib/mozilla-firefox"></property>
+
+          <property name="java.vendor.url" value="http://java.sun.com/"></property>
+
+          <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition"></property>
+
+          <property name="java.class.path" value="/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar"></property>
+
+          <property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+
+          <property name="java.vm.specification.version" value="1.0"></property>
+
+          <property name="sun.cpu.endian" value="little"></property>
+
+          <property name="sun.os.patch.level" value="unknown"></property>
+
+          <property name="gen.javadoc.test" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadocTest"></property>
+
+          <property name="eclipse.pdebuild.home" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/.//"></property>
+
+          <property name="java.io.tmpdir" value="/tmp"></property>
+
+          <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+
+          <property name="os.arch" value="i386"></property>
+
+          <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"></property>
+
+          <property name="java.ext.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/ext"></property>
+
+          <property name="user.dir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc"></property>
+
+          <property name="line.separator" value=" "></property>
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+
+          <property name="gen.doc.junit.xml" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp/junit_xml"></property>
+
+          <property name="ant.file.eodisp_util" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="basedir" value="/home/ibirrer/workspaces/eodisp/eodisp_util"></property>
+
+          <property name="ant.java.version" value="1.5"></property>
+
+          <property name="file.encoding" value="UTF-8"></property>
+
+          <property name="gen.javadoc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadoc"></property>
+
+          <property name="java.specification.version" value="1.5"></property>
+
+          <property name="gen.doc.junit.html" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/junit"></property>
+
+          <property name="gen.tmp" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp"></property>
+
+      </properties>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testRegistry" time="0.151"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testRegisterConfiguration" time="0.024"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testExecute" time="0.074"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testExecuteIncrementalModuleAdditionsDuringConfigurationRegistration" time="0.01"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testExecuteIncrementalModuleAdditionsAtPreStartup" time="0.0050"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testExecuteIncrementalModuleAdditionsAtStartup" time="0.0050"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testCommandLine" time="0.0070"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testWorkingDir" time="0.04"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testWorkingDirDefault" time="0.0020"></testcase>
+
+      <testcase classname="org.eodisp.util.RootAppTest" name="testWorkingDirSystemProperty" time="0.0040"></testcase>
+
+      <system-out></system-out>
+
+      <system-err></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" id="2" name="ZipUtilTest" package="org.eodisp.util" tests="1" time="0.435">
+  
+    <properties>
+    
+      <property name="java.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="eclipse.pdebuild.templates" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/templates//"></property>
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+
+          <property name="os.name" value="Linux"></property>
+
+          <property name="sun.boot.class.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/rt.jar:/opt/sun-jdk-1.5.0.07/jre/lib/i18n.jar:/opt/sun-jdk-1.5.0.07/jre/lib/sunrsasign.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jsse.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jce.jar:/opt/sun-jdk-1.5.0.07/jre/lib/charsets.jar:/opt/sun-jdk-1.5.0.07/jre/classes"></property>
+
+          <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="ant.home" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5"></property>
+
+          <property name="java.runtime.version" value="1.5.0_07-b03"></property>
+
+          <property name="flag.deleteTmp" value="true"></property>
+
+          <property name="user.name" value="ibirrer"></property>
+
+          <property name="src.java" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java"></property>
+
+          <property name="gen.doc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc"></property>
+
+          <property name="user.language" value="de"></property>
+
+          <property name="sun.boot.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386"></property>
+
+          <property name="ant.project.name" value="eodisp_util"></property>
+
+          <property name="java.version" value="1.5.0_07"></property>
+
+          <property name="user.timezone" value=""></property>
+
+          <property name="sun.arch.data.model" value="32"></property>
+
+          <property name="gen.java.classes" value="/home/ibirrer/workspaces/eodisp/eodisp_util/classes"></property>
+
+          <property name="gen.classDiagrams" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/class-diagrams"></property>
+
+          <property name="java.endorsed.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/endorsed"></property>
+
+          <property name="sun.cpu.isalist" value=""></property>
+
+          <property name="sun.jnu.encoding" value="UTF-8"></property>
+
+          <property name="file.encoding.pkg" value="sun.io"></property>
+
+          <property name="file.separator" value="/"></property>
+
+          <property name="java.specification.name" value="Java Platform API Specification"></property>
+
+          <property name="java.class.version" value="49.0"></property>
+
+          <property name="src" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src"></property>
+
+          <property name="user.country" value="CH"></property>
+
+          <property name="java.home" value="/opt/sun-jdk-1.5.0.07/jre"></property>
+
+          <property name="java.vm.info" value="mixed mode"></property>
+
+          <property name="ant.file" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="os.version" value="2.6.16-gentoo-r3"></property>
+
+          <property name="ant.file.eodisp_doc" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/build.xml"></property>
+
+          <property name="path.separator" value=":"></property>
+
+          <property name="java.vm.version" value="1.5.0_07-b03"></property>
+
+          <property name="src.javaTest" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java_test"></property>
+
+          <property name="ant.library.dir" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib"></property>
+
+          <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"></property>
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+
+          <property name="destDir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/website_gen/documentation/developerManuals/utilJUnit"></property>
+
+          <property name="eclipse.pdebuild.scripts" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/scripts//"></property>
+
+          <property name="user.home" value="/home/ibirrer"></property>
+
+          <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386/client:/opt/sun-jdk-1.5.0.07/jre/lib/i386:/opt/sun-jdk-1.5.0.07/jre/../lib/i386::/usr/lib/wine/lib:/usr/lib/mozilla-firefox"></property>
+
+          <property name="java.vendor.url" value="http://java.sun.com/"></property>
+
+          <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition"></property>
+
+          <property name="java.class.path" value="/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar"></property>
+
+          <property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+
+          <property name="java.vm.specification.version" value="1.0"></property>
+
+          <property name="sun.cpu.endian" value="little"></property>
+
+          <property name="sun.os.patch.level" value="unknown"></property>
+
+          <property name="gen.javadoc.test" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadocTest"></property>
+
+          <property name="eclipse.pdebuild.home" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/.//"></property>
+
+          <property name="java.io.tmpdir" value="/tmp"></property>
+
+          <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+
+          <property name="os.arch" value="i386"></property>
+
+          <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"></property>
+
+          <property name="java.ext.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/ext"></property>
+
+          <property name="user.dir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc"></property>
+
+          <property name="line.separator" value=" "></property>
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+
+          <property name="gen.doc.junit.xml" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp/junit_xml"></property>
+
+          <property name="ant.file.eodisp_util" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="basedir" value="/home/ibirrer/workspaces/eodisp/eodisp_util"></property>
+
+          <property name="ant.java.version" value="1.5"></property>
+
+          <property name="file.encoding" value="UTF-8"></property>
+
+          <property name="gen.javadoc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadoc"></property>
+
+          <property name="java.specification.version" value="1.5"></property>
+
+          <property name="gen.doc.junit.html" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/junit"></property>
+
+          <property name="gen.tmp" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp"></property>
+
+      </properties>
+
+      <testcase classname="org.eodisp.util.ZipUtilTest" name="testZip" time="0.371"></testcase>
+
+      <system-out><![CDATA[hello
+/tmp/zipTest11680
+862
+]]></system-out>
+
+      <system-err></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" id="3" name="ConfigurationTest" package="org.eodisp.util.configuration" tests="8" time="0.191">
+  
+    <properties>
+    
+      <property name="java.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="eclipse.pdebuild.templates" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/templates//"></property>
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+
+          <property name="os.name" value="Linux"></property>
+
+          <property name="sun.boot.class.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/rt.jar:/opt/sun-jdk-1.5.0.07/jre/lib/i18n.jar:/opt/sun-jdk-1.5.0.07/jre/lib/sunrsasign.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jsse.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jce.jar:/opt/sun-jdk-1.5.0.07/jre/lib/charsets.jar:/opt/sun-jdk-1.5.0.07/jre/classes"></property>
+
+          <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="ant.home" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5"></property>
+
+          <property name="java.runtime.version" value="1.5.0_07-b03"></property>
+
+          <property name="flag.deleteTmp" value="true"></property>
+
+          <property name="user.name" value="ibirrer"></property>
+
+          <property name="src.java" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java"></property>
+
+          <property name="gen.doc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc"></property>
+
+          <property name="user.language" value="de"></property>
+
+          <property name="sun.boot.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386"></property>
+
+          <property name="ant.project.name" value="eodisp_util"></property>
+
+          <property name="java.version" value="1.5.0_07"></property>
+
+          <property name="user.timezone" value=""></property>
+
+          <property name="sun.arch.data.model" value="32"></property>
+
+          <property name="gen.java.classes" value="/home/ibirrer/workspaces/eodisp/eodisp_util/classes"></property>
+
+          <property name="gen.classDiagrams" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/class-diagrams"></property>
+
+          <property name="java.endorsed.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/endorsed"></property>
+
+          <property name="sun.cpu.isalist" value=""></property>
+
+          <property name="sun.jnu.encoding" value="UTF-8"></property>
+
+          <property name="file.encoding.pkg" value="sun.io"></property>
+
+          <property name="file.separator" value="/"></property>
+
+          <property name="java.specification.name" value="Java Platform API Specification"></property>
+
+          <property name="java.class.version" value="49.0"></property>
+
+          <property name="src" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src"></property>
+
+          <property name="user.country" value="CH"></property>
+
+          <property name="java.home" value="/opt/sun-jdk-1.5.0.07/jre"></property>
+
+          <property name="java.vm.info" value="mixed mode"></property>
+
+          <property name="ant.file" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="os.version" value="2.6.16-gentoo-r3"></property>
+
+          <property name="ant.file.eodisp_doc" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/build.xml"></property>
+
+          <property name="path.separator" value=":"></property>
+
+          <property name="java.vm.version" value="1.5.0_07-b03"></property>
+
+          <property name="src.javaTest" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java_test"></property>
+
+          <property name="ant.library.dir" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib"></property>
+
+          <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"></property>
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+
+          <property name="destDir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/website_gen/documentation/developerManuals/utilJUnit"></property>
+
+          <property name="eclipse.pdebuild.scripts" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/scripts//"></property>
+
+          <property name="user.home" value="/home/ibirrer"></property>
+
+          <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386/client:/opt/sun-jdk-1.5.0.07/jre/lib/i386:/opt/sun-jdk-1.5.0.07/jre/../lib/i386::/usr/lib/wine/lib:/usr/lib/mozilla-firefox"></property>
+
+          <property name="java.vendor.url" value="http://java.sun.com/"></property>
+
+          <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition"></property>
+
+          <property name="java.class.path" value="/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar"></property>
+
+          <property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+
+          <property name="java.vm.specification.version" value="1.0"></property>
+
+          <property name="sun.cpu.endian" value="little"></property>
+
+          <property name="sun.os.patch.level" value="unknown"></property>
+
+          <property name="gen.javadoc.test" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadocTest"></property>
+
+          <property name="eclipse.pdebuild.home" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/.//"></property>
+
+          <property name="java.io.tmpdir" value="/tmp"></property>
+
+          <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+
+          <property name="os.arch" value="i386"></property>
+
+          <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"></property>
+
+          <property name="java.ext.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/ext"></property>
+
+          <property name="user.dir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc"></property>
+
+          <property name="line.separator" value=" "></property>
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+
+          <property name="gen.doc.junit.xml" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp/junit_xml"></property>
+
+          <property name="ant.file.eodisp_util" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="basedir" value="/home/ibirrer/workspaces/eodisp/eodisp_util"></property>
+
+          <property name="ant.java.version" value="1.5"></property>
+
+          <property name="file.encoding" value="UTF-8"></property>
+
+          <property name="gen.javadoc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadoc"></property>
+
+          <property name="java.specification.version" value="1.5"></property>
+
+          <property name="gen.doc.junit.html" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/junit"></property>
+
+          <property name="gen.tmp" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp"></property>
+
+      </properties>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testLoad" time="0.126"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testGetFile" time="0.0"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testGetEnum" time="0.01"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testSetEnum" time="0.0"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testGetEnumSet" time="0.0060"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testSetEnumSet" time="0.0"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testNeedsSave" time="0.0040"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ConfigurationTest" name="testEqual" time="0.0020"></testcase>
+
+      <system-out><![CDATA[ERROR  getEnum, Could not parse enum value in configuration entry: number. Return default value.
+ERROR - Could not parse enum value in configuration entry: number. Return default value.
+ERROR - Could not parse enum value in configuration entry: number. Return default value.
+ERROR - Could not parse enum value in configuration entry: number. Return default value.
+ERROR  getEnumSet, Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+]]></system-out>
+
+      <system-err></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" id="4" name="ManualCommandlineMapperTest" package="org.eodisp.util.configuration" tests="4" time="0.172">
+  
+    <properties>
+    
+      <property name="java.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="eclipse.pdebuild.templates" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/templates//"></property>
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+
+          <property name="os.name" value="Linux"></property>
+
+          <property name="sun.boot.class.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/rt.jar:/opt/sun-jdk-1.5.0.07/jre/lib/i18n.jar:/opt/sun-jdk-1.5.0.07/jre/lib/sunrsasign.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jsse.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jce.jar:/opt/sun-jdk-1.5.0.07/jre/lib/charsets.jar:/opt/sun-jdk-1.5.0.07/jre/classes"></property>
+
+          <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="ant.home" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5"></property>
+
+          <property name="java.runtime.version" value="1.5.0_07-b03"></property>
+
+          <property name="flag.deleteTmp" value="true"></property>
+
+          <property name="user.name" value="ibirrer"></property>
+
+          <property name="src.java" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java"></property>
+
+          <property name="gen.doc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc"></property>
+
+          <property name="user.language" value="de"></property>
+
+          <property name="sun.boot.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386"></property>
+
+          <property name="ant.project.name" value="eodisp_util"></property>
+
+          <property name="java.version" value="1.5.0_07"></property>
+
+          <property name="user.timezone" value=""></property>
+
+          <property name="sun.arch.data.model" value="32"></property>
+
+          <property name="gen.java.classes" value="/home/ibirrer/workspaces/eodisp/eodisp_util/classes"></property>
+
+          <property name="gen.classDiagrams" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/class-diagrams"></property>
+
+          <property name="java.endorsed.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/endorsed"></property>
+
+          <property name="sun.cpu.isalist" value=""></property>
+
+          <property name="sun.jnu.encoding" value="UTF-8"></property>
+
+          <property name="file.encoding.pkg" value="sun.io"></property>
+
+          <property name="file.separator" value="/"></property>
+
+          <property name="java.specification.name" value="Java Platform API Specification"></property>
+
+          <property name="java.class.version" value="49.0"></property>
+
+          <property name="src" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src"></property>
+
+          <property name="user.country" value="CH"></property>
+
+          <property name="java.home" value="/opt/sun-jdk-1.5.0.07/jre"></property>
+
+          <property name="java.vm.info" value="mixed mode"></property>
+
+          <property name="ant.file" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="os.version" value="2.6.16-gentoo-r3"></property>
+
+          <property name="ant.file.eodisp_doc" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/build.xml"></property>
+
+          <property name="path.separator" value=":"></property>
+
+          <property name="java.vm.version" value="1.5.0_07-b03"></property>
+
+          <property name="src.javaTest" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java_test"></property>
+
+          <property name="ant.library.dir" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib"></property>
+
+          <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"></property>
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+
+          <property name="destDir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/website_gen/documentation/developerManuals/utilJUnit"></property>
+
+          <property name="eclipse.pdebuild.scripts" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/scripts//"></property>
+
+          <property name="user.home" value="/home/ibirrer"></property>
+
+          <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386/client:/opt/sun-jdk-1.5.0.07/jre/lib/i386:/opt/sun-jdk-1.5.0.07/jre/../lib/i386::/usr/lib/wine/lib:/usr/lib/mozilla-firefox"></property>
+
+          <property name="java.vendor.url" value="http://java.sun.com/"></property>
+
+          <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition"></property>
+
+          <property name="java.class.path" value="/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar"></property>
+
+          <property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+
+          <property name="java.vm.specification.version" value="1.0"></property>
+
+          <property name="sun.cpu.endian" value="little"></property>
+
+          <property name="sun.os.patch.level" value="unknown"></property>
+
+          <property name="gen.javadoc.test" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadocTest"></property>
+
+          <property name="eclipse.pdebuild.home" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/.//"></property>
+
+          <property name="java.io.tmpdir" value="/tmp"></property>
+
+          <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+
+          <property name="os.arch" value="i386"></property>
+
+          <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"></property>
+
+          <property name="java.ext.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/ext"></property>
+
+          <property name="user.dir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc"></property>
+
+          <property name="line.separator" value=" "></property>
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+
+          <property name="gen.doc.junit.xml" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp/junit_xml"></property>
+
+          <property name="ant.file.eodisp_util" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="basedir" value="/home/ibirrer/workspaces/eodisp/eodisp_util"></property>
+
+          <property name="ant.java.version" value="1.5"></property>
+
+          <property name="file.encoding" value="UTF-8"></property>
+
+          <property name="gen.javadoc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadoc"></property>
+
+          <property name="java.specification.version" value="1.5"></property>
+
+          <property name="gen.doc.junit.html" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/junit"></property>
+
+          <property name="gen.tmp" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp"></property>
+
+      </properties>
+
+      <testcase classname="org.eodisp.util.configuration.ManualCommandlineMapperTest" name="testGetParametersConfiguration" time="0.127"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ManualCommandlineMapperTest" name="testManualMappings" time="0.0010"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ManualCommandlineMapperTest" name="testManualMappingsBasicMapping" time="0.0010"></testcase>
+
+      <testcase classname="org.eodisp.util.configuration.ManualCommandlineMapperTest" name="testGetParametersConfigurationMapOfStringParamMapping" time="0.0"></testcase>
+
+      <system-out></system-out>
+
+      <system-err></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" id="5" name="ProcessTest" package="org.eodisp.util.launcher" tests="4" time="2.622">
+  
+    <properties>
+    
+      <property name="java.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="eclipse.pdebuild.templates" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/templates//"></property>
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+
+          <property name="os.name" value="Linux"></property>
+
+          <property name="sun.boot.class.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/rt.jar:/opt/sun-jdk-1.5.0.07/jre/lib/i18n.jar:/opt/sun-jdk-1.5.0.07/jre/lib/sunrsasign.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jsse.jar:/opt/sun-jdk-1.5.0.07/jre/lib/jce.jar:/opt/sun-jdk-1.5.0.07/jre/lib/charsets.jar:/opt/sun-jdk-1.5.0.07/jre/classes"></property>
+
+          <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="ant.home" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5"></property>
+
+          <property name="java.runtime.version" value="1.5.0_07-b03"></property>
+
+          <property name="flag.deleteTmp" value="true"></property>
+
+          <property name="user.name" value="ibirrer"></property>
+
+          <property name="src.java" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java"></property>
+
+          <property name="gen.doc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc"></property>
+
+          <property name="user.language" value="de"></property>
+
+          <property name="sun.boot.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386"></property>
+
+          <property name="ant.project.name" value="eodisp_util"></property>
+
+          <property name="java.version" value="1.5.0_07"></property>
+
+          <property name="user.timezone" value=""></property>
+
+          <property name="sun.arch.data.model" value="32"></property>
+
+          <property name="gen.java.classes" value="/home/ibirrer/workspaces/eodisp/eodisp_util/classes"></property>
+
+          <property name="gen.classDiagrams" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/class-diagrams"></property>
+
+          <property name="java.endorsed.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/endorsed"></property>
+
+          <property name="sun.cpu.isalist" value=""></property>
+
+          <property name="sun.jnu.encoding" value="UTF-8"></property>
+
+          <property name="file.encoding.pkg" value="sun.io"></property>
+
+          <property name="file.separator" value="/"></property>
+
+          <property name="java.specification.name" value="Java Platform API Specification"></property>
+
+          <property name="java.class.version" value="49.0"></property>
+
+          <property name="src" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src"></property>
+
+          <property name="user.country" value="CH"></property>
+
+          <property name="java.home" value="/opt/sun-jdk-1.5.0.07/jre"></property>
+
+          <property name="java.vm.info" value="mixed mode"></property>
+
+          <property name="ant.file" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="os.version" value="2.6.16-gentoo-r3"></property>
+
+          <property name="ant.file.eodisp_doc" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/build.xml"></property>
+
+          <property name="path.separator" value=":"></property>
+
+          <property name="java.vm.version" value="1.5.0_07-b03"></property>
+
+          <property name="src.javaTest" value="/home/ibirrer/workspaces/eodisp/eodisp_util/src/java_test"></property>
+
+          <property name="ant.library.dir" value="/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib"></property>
+
+          <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"></property>
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+
+          <property name="destDir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc/website_gen/documentation/developerManuals/utilJUnit"></property>
+
+          <property name="eclipse.pdebuild.scripts" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/scripts//"></property>
+
+          <property name="user.home" value="/home/ibirrer"></property>
+
+          <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.library.path" value="/opt/sun-jdk-1.5.0.07/jre/lib/i386/client:/opt/sun-jdk-1.5.0.07/jre/lib/i386:/opt/sun-jdk-1.5.0.07/jre/../lib/i386::/usr/lib/wine/lib:/usr/lib/mozilla-firefox"></property>
+
+          <property name="java.vendor.url" value="http://java.sun.com/"></property>
+
+          <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition"></property>
+
+          <property name="java.class.path" value="/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar"></property>
+
+          <property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+
+          <property name="java.vm.specification.version" value="1.0"></property>
+
+          <property name="sun.cpu.endian" value="little"></property>
+
+          <property name="sun.os.patch.level" value="unknown"></property>
+
+          <property name="gen.javadoc.test" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadocTest"></property>
+
+          <property name="eclipse.pdebuild.home" value="/opt/eclipse_3_2/eclipse/plugins/org.eclipse.pde.build_3.2.0.v20060603/.//"></property>
+
+          <property name="java.io.tmpdir" value="/tmp"></property>
+
+          <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+
+          <property name="os.arch" value="i386"></property>
+
+          <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"></property>
+
+          <property name="java.ext.dirs" value="/opt/sun-jdk-1.5.0.07/jre/lib/ext"></property>
+
+          <property name="user.dir" value="/home/ibirrer/workspaces/eodisp/eodisp_doc"></property>
+
+          <property name="line.separator" value=" "></property>
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+
+          <property name="gen.doc.junit.xml" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp/junit_xml"></property>
+
+          <property name="ant.file.eodisp_util" value="/home/ibirrer/workspaces/eodisp/eodisp_util/build.xml"></property>
+
+          <property name="basedir" value="/home/ibirrer/workspaces/eodisp/eodisp_util"></property>
+
+          <property name="ant.java.version" value="1.5"></property>
+
+          <property name="file.encoding" value="UTF-8"></property>
+
+          <property name="gen.javadoc" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/javadoc"></property>
+
+          <property name="java.specification.version" value="1.5"></property>
+
+          <property name="gen.doc.junit.html" value="/home/ibirrer/workspaces/eodisp/eodisp_util/doc/junit"></property>
+
+          <property name="gen.tmp" value="/home/ibirrer/workspaces/eodisp/eodisp_util/ant_tmp"></property>
+
+      </properties>
+
+      <testcase classname="org.eodisp.util.launcher.ProcessTest" name="testLaunch" time="0.247"></testcase>
+
+      <testcase classname="org.eodisp.util.launcher.ProcessTest" name="testLaunch1" time="2.164"></testcase>
+
+      <testcase classname="org.eodisp.util.launcher.ProcessTest" name="testLaunch_IllegalStateException" time="0.019"></testcase>
+
+      <testcase classname="org.eodisp.util.launcher.ProcessTest" name="testKill" time="0.151"></testcase>
+
+      <system-out><![CDATA[INFO   createProcess, Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 0
+INFO - Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 0
+INFO   executeJava, ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO - ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO   run, Process terminated: java.lang.UNIXProcess@97a560
+INFO - Process terminated: java.lang.UNIXProcess@97a560
+INFO   createProcess, Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 2
+INFO - Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 2
+INFO   executeJava, ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO - ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO   run, Process terminated: java.lang.UNIXProcess@c68c3
+INFO - Process terminated: java.lang.UNIXProcess@c68c3
+INFO   createProcess, Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 10
+INFO - Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 10
+INFO   executeJava, ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO - ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO   createProcess, Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 10
+INFO - Start new process: /opt/sun-jdk-1.5.0.07/jre/bin/java -classpath /home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/ant/ant-launcher-1.6.5.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/asm-2.2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/cobertura-1.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/cobertura/jakarta-oro-2.0.8.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.common_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.commonj.sdo_2.1.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.change_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.sdo_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore.xmi_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/emf/org.eclipse.emf.ecore_2.2.0.v200606271057.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jcip/jcip-annotations.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/jsap/JSAP-2.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/junit/junit-3.8.1.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/log4j/log4j-1.2.13.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/saxon/saxon-8.7.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/lib/umlGraph/UmlGraph-4.3.jar:/home/ibirrer/workspaces/eodisp/eodisp_util/classes:/home/ibirrer/workspaces/eodisp/eodisp_util:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-launcher.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant.jar:/opt/eclipse_3_2/eclipse/plugins/org.apache.ant_1.6.5/lib/ant-junit.jar org.eodisp.util.launcher.TestMain 10
+INFO   executeJava, ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO - ExecuteJava: org.eodisp.util.launcher.TestMain
+INFO   run, Process terminated: java.lang.UNIXProcess@406199
+INFO - Process terminated: java.lang.UNIXProcess@406199
+]]></system-out>
+
+      <system-err></system-err>
+
+  </testsuite>
+</testsuites>

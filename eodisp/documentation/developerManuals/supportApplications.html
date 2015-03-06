@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Support Applications</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="supportApplications.html">Support Applications</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Support Applications</h1><div class="section">
+    <p>
+      The EODiSP proper consists of the set of applications that are required to configure 
+      and run a simulation. Typically, prior to running a simulation, a number of off-line 
+      tasks need to be performed. Some of these tasks can be partially or fully automated. 
+      A <i>support application</i> is an EODiSP-provided application that 
+      helps users in performing these off-line tasks.
+    </p>
+    <p>
+      The automatic generation of an <a href="../../overview.html">EODiSP wrapper</a> is
+      a typical task that may be covered by a support application. This page accordingly
+      gives an overview of the EODiSP wrapping approach and of how the wrapper generation
+      process can be automated.
+    </p>
+    <p>     
+      At present, only one support application is provided. This application is called the
+      <i>HLA Wrapper Generator</i>. Its purpose is to automate
+      the generation of the skeleton of an <a href="../../overview.html#Wrappers">EODiSP wrapper</a>.
+      This page also gives an overview of this application.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#EODiSPWrappers">EODiSP Wrappers</a></li><li><a href="#WrapperStructure">Wrapper Structure</a></li><li><a href="#DataConversion">Data Conversion</a></li><li><a href="#HLAWrapperGenerator">HLA Wrapper Generator</a></li><li><a href="#WrapperGenerators">Wrapper Generators</a></li><li><a href="#SupportedModels">Supported Models</a></li></ul><div class="section"><a name="EODiSPWrappers"></a><h2>EODiSP Wrappers</h2>
+    <p>
+      The EODiSP is intended to integrate <i>simulation packages</i>, namely pieces of 
+      software that implement part of the functionalities required for a simulation run 
+      and that are delivered as a single unit. The EODiSP provides an infrastructure to 
+      connect together simulation packages and to allow them to interact with each other 
+      to implement a complete simulation.
+    </p>
+    <p>
+      The EODiSP is built as an implementation of the HLA standard. The HLA defines the 
+      interface between the entities participating in a simulation (the <i>HLA federates</i>) 
+      and the simulation infrastructure. Hence, in order to be integrated with the EODiSP 
+      infrastructure, simulation packages must comply with this HLA interface.
+    </p>
+    <p>
+      It is unrealistic to expect all developers of simulation packages in the scientific 
+      and engineering community to provide HLA-compliant packages. For this reason, the 
+      EODiSP supports the concept of <i>wrapper</i>. A wrapper is a piece of code the transforms 
+      a given simulation package into an HLA-compliant federate. The wrapper typically 
+      adapts the external interface of a simulation package to make it comply with the 
+      HLA requirements.
+    </p>
+    <p>
+      Wrappers obviously depend on the structure of the model they wrap. For this reason, 
+      it is not possible to provide a 'universal wrapper'. The skeleton of the wrapper -
+      the part of the wrapper that interfaces to the EODiSP infrastructure - does however
+      have a fixed structure. The EODiSP accordingly provides an application that can
+      automatically generate this skeleton. This application is called the
+      <i>HLA Wrapper Generator</i>. The generator takes as an
+      input an XML-based description of the HLA interface of the target model and automatically
+      generates the Java source code that implements the wrapper's skeleton.
+    </p>
+    <p>  
+      Although it is not possible to define a fixed structure for a generic HLA wrapper, 
+      it will often happen
+      that wrappers that are targeted at similar models to be used in a certain simulator (or,
+      perhaps, in a family of related simulators) do have a fixed structure. In such cases,
+      it may be advantageous to develop a domain-specific wrapper generator.
+    </p>
+    <p>
+      In addition to making simulation packages HLA-compliant, the EODiSP wrappers may 
+      also serve a secondary purpose. In an HLA simulation, each simulation package <i>publishes</i> 
+      its outputs and it <i>subscribes</i> to the outputs of other packages. When a simulation 
+      package is thus linked to another simulation package, the need often arises to perform 
+      some simple data conversions. There may for instance be a need to add a bias to the 
+      output of a package, or to re-scale it, or to cast it to some new type. These operations 
+      are referred to as <i>data conversions</i>. Simple data conversions are best implemented in the 
+      simulation package wrapper and EODiSP wrappers may support some basic kinds of data 
+      conversions.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="WrapperStructure"></a><h2>Wrapper Structure</h2>
+    <p>
+      In general, an EODiSP wrapper may serve two purposes: <ul> <li><i>Language Bridge</i>: 
+      the EODiSP is Java-based but simulation packages may be implemented in other languages 
+      (C/C++ and Fortran). The wrapper allows non-Java packages to be integrated in the 
+      EODiSP. </li> <li><i>HLA Bridge</i>: the EODiSP is based on the HLA concept but simulation 
+      packages are not necessarily implemented as HLA federates. The wrapper is used to 
+      adapt the package interface to conform to the interface specified by the HLA standard.</li> 
+      </ul> In the EODiSP, these two functions of a wrapper are implemented in three separate 
+      elements. The resulting wrapper architecture is shown in the figure. Block 3 and 
+      4 in the figure implement the HLA bridging function and block 2 implements the language 
+      bridging function.
+    </p>
+    <div class="figure"><a name="wrapperStructure_1.png"><img border="0" src="../../images/wrapperStructure_1.png" alt="Structure of an EODiSP Wrapper"></img></a><p>Figure 1: Structure of an EODiSP Wrapper</p></div>
+    <p>
+      The architecture in the figure covers the most general kind of wrapper. In many cases,
+      simpler structures can be used. Block 2, in particular, can often be omitted. 
+      This will be most obviously the case when the simulation package is implemented
+      in Java but it could also happen if the simulation package consist of an executable
+      whose execution can be directly controlled from the connector code in block 3.
+    </p>
+    <p> 
+      The choice of the architecture in the figure is driven by the desire to facilitate 
+      the automation of the wrapper generation process. The part of the HLA bridge that 
+      communicates with the EODiSP environment (Block 4) needs to implement the HLA Federate 
+      Interface Specification. This code is the same for all federates and only depends 
+      on the SOM the federate wants to expose. Therefore, the code implementing the federate 
+      interface can be generated in the same way for any HLA federate. The EODiSP offers 
+      a code generator to automatically generate this skeleton. Markers are placed in the 
+      generated code to tag the places where code needs to be added to connect this implementation 
+      to a simulation package (this is indicated by the two "holes" in block 4 in the Figure). 
+      The inputs for the generation of the block 4 code are the object class attributes 
+      the federate wants to publish or subscribe to. A SOM contains exactly this information 
+      and therefore serves as the input to the code generator.
+    </p>
+    <p>
+      The HLA Federate Interface Specification also contains the code implementing the 
+      data conversions. This point is discussed <a href="#DataConversion">below</a>.
+    </p>
+    <p>
+      In summary, the EODiSP wrappers have the structure shown in the figure above. In 
+      order to assist users in the construction of the wrappers for their simulation packages, 
+      the EODiSP at present provides two kinds of facilities: <ul> <li><a href="#HLAWrapperGenerator">HLA 
+      Federate Interface Implementation Generator</a>: this is an application that automatically 
+      generates the HLA federate interface implementation of a wrapper (block 4 in the 
+      figure). </li>  <li><a href="../userManuals/sampleWrappers.html">Sample 
+      Wrappers</a>: these are complete wrappers for particular simulation packages. They 
+      are intended to be used as blueprints for the construction of user-specific wrappers. 
+      </li> </ul>
+      In the future, it is expected that users that operate in a certain domain where 
+      models have a common structure may define <a href="#WrapperGenerators">wrapper 
+      generator applications</a> that automatically generate the entire wrapper for simulation
+      packages in that domain.
+      
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="DataConversion"></a><h2>Data Conversion</h2>
+    <p>
+      Data conversions are implemented in the HLA Federate Interface layer (block 4 in 
+      the figure above). Data conversion is performed on the data as it is being received 
+      by a federate. This is illustrated in the next figure:
+    </p>
+    <div class="figure"><a name="dataConversion_1.png"><img border="0" src="../../images/dataConversion_1.png" alt="Data Conversion Example"></img></a><p>Figure 2: Data Conversion Example</p></div>
+    <p>
+      In the figure, federate A publishes data item x. Federates B and C subscribe to data 
+      item x but need to apply two different data conversions to it: federate B wants to 
+      add a bias of 1.4 to it, whereas federate C wants to perform a 10% rescaling on it. 
+      If the data conversion were applied at the point where the data item is published 
+      (i.e. on federate A), this double data conversion would not be possible. It becomes 
+      possible if instead the data conversion is applied on federates B and C.
+    </p>
+    <p>
+      The EODiSP wrapper generator support three types of default data conversions: <ul> 
+      <li>Applying an additive bias to the input of a federate. The value of the applied 
+      bias is user-defined. </li> <li>Rescaling the input of a federate by multiplying 
+      it by a scaling factor. The value of the applied scaling-factor is user-defined. 
+      </li> <li>Casting the type of the input of a federate to a new type. The target type 
+      is user defined but is restricted to be type-compatible with the source type. </li> 
+      </ul>
+    </p>
+    <p>
+      Data conversion is implemented as follows. For each federate input, the <a href="#FederateInterfaceImplementationGenerator">HLA 
+      Federate Interface Implementation Generator</a> generates, as part of the HLA interface 
+      skeleton, a <code>convert</code> method. This convert method takes as an input the 
+      input value for the federate and returns the converted value. The implementation 
+      of the method is generated automatically. Four possible types of implementations 
+      can be specified by the user for this method: <ul> <li><i>Bias</i>: the <code>convert</code> 
+      method applies a fixed bias to its argument. </li> <li><i>Scaling</i>: the <code>convert</code> 
+      method applies a rescaling using a fixed multiplicative factor to its argument. </li> 
+      <li><i>Type_Casting</i>: the <code>convert</code> method performs a type cast on 
+      its argument. Type casting is performed in accordance with the rules of the Java 
+      language (recall that the HLA Federate Interface is implemented in Java). </li> <li><i>User_Defined</i>: 
+      the <code>convert</code> method is empty and it returns the input value unchanged. 
+      This option is useful when the user wishes to implement some very specific data conversion. 
+      The conversion algorithm must then be hand-coded in the body of method <code>convert</code>. 
+      </li> </ul>
+    </p>
+    <p>
+      Users who wish to perform data conversions more complex than those covered by default 
+      by the <a href="#FederateInterfaceImplementationGenerator">HLA Federate Interface 
+      Implementation Generator</a> have two options. <ul> <li>They can implement their 
+      own version of method <code>convert</code> as indicated above. </li> <li>They can 
+      implement the data conversion in a dedicated federate that acts as a "bridge" between 
+      the source of the unconverted data and the consumer of the converted data. </li> 
+      The second option is recommended for the case where non-trivial data conversions 
+      need to be performed. Note that the <a href="../userManuals/sampleFederates.html">sample 
+      federates</a> provided with the EODiSP include examples of federates performing complex 
+      data conversions. They can be used as templates for user-defined data conversion 
+      federates. </ul>
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="HLAWrapperGenerator"></a><h2>HLA Wrapper Generator</h2>
+    <p>
+      The <i>HLA Wrapper Generator</i> is an EODiSP support application 
+      that generates parts of the code of an HLA federate. The part of the code it generates 
+      is marked as block 4 in the first figure in this page. The input to the generator 
+      is the HLA interface description in the form of a SOM. The generator is implemented 
+      as an XSL program. The detailed design of the XSL program can be found in the <a href="wrapperGenerators.html">generator detailed design</a>. The mode of operation 
+      of the generator is shown in the figure:
+    </p>
+    <div class="figure"><a name="HLAInterfaceGenerator_1.png"><img border="0" src="../../images/HLAInterfaceGenerator_1.png" alt="HLA Wrapper Generator"></img></a><p>Figure 3: HLA Wrapper Generator</p></div>
+    <p>
+      The HLA Interface generator also generates the code implementing the <a href="#DataConversion">data 
+      conversion</a>. It therefore needs information about what kind of data conversions 
+      (if any) should be applied to each federate input and about the values of the conversion 
+      parameters. The source for this information is still TBD.
+    </p>
+    <p>
+      The table below lists the types of services for which the HLA Interface generator 
+      generates code: <table> <tr> <th>Service</th> <th>Description</th> </tr> <tr> <td>Startup</td> 
+      <td>A startup method is generated that calls appropriate HLA services to initialize 
+      the federate and join it to a federation execution.</td> </tr> <tr> <td>Shutdown</td> 
+      <td>A shutdown method is generated that calls appropriate HLA services to cleanly 
+      shutdown and resign the federate from a federation execution.</td> </tr> <tr> <td>Publishing</td> 
+      <td>For each HLA object class with sharing set to "Publish" a helper method is generated 
+      that publishes all its attributes.</td> </tr> <tr> <td>Subscription</td> <td>For 
+      each HLA object class with sharing set to "Subscribe" a helper method is generated 
+      that subscribes to all its attributes.</td> </tr> <tr> <td>Update Attributes</td> 
+      <td>For each attribute with sharing set to "Publish" an update method is generated 
+      to update a particular attribute in the federation.</td> </tr> <tr> <td>Reflect Attributes</td> 
+      <td>For each attribute with sharing set to "Subscribe" a callback method is generated 
+      that is invoked whenever the attribute value is updated by the federation.</td> </tr> 
+      <tr> <td>Data Conversion</td> <td>For each attribute with sharing set to "Subscribe" 
+      a method is generated to apply a user-defined <a href="#DataConversion">data conversion</a> 
+      algorithm.</td> </tr> </table> The generator also generates markers that identify 
+      the hooks where user-defined code has to be inserted.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="WrapperGenerators"></a><h2>Wrapper Generators</h2>
+    <p>
+      As indicated above, in some cases it may become advantageous to develop additional
+      support applications that implement 
+      <i>wrapper generators</i> capable of generating the complete wrapper 
+      code for selected types of simulation packages. Such wrapper generators would generate both 
+      the HLA Interface Implementation Code and the Connector Code (blocks 3 and 4 in the 
+      figure at the top of this page) for the target simulation packages. The generators 
+      would be typically implemented as XSL programs and would have a structure as shown in the figure:
+    </p>
+    <div class="figure"><a name="wrapperGenerators_1.png"><img border="0" src="../../images/wrapperGenerators_1.png" alt="Wrapper Generators"></img></a><p>Figure 4: Wrapper Generators</p></div>
+    <p>
+      For clarity, the figure shows two separate generation processes, one for the HLA 
+      Interface code and one for the connector code. The wrapper generators however would be 
+      seen by the user as single generators.
+    </p>
+    <p>
+      The structure of the mapping files must obviously be specific to a particular category 
+      of simulation packages. 
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SupportedModels"></a><h2>Supported Models</h2>
+    <p>
+      For all kinds of wrappers, an <a href="#HLAWrapperGenerator">HLA 
+      Federate Interface Implementation Generator</a> is provided to automatically generate 
+      the HLA Interface skeleton code. For selected types of simulation packages, further 
+      support may be provided in two forms: provision of sample wrappers, or provision 
+      of a generator for the connector code. The table below lists the types of simulation 
+      packages for which this additional support is currently available. The third column 
+      indicates whether support through sample wrapper ('S') or through connector code 
+      generator ('G') is provided. Note that at the time of writing no decision has yet 
+      been taken as to which kind of simulation packages (if any) should be covered with a code 
+      generator. This explains why in the last column all entries are 'S'.
+    </p>
+    <table>
+      <tr>
+        <th>Package</th>
+        <th>Description</th>
+        <th>Support</th>
+      </tr>
+      <tr>
+        <td>Matlab Simulation</td>
+        <td>A running Matlab simulation.</td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td>Excel Spreadsheet</td>
+        <td>
+          Simulation package consisting of a Microsoft Excel file containing one or more spreadsheets 
+          to encapsulate databases holding simulation parameters or models coded as VBA macros.
+        </td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td>Source Code</td>
+        <td>
+          Simulation package consisting of a self-contained simulation program available as 
+          source code in C, C++, Java or Fortran.
+        </td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td>Stand-Alone Executable</td>
+        <td>
+          Simulation package consisting of self-contained simulation program available as an 
+          executable for one of the following platforms: Windows, Linux or Unix and using files 
+          for input and output.
+        </td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td>Data Processing Package</td>
+        <td>
+          Predefined software package (commercial packages, public domain package, etc) to 
+          perform standard data processing functions (data visualization, data logging, data 
+          analysis, etc).
+        </td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td>SMP2</td>
+        <td>
+          Simulation package consisting of the SimSat 2000 SMP2 simulation environment. The 
+          simulation environment may include one or more SMP2 compliant models.
+        </td>
+        <td>S</td>
+      </tr>
+    </table>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-08-18 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

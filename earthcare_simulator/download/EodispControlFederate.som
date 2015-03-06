@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objectModel name="ControlFederate" version="0.1" date="11 August 2006" purpose="Federate for EarthCARE Simulator (wrapper for the scene_creator utility)" pocName="www.pnp-software.com" type="SOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../resources/HLA.xsd">
+  <interactions>
+    <interactionClass name="HLAinteractionRoot" sharing="Neither" dimensions="NA" transportation="HLAreliable" order="Receive">
+      <interactionClass name="Eodisp" sharing="Neither" dimensions="NA" transportation="HLAreliable" order="Receive">
+        <interactionClass name="RegisterFederate" sharing="Subscribe" dimensions="NA" transportation="HLAreliable" order="Receive">
+          <parameter name="federateHandle" dataType="HLAhandle" semantics="The federate handle to be registered" />
+        </interactionClass>
+      </interactionClass>
+    </interactionClass>
+  </interactions>
+  <synchronizations>
+    <synchronization label="EODISP_INIT" capability="Register" semantics="Notifies other federates that the control federate has started"/>
+    <synchronization label="EODISP_START" capability="Achieve" semantics="Achieved after all attribute subscriptions and publications have been completed" />
+    <synchronization label="EODISP_STOP" capability="Achieve" semantics="Achieved after scene_creator utility has been executed" />
+    <synchronization label="EODISP_PAUSE" capability="Achieve" semantics="Achieved after execution of scene_creator utility has been inhibited" />
+    <synchronization label="EODISP_RESUME" capability="Achieve" semantics="Achieved after execution of scene_creator utility has been released" />
+    <synchronization label="EODISP_STEP" capability="Achieve" semantics="Achieved after execution of scene_creator utility was inhibited (if not inhibited) or released (if inhibited)" />
+  </synchronizations>
+  <dataTypes>
+    <basicDataRepresentations>
+      <basicData name="HLAinteger32BE" size="32" interpretation="Integer in the range [-2^31, 2^31 - 1]" endian="Big" encoding="32-bit two's complement signed integer. The most significant bit contains the sign." />
+      <basicData name="HLAfloat32BE" size="32" interpretation="Single-precision floating point number" endian="Big" encoding="32-bit IEEE normalized single-precision format. See IEEE Std 754-1985" />
+      <basicData name="HLAoctetPairBE" size="16" interpretation="16-bit value" endian="Big" encoding="Assumed to be portable among hardware devices." />
+      <basicData name="HLAOctet" size="8" interpretation="8-bit value" endian="Big" encoding="Assumed to be portable among hardware devices." />
+    </basicDataRepresentations>
+    <simpleDataTypes>
+      <simpleData name="HLAbyte" representation="HLAoctet" units="NA" resolution="NA" accuracy="NA" semantics="Uninterpreted 8-bit byte" />
+    </simpleDataTypes>
+    <arrayDataTypes>
+      <arrayData name="HLAhandle" dataType="HLAbyte" cardinality="Dynamic" encoding="HLAvariableArray" semantics="Encoded value of a handle. The encoding is based on the type of handle" />
+    </arrayDataTypes>
+  </dataTypes>
+</objectModel>

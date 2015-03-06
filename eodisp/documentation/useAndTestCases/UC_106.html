@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Use Case UC_106</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../useAndTestCases.html">Use And Test Cases</a> » <a href="UC_106.html">Use Case UC_106</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="active" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Use Case UC_106</h1><div class="section">
+    <p>
+      This page describes one of the use cases of the EODiSP. An overview of the use case 
+      concept as it is used in the EODiSP project and of all the use cases defined for 
+      the project is provided in a <a ref="../useAndTestCases.html">dedicated page</a> 
+      which also describes the conventions that are used to define the use case.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Overview">Overview</a></li><li><a href="#MainSuccessScenario">Main Success Scenario</a></li><li><a href="#AlternativeFlows">Alternative Flows</a></li></ul><div class="section"><a name="Overview"></a><h2>Overview</h2><p>
+    <table WIDTH="90%" BORDER="1" CELLPADDING="4" CELLSPACING="0">
+      <tr>
+        <td><i>Identifier</i></td>
+        <td>UC_106</td>
+      </tr>
+      <tr>
+        <td><i>Name</i></td>
+        <td>Run Experiment</td>
+      </tr>
+      <tr>
+        <td><i>Primary Actor</i></td>
+        <td>Simulation owner</td>
+      </tr>
+      <tr>
+        <td><i>Level</i></td>
+        <td>User Goal</td>
+      </tr>
+      <tr>
+        <td><i>Description</i></td>
+        <td>
+          Starts a simulation experiment which has been configured. The configuration of a 
+          simulation experiment is explained in use case <a href="UC_104.html">UC_104</a>.
+        </td>
+      </tr>
+      <tr>
+        <td><i>Pre-Condition</i></td>
+        <td>
+          (1) Use case <a href="UC_104.html">UC_104</a> (<i>configure simulation experiment</i>) 
+          has been successfully completed for the simulation experiment which is selected to 
+          run. (2) All participating models in the simulation experiment are available in the 
+          EODiSP network. (3) If no network connection is configured, all federates must be 
+          available locally.
+        </td>
+      </tr>
+      <tr>
+        <td><i>Post-Condition</i></td>
+        <td>The simulation experiment has been completed successfully.</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="MainSuccessScenario"></a><h2>Main Success Scenario</h2><p>
+    <ol>
+      <li>Actor selects the simulation experiments which he wants to run from a list of available 
+        experiments.</li>
+      <li>System displays the selected experiment, including all information.</li>
+      <li>Actor checks the availability of the participating federates.</li>
+      <li>Actor starts the simulation experiment.</li>
+      <li>System initialises simulation experiment.</li>
+      <li>System runs simulation experiment.</li>
+      <li>System detects that the simulation experiments has finished executing.</li>
+      <li>System signals end of simulation experiment to the actor.</li>
+    </ol>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="AlternativeFlows"></a><h2>Alternative Flows</h2><p>
+    <p class="uc_level_1">3a. Not all participating federates are currently available in the EODiSP network.</p><p class="uc_level_2">1. System displays an error.</p><p class="uc_level_2">2. 
+          Actor checks the availability of federates periodically until all federates are available 
+          in the EODiSP network.
+        </p><p class="uc_level_1">5-6a. System detects an internal error during execution of a simulation experiment.</p><p class="uc_level_2">1. System signals error.</p><p class="uc_level_2">2a System cannot recover error.</p><p class="uc_level_3">1. Actor aborts the executing simulation experiment (see use case
+            <a href="UC_110.html">UC_110</a>).
+          </p><p class="uc_level_3">2. Actor starts the simulation experiment again.</p><p class="uc_level_1">5-6b. Actor chooses to abort the currently running simulation experiment.</p><p class="uc_level_2">1. See
+          <a href="UC_110.html">UC_110</a>.
+        </p><p class="uc_level_1">5-6c. 
+          At any time in continuous operation mode, actor switches to step-by-step operation 
+          mode.
+        </p><p class="uc_level_2">1. 
+          System sends information to the federation to switch to step-by-step operation mode.
+        </p><p class="uc_level_2">2. 
+          The participating federates decide on the behaviour in step-by-step mode and operate 
+          accordingly.
+        </p><p class="uc_level_2">3. Actor may steps forward for one step.</p><p class="uc_level_2">4. System sends information to the federation to switch to advance one step.</p><p class="uc_level_2">5. The participating federates decide on the behaviour for a next step call.</p><p class="uc_level_1">5-6d. 
+          At any time in step-by-step operation mode, actor switches to continuous operation 
+          mode.
+        </p><p class="uc_level_2">1. 
+          System sends information to the federation to switch to step-by-step operation mode.
+        </p><p class="uc_level_2">2. 
+          The participating federates decide on the behaviour when switching back to continuous 
+          mode.
+        </p><p class="uc_level_1">5-6e. System detects a network error.</p><p class="uc_level_2">1a Network error occurred in the simulation manager application.</p><p class="uc_level_3">1a 
+              The simulation manager can reconnect to the EODiSP network after a certain amount 
+              of time.
+            </p><p class="uc_level_3">1b The simulation manager cannot reconnect to the EODiSP network.</p><p class="uc_level_4">1. System signals error.</p><p class="uc_level_4">2. Actor cancels the experiment (see
+              <a href="UC_110">UC_110</a>).
+            </p><p class="uc_level_4">3. 
+              System is ready to execute another simulation experiment after the network problem 
+              has been fixed.
+            </p><p class="uc_level_2">1b Network error occurred in one of the participating simulation models.</p><p class="uc_level_3">1. System signals error.</p><p class="uc_level_3">2. Actor cancels the experiment (see
+            <a href="UC_110">UC_110</a>).
+          </p><p class="uc_level_3">3. System is ready to execute another simulation experiment.</p>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-17 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EarthCARE Simulator - HLA Federates</title><link rel="stylesheet" href="style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="EODiSP, EarhCARE, distributed, HLA"></meta><meta name="description" content="EarthCARE Simulator based on the EODiSP"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="index.html">EarthCARE Simulator</a></h1></div><div id="nav-path"><a href="index.html">Home</a> » <a href="HLAFederates.html">HLA Federates</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="simulationPackages.html">Simulation Packages</a></li></ul><ul><li class="active-leaf"><a class="active" href="HLAFederates.html">HLA Federates</a></li></ul><ul><li class="leaf"><a class="" href="download.html">Download / Install</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>HLA Federates</h1><div class="section">
+    <p>
+      This page describes the HLA Federates that are provided with the EarthCARE Simulator. 
+      The HLA Federates are accessible through a centralized <a href="overview.html#SimulationRepository">repository</a>.
+    </p>
+    <p>
+      The EarthCARE federates essentially consist of wrappers for the <a href="simulationPackages.html"> 
+      simulation packages</a>. Their structure complies with the <a href="http://www.pnp-software.com/eodisp/documentation/developerManuals/supportApplications.html#WrapperStructure" class="external">general 
+      structure</a> of EODiSP wrappers.
+    </p>
+    <p>
+      The HLA Federates are described in terms of their <i>Simulation Object Model</i> 
+      or SOM. The SOM fully describes the type of information that an individual federate 
+      can provide to an HLA federation as well as the information that an individual federate 
+      can receive from other federates in the HLA federation.
+    </p>
+    <p>
+      Only the following elements are included in the SOMs of the EarthCARE federates: 
+      <ul> <li><code>objectClasses</code> to describe the attributes published by each 
+      federates.</li> <li><code>synchronizations</code> to describe the synchronization 
+      points used by the federates.</li> <li><code>dataTypes</code> to describe the types 
+      of attributes published by the federates.</li> <li><code>interactions</code> to describe 
+      the HLA interactions used by the federates.</li> </ul> The sections below describe 
+      the usage of the above elements in the EarthCARE federates. The <a href="#FederateCode">last 
+      section</a> in the page explains how to access the federate SOMs and the code implementing 
+      them.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#ObjectClassStructure">Object Class Structure</a></li><li><a href="#TheFederateInfoObjectClass">The FederateInfo Object Class</a></li><li><a href="#TheParameterObjectClasses">The Parameter Object Classes</a></li><li><a href="#TheFileStreamObjectClasses">The File Stream Object Classes</a></li><li><a href="#DataTypes">Data Types</a></li><li><a href="#SynchronizationPoints">Synchronization Points</a></li><li><a href="#Interactions">Interactions</a></li><li><a href="#FederateCode">Federate Code</a></li></ul><div class="section"><a name="ObjectClassStructure"></a><h2>Object Class Structure</h2>
+    <p>
+      The HLA standard prescribes that all object classes be derived from the predefined 
+      <code>HLAobjectRoot</code> class. This is accordingly the top-level class for the 
+      object classes defined in the EarthCARE SOMs.
+    </p>
+    <p>
+      In order to create a dedicated namespace for the EarthCARE object classes, the <code>EarthCARE</code> 
+      object class is defined as a child of the <code>HLAobjectRoot</code> class and as 
+      the direct parent of all EarthCARE object classes. This object class is empty and 
+      defines no attributes. All the other object classes defined by the EarthCARE SOMs 
+      are child classes of <code>EarthCARE</code>.
+    </p>
+    <p>
+      The EarthCARE object classes are defined to be either pure 'publish' or pure 'subscribe' 
+      classes. Their attributes are either 'publish' or 'subscribe' attributes ('publishSubscribe' 
+      atttributes are not used) and a certain class only contain attributes of the same 
+      kind.
+    </p>
+    <p>
+      There are basically two types of federates in the EarthCARE Simulator. One type is 
+      represented by the <code>sim_controller</code> federate. The second type is represented 
+      by all the other federates (the federates wrapping the KNMI models and the <code>orbit_propagator</code> 
+      federate). The typical structure of the SOM of the latter kind of federate is shown 
+      in the figure below.
+    </p>
+    <div class="figure"><a name="LidFilter.png"><img border="0" src="images/LidFilter.png" alt="SOM of the lid_filter federate"></img></a><p>Figure 1: SOM of the lid_filter federate</p></div>
+    <p>
+      This SOM has three kinds of object classes. The <code>FederateInfo</code> object 
+      class is common to all federates except the <code>sim_controller</code> federate. 
+      It defines attributes that are published by all these federates and that relate to 
+      their general execution status. The <code>LidFiltePar</code> object class defines 
+      the configuration parameters of the federates. All federates (except the <code>sim_controller</code> 
+      federate) have such a <code>xxxPar</code> object class (where 'xxx' is the name of 
+      the federate) to define their configuration parameters. Finally the <code>xxxStream</code> 
+      object classes describe the files that the federate generates as outputs or reads 
+      as inputs.
+    </p>
+    <p>
+      The SOM of the <code>sim_controller</code> federate has a structure that is the complement 
+      of those of the other federates: it subscribes to the <code>FederateInfo</code> object 
+      class which is published by all other federates, and it publishes all the <code>xxxPar</code> 
+      object classes. The <code>sim_controller</code> federate does not see the stream 
+      object classes because these only mediate exchanges of data between the other federates.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TheFederateInfoObjectClass"></a><h2>The FederateInfo Object Class</h2>
+    <p>
+      There are some key data that are published by all federates (except the <code>sim_controller</code> 
+      federate) and which are intended to be displayed through an excel interface by the 
+      <code>sim_controller</code> federate. In order to facilitate their uniform treatment, 
+      these data are gathered together in one single object class called the <code>FederateInfo</code>. 
+      Its attributes are:
+    </p>
+    <ul>
+      <li><code>name</code>: the name of the KNMI program embedded within the federate or 'orbit_propagator' 
+        for the <code>orbit_propagator</code> federate.</li>
+      <li><code>modelVersion</code>: a string defining the version of the program embedded 
+        within the federate.</li>
+      <li><code>failureMode</code>: a flag indicating the <a href="overview.html#FailureModes">failure 
+        mode</a> of the federate.</li>
+      <li><code>execStatus</code>: a flag indicating the execution status of the federate. 
+        This flag essentially indicates whether the program embedded within the federate 
+        has already run or whether the federate is still waiting for some or all of its input 
+        data.</li>
+      <li><code>senderId</code>: the federate handle, namely an integer uniquely identifying 
+        the federate that is updating the attributes in this object class.</li>
+    </ul>
+    <p>
+      The <code>sim_controller</code> federate subscribes to the <code>FederateInfo</code> 
+      object class. When it receives a notification that one of its attributes have been 
+      updated, it needs to know which federate did the update. For this reason, the EarthCARE 
+      federates are designed to always send the value of the <code>senderId</code> attribute 
+      together with the value of the updated attribute. The presence of the <code>senderId</code> 
+      allows the <code>sim_controller</code> federate to identify the origin of the update 
+      and to process it appropriately.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TheParameterObjectClasses"></a><h2>The Parameter Object Classes</h2>
+    <p>
+      Most simulation models need to be configured by specifying the values of certain 
+      <a href="overview.html#SimulationParameters">simulation parameters</a>. The EarthCARE 
+      federates accordingly define object classes to hold the model parameters. For each 
+      federate that needs the specification of one or more simulation parameter, an object 
+      class with a name like 'xxxPar' is defined where 'xxx' is the name of the federate. 
+      This object class defines the attributes associated to the simulation parameters 
+      associated to the federate.
+    </p>
+    <p>
+      The federate subscribes to the parameter object class. All the parameter object classes 
+      are published by the <code>sim_controller</code> federate.
+    </p>
+    <p>All parameter attributes are defined to be of primitive type.</p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TheFileStreamObjectClasses"></a><h2>The File Stream Object Classes</h2>
+    <p>
+      The KNMI programs exchange information through files that represent their inputs 
+      and outputs. These input and output files are mapped to object classes in the federates 
+      that wrap the programs. For each input or output file a dedicated object class is 
+      defined with a name like 'xxxStream' where 'xxx' is the name of the file.
+    </p>
+    <p>
+      The file stream object classes cover both <a href="overview.html#FileAccessModes">file 
+      access modes</a> supported by the EarthCARE Simulation. The files generated by the 
+      KNMI programs can be very large (with sizes of hundres of megabytes or even gigabytes). 
+      For this reason, their transfer through the HLA infrastructure must be done in chunks 
+      of size sufficiently small to fit within the address space of the JVM where the federates 
+      are running. The size of each chunk is fixed and is defined as an initialization 
+      parameter for the federate itself.
+    </p>
+    <p>
+      The attributes of the file stream object classes are: <ul> <li><code>chunk</code>: 
+      a byte array representing a chunk of the file that is being transferred. </li> <li><code>chunkNr</code>: 
+      an integer defining the chunk that is being sent in this transfer. </li> <li><code>nrOfChunks</code>: 
+      the total number of chunks in the current transfer.</li> <li><code>url</code>: a 
+      string representing the URL of the input or output file.</li> </ul> Obviously, the 
+      last attribute is only used when the federate is operating in url transfer mode.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="DataTypes"></a><h2>Data Types</h2>
+    <p>
+      The EarthCARE federates only use a small set of data types. Three kinds of HLA data 
+      types are used: basic data types, enumerated data types, and array data types.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SynchronizationPoints"></a><h2>Synchronization Points</h2>
+    <p>
+      The EarthCARE federates use the five <a href="http://www.pnp-software.com/eodisp/overview.html#SimulationLifecycle" class="external">synchronization 
+      points</a> predefined by the EODiSP (EODISP_START, EODISP_PAUSE, EODISP_STEP, EODISP_RESUME, 
+      and EODISP_STOP). No additional simulator-specific synchronization points are defined.
+    </p>
+    <p>
+      The EODiSP synchronization points are registered by the EODiSP control federate. 
+      The EarthCARE federates therefore are only responsible for achieving these synchronization 
+      points.
+    </p>
+    <p>
+      The EODiSP_START synchronization point is achieved after all attribute subscriptions 
+      and publications have been completed.
+    </p>
+    <p>
+      After the EODiSP_START synchronization point has been achieved, each federate is 
+      ready to react to a notification that one of its input attributes (i.e. one of the 
+      attributes to which it subscribes) has been updated. At this point there are two 
+      flows of attribute updates.
+    </p>
+    <p>
+      The <i>info flow</i> is related to the update of attributes in the <code>FederateInfo</code> 
+      object class. Federates that publish this object class are designed to update attributes 
+      in this class immediately after the EODiSP_START synchronization point is achieved.
+    </p>
+    <p>
+      The <i>simulation flow</i> is related to the generation and processing of the KNMI 
+      input and output files. This flow starts only after the <code>sim_controller</code> 
+      federate updates the <a href="overview.html#SimulationParameters">configuration parameters</a> 
+      of all the other federates.
+    </p>
+    <p>
+      After all configuration parameters have been updated by the <code>sim_controller</code> 
+      federate, the simulation proper starts. The <code>scene_creator</code> federate, 
+      which does not depend on any input file, triggers the execution of the <code>scene_creator</code> 
+      program. When this program terminates, it makes its output file available and therefore 
+      releases the execution of the forward model federates (the <code>lid_filter</code> 
+      federate, the <code>rad_filter</code> federate, the <code>MC_sim_main</code> federate, 
+      and the <code>MC_LW_sim_main</code> federate). And so on until all programs embedded 
+      within the KNMI federates have been executed.
+    </p>
+    <p>
+      The KNMI federates achieve the EODiSP_STOP synchronization point after the program 
+      which they embed has completed execution. The other two federates - which are purely 
+      passive - achieve it immediately.
+    </p>
+    <p>
+      The pause, step and resume mechanism is implemented at the level of two KNMI federates: the 
+      <code>radar</code> and the <code>lidar_ret1</code> federates. 
+      For this purpose, these KNMI federates can be placed in an 'inhibited' state. If they 
+      are in this state, then they will not execute the program they embed even if all 
+      their input data have arrived.
+    </p>
+    <p>
+      A pause request is intended to cause the simulation to stop after the currently executing 
+      KNMI programs have terminated execution. The EODiSP_PAUSE synchronization point in 
+      the <code>radar</code> and the <code>lidar_ret1</code> federates 
+      is achieved after the federates have been placed in the 'inhibited' 
+      state. In the case of other federates, it is achieved immediately.
+    </p>
+    <p>
+      A step request can only have an effect if it is preceeded by a pause request. It 
+      causes all and only the programs that have all their inputs available (but are being 
+      held because the simulator received a pause request) to be executed. KNMI federates 
+      that have all their inputs ready, achieve the EODiSP_STEP synchronization point after 
+      the program they embed has been executed. All other federates achieve it immediately.
+    </p>
+    <p>
+      A resume request is intended to cause the simulation to resume execution. The EODiSP_RESUME 
+      synchronization point in the 
+      <code>radar</code> and the <code>lidar_ret1</code> federates is achieved after the federate 
+      is taken 
+      out of the 'inhibited' state. Federates whose input data are ready, will therefore 
+      immediately resume execution.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Interactions"></a><h2>Interactions</h2>
+    <p>
+      The EarthCARE Simulator federates use only the pre-defined EODiSP <code>registerFederate</code>
+      interaction. No simulator-specific interactions are used.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="FederateCode"></a><h2>Federate Code</h2>
+    <p>
+      All the code implementing the wrappers for the EarthCARE federate is accessible from 
+      the <a href="download.html">download page</a> of the EarthCARE Simulator. The federate 
+      code can be found in the <code>federates</code> directory. There is a dedicated subdirectory 
+      for each federate. The SOM are stored in files with the <code>.som</code> extension. 
+      The rest of the wrapper code can be found in the <code>src</code> directory.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-07-24 by 
+                   ibirrer </td></tr></table></div></div></body></html>

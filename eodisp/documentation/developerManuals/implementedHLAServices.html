@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - HLA Services Implemented in EODiSP core</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="implementedHLAServices.html">HLA Services Implemented in EODiSP core</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>HLA Services Implemented in EODiSP core</h1><div class="section">
+    <p>
+      This page lists all the HLA services that are currently supported by the EODiSP. 
+      For each group of services a table with the following column is given:
+    </p>
+    <ul>
+      <li><b>Column 1</b> gives the section number in the IEEE 1516.1-2000 Std Document where 
+        the service is defined.</li>
+      <li><b>Column 2</b> gives the name of the service as given in the IEEE 1516.1-2000 Std 
+        Document. The dagger (†) indicates that a service has to be provided by the federate 
+        ambassador.</li>
+      <li><b>Column 3</b> indicates the priority for implementation of the service in the EODiSP. 
+        Three priority levels are defined: <ul> <li> <b>1</b> - The service is essential 
+        for supporting the simulation needs targeted by the EODiSP. 
+        </li> <li> <b>2</b> - The service is not essential for the needs of EODiSP users
+        but may be useful in some cases. This class of services is regarded as 
+        a “nice to have” in the EODiSP implementation of the HLA. 
+        </li> <li> <b>3</b> - The service is irrelevant 
+        to EODiSP users and will not be provided by the EODiSP implementation of the HLA. 
+        </li> </ul></li>
+      <li><b>Column 4</b> Indicates if the service is currently implemented in the EODiSP core. 
+        As the development progresses this page will be updated. All services with priority 
+        1 and part of the the services with priority 2 are currently implented.</li>
+    </ul>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#FederationServices">Federation Services</a></li><li><a href="#DeclarationManagementServices">Declaration Management Services</a></li><li><a href="#ObjectManagementServices">Object Management Services</a></li><li><a href="#OwnershipManagementServices">Ownership Management Services</a></li><li><a href="#TimeManagementServices">Time Management Services</a></li><li><a href="#DataDistributionManagementServices">Data Distribution Management Services</a></li><li><a href="#SupportServices">Support Services</a></li></ul><div class="section"><a name="FederationServices"></a><h2>Federation Services</h2><p>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Service</th>
+        <th>Prio.</th>
+        <th>Implemented</th>
+      </tr>
+      <tr>
+        <td>4.2</td>
+        <td>Create Federation Execution</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.3</td>
+        <td>Destroy Federation Execution</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.4</td>
+        <td>Join Federation Execution</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.5</td>
+        <td>Resign Federation Execution</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.6</td>
+        <td>Register Federation Synchronization Point</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.7</td>
+        <td>Confirm Synchronization Point Registration †</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.8</td>
+        <td>Announce Synchronization Point †</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.9</td>
+        <td>Synchronization Point Achieved</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.10</td>
+        <td>Federation Synchronized †</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>4.11</td>
+        <td>Request Federation Save</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.12</td>
+        <td>Initiate Federate Save †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.13</td>
+        <td>Federate Save Begun</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.14</td>
+        <td>Federate Save Complete</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.15</td>
+        <td>Federation Saved †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.16</td>
+        <td>Query Federation Save Status</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.17</td>
+        <td>Federation Save Status Response †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.18</td>
+        <td>Request Federation Restore</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.19</td>
+        <td>Confirm Federation Restoration Request †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.20</td>
+        <td>Federation Restore Begun †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.21</td>
+        <td>Initiate Federate Restore †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.22</td>
+        <td>Federate Restore Complete</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.23</td>
+        <td>Federation Restored †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.24</td>
+        <td>Query Federation Restore Status</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>4.25</td>
+        <td>Federation Restore Status Response †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="DeclarationManagementServices"></a><h2>Declaration Management Services</h2><p>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Service</th>
+        <th>Prio.</th>
+        <th>Implemented</th>
+      </tr>
+      <tr>
+        <td>5.2</td>
+        <td>Publish Object Class Attributes</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.3</td>
+        <td>Unpublish Object Class Attributes</td>
+        <td>2</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.4</td>
+        <td>Publish Interaction Class</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.5</td>
+        <td>Unpublish Interaction Class</td>
+        <td>2</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.6</td>
+        <td>Subscribe Object Class Attributes</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.7</td>
+        <td>Unsubscribe Object Class Attributes</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.8</td>
+        <td>Subscribe Interaction Class</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.9</td>
+        <td>Unsubscribe Interaction Class</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.10</td>
+        <td>Start Registration For Object Class †</td>
+        <td>2</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>5.11</td>
+        <td>Stop Registration For Object Class †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>5.12</td>
+        <td>Turn Interaction On †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>5.13</td>
+        <td>Turn Interaction Off †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ObjectManagementServices"></a><h2>Object Management Services</h2><p>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Service</th>
+        <th>Prio.</th>
+        <th>Implemented</th>
+      </tr>
+      <tr>
+        <td>6.2</td>
+        <td>Reserve Object Instance Name</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.3</td>
+        <td>Object Instance Name Reserved †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.4</td>
+        <td>Register Object Instance</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>6.5</td>
+        <td>Discover Object Instance †</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>6.6</td>
+        <td>Update Attribute Values</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>6.7</td>
+        <td>Reflect Attribute Value †</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>6.8</td>
+        <td>Send Interaction</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>6.9</td>
+        <td>Receive Interaction †</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>6.10</td>
+        <td>Delete Object Instance</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.11</td>
+        <td>Remove Object Instance †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.12</td>
+        <td>Local Delete Object Instance</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.13</td>
+        <td>Change Attribute Transportation Type</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.14</td>
+        <td>Change Interaction Transportation Type</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.15</td>
+        <td>Attributes In Scope †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.16</td>
+        <td>Attributes Out Of Scope †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.17</td>
+        <td>Request Attribute Value Update</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.18</td>
+        <td>Provide Attribute Value Update †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.19</td>
+        <td>Turn Updates On For Object Instance †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>6.20</td>
+        <td>Turn Updates Off For Object Instance †</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="OwnershipManagementServices"></a><h2>Ownership Management Services</h2><p>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Service</th>
+        <th>Prio.</th>
+        <th>Implemented</th>
+      </tr>
+      <tr>
+        <td>7.2</td>
+        <td>Unconditional Attribute Ownership Divestiture</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.3</td>
+        <td>Negotiated Attribute Ownership Divestiture</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.4</td>
+        <td>Request Attribute Ownership Assumption †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.5</td>
+        <td>Request Divestiture Confirmation †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.6</td>
+        <td>Confirm Divestiture</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.7</td>
+        <td>Attribute Ownership Acquisition Notification †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.8</td>
+        <td>Attribute Ownership Acquisition</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.9</td>
+        <td>Attribute Ownership Acquisition If Available</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.10</td>
+        <td>Attribute Ownership Unavailable †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.11</td>
+        <td>Request Attribute Ownership Release †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.12</td>
+        <td>Attribute Ownership Divestiture If Wanted</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.13</td>
+        <td>Cancel Negotiated Attribute Ownership Divestiture</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.14</td>
+        <td>Cancel Attribute Ownership Acquisition</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.15</td>
+        <td>Confirm Attribute Ownership Acquisition Cancellation †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.16</td>
+        <td>Query Attribute Ownership</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.17</td>
+        <td>Inform Attribute Ownership †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>7.18</td>
+        <td>Is Attribute Owned By Federate</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TimeManagementServices"></a><h2>Time Management Services</h2><p>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Service</th>
+        <th>Prio.</th>
+        <th>Implemented</th>
+      </tr>
+      <tr>
+        <td>8.2</td>
+        <td>Enable time regulation</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.3</td>
+        <td>Time Regulation Enabled †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.4</td>
+        <td>Disable Time Regulation</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.5</td>
+        <td>Enable Time Constrained</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.6</td>
+        <td>Time Constrained Enabled †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.7</td>
+        <td>Disable Time Constrained</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.8</td>
+        <td>Time Advance Request</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.9</td>
+        <td>Time Advance Request Available</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.10</td>
+        <td>Next Message Request</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.11</td>
+        <td>Next Message Request Available</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.12</td>
+        <td>Flush Queue Request</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.13</td>
+        <td>Time Advance Grant †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.14</td>
+        <td>Enable Asynchronous Delivery</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.15</td>
+        <td>Disable Asynchronous Delivery</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.16</td>
+        <td>Query GALT</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.17</td>
+        <td>Query Logical Time</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.18</td>
+        <td>Query LITS</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.19</td>
+        <td>Modify Lookahead</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.20</td>
+        <td>Query Lookahead</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.21</td>
+        <td>Retract</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.22</td>
+        <td>Request Retraction †</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.23</td>
+        <td>Change Attribute Order Type</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>8.24</td>
+        <td>Change Interaction Order Type</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="DataDistributionManagementServices"></a><h2>Data Distribution Management Services</h2><p>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Service</th>
+        <th>Prio.</th>
+        <th>Implemented</th>
+      </tr>
+      <tr>
+        <td>9.2</td>
+        <td>Create Region</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.3</td>
+        <td>Commit Region Modifications</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.4</td>
+        <td>Delete Region</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.5</td>
+        <td>Register Object Instance With Region</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.6</td>
+        <td>Associate Regions For Updates</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.7</td>
+        <td>Unassociate Regions For Updates</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.8</td>
+        <td>Subscribe Object Class Attributes With Regions</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.9</td>
+        <td>Unsubscribe Object Class Attributes With Regions</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.10</td>
+        <td>Subscribe Interaction Class With Regions</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.11</td>
+        <td>Unsubscribe Interaction Class With Regions</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.12</td>
+        <td>Send Interaction With Regions</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>9.13</td>
+        <td>Request Attribute Value Update With Regions</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SupportServices"></a><h2>Support Services</h2><p>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Service</th>
+        <th>Prio.</th>
+        <th>Implemented</th>
+      </tr>
+      <tr>
+        <td>10.2</td>
+        <td>Get Object Class Handle</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.3</td>
+        <td>Get Object Class Name</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.4</td>
+        <td>Get Attribute Handle</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.5</td>
+        <td>Get Attribute Name</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.6</td>
+        <td>Get Interaction Class Handle</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.7</td>
+        <td>Get Interaction Class Name</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.8</td>
+        <td>Get Parameter Handle</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.9</td>
+        <td>Get Parameter Name</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.10</td>
+        <td>Get Object Instance Handle</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.11</td>
+        <td>Get Object Instance Name</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.12</td>
+        <td>Get Dimension Handle</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.13</td>
+        <td>Get Dimension Name</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.14</td>
+        <td>Get Dimension Upper Bound</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.15</td>
+        <td>Get Available Dimensions For Class Attribute</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.16</td>
+        <td>Get Known Object Class Handle</td>
+        <td>1</td>
+        <td>yes</td>
+      </tr>
+      <tr>
+        <td>10.17</td>
+        <td>Get Available Dimensions For Interaction Class</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.18</td>
+        <td>Get Transportation Type</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.19</td>
+        <td>Get Transportation Name</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.20</td>
+        <td>Get Order Type</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.21</td>
+        <td>Get order name</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.22</td>
+        <td>Enable Object Class Relevance Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.23</td>
+        <td>Disable Object Class Relevance Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.24</td>
+        <td>Enable Attribute Relevance Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.25</td>
+        <td>Disable Attribute Relevance Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.26</td>
+        <td>Enable Attribute Scope Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.27</td>
+        <td>Disable Attribute Scope Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.28</td>
+        <td>Enable Interaction Relevance Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.29</td>
+        <td>Disable Interaction Relevance Advisory Switch</td>
+        <td>2</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.30</td>
+        <td>Get Dimension Handle Set</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.31</td>
+        <td>Get Range Bounds</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.32</td>
+        <td>Set Range Bounds</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.33</td>
+        <td>Normalize Federate Handle</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.34</td>
+        <td>Normalize Service Group</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.35</td>
+        <td>Initialize RTI (Not part of the interface in SISO)</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.36</td>
+        <td>Finalize RTI (Not part of the interface in SISO)</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.37</td>
+        <td>Evoke Callback</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.38</td>
+        <td>Evoke Multiple Callbacks</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.39</td>
+        <td>Enable Callbacks</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+      <tr>
+        <td>10.40</td>
+        <td>Disable Callbacks</td>
+        <td>3</td>
+        <td>no</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-11-06 by 
+                   eglimi </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

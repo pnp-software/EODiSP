@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Developer Manuals</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="repository.html">Developer Manuals</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Developer Manuals</h1><div class="section"><p>
+    This page lists and describes the functional requirements of the EODiSP repository. 
+    The EODiSP repository is used to keep track of all simulation manager applications 
+    as well as all federates that participate in a simulation network.
+  </p></div><h2>Contents</h2><ul id="index"><li><a href="#Purposeoftherepository">Purpose of the repository</a></li><li><a href="#Workingwiththerepository">Working with the repository</a></li><li><a href="#InstallationRequirements">Installation Requirements</a></li><li><a href="#FunctionalRequirements">Functional Requirements</a></li><li><a href="#RepositoryHistory">Repository History</a></li><li><a href="#Transactions">Transactions</a></li><li><a href="#Design">Design</a></li><li><a href="#InterfaceDescription">Interface Description</a></li></ul><div class="section"><a name="Purposeoftherepository"></a><h2>Purpose of the repository</h2>
+    <p>
+      The idea behind the EODiSP respository is to have a place where all simulation and 
+      model manager applications as well as all federates can register themeselves. The 
+      need for such a repository stems from the fact that, in a distributed environment, 
+      it is almost impossible to assemble a simulation (e.g. a federation) without offline 
+      informations about the federates. Furthermore, the EODiSP requirements ask for a 
+      a facility to limit access to federates that are included in a model manager. This 
+      means, only some simulation manager applications are allowed to access certain federates. 
+      This ensures that the model owner can control who may access his models.
+    </p>
+    <p>The following list summarises the basic idea behind the EODiSP repository:</p>
+    <ul>
+      <li>A model owner shall have control over the access to his models. He can achieve this 
+        by retrieving a list of registered simulation manager applications from the repository 
+        and allow/deny access for a certain model for a certain simulation manager application.</li>
+      <li>As a consequence to the previous requirement, a simulation manager application needs 
+        to be able to register itself in the repository.</li>
+      <li>A simulation manager application shall be able to retrieve a list of all federates 
+        that are defined in the current simulation network in order to assemble a federation. 
+        This has the advantage that federates do not need to be running at the time of federation 
+        assembling.</li>
+      <li>Every federate has some information attached to it. These informations can be used 
+        to access the federate within the simulation network. Such informations are stored 
+        in the repository along with the definition of the federate itself.</li>
+      <li>Every federate shall specify to which federation it will eventually participate. 
+        This makes it possible to validate a federation prior to its start. Therefore, the 
+        repository shall store a list of available federations to which federates can contribute.</li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Workingwiththerepository"></a><h2>Working with the repository</h2><p>
+    <b>TBD</b>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="InstallationRequirements"></a><h2>Installation Requirements</h2>
+    <p>
+      The basic idea behind the repository is to store informations about various parts 
+      in a simulation network without the need of having these parts running all the time. 
+      This, however, implies that these offline informations must be available at any time 
+      for any participant in the simulation network. Therefore, the repository must be 
+      running all the time, preferrably on a publicly accessible server. This ensures the 
+      availability of the offline data for all participant in the simulation network. Other 
+      from that, there are no specific requirements for the repository. The remote connection 
+      to/from the repository will be handled by the EODiSP remote package.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="FunctionalRequirements"></a><h2>Functional Requirements</h2>
+    <p>
+      The following table is a list of detailed functional requirements. These requirements 
+      are not explicitely covered by the user requirements, but are implicitely needed. 
+      The table lists them more formally and in more detail. This requirements will be 
+      implemented by the core implementation of the EODiSP framework. The code for the 
+      repository resides in the core package (EODiSP core).
+    </p>
+    <p>The table is organised as follows:</p>
+    <ul>
+      <li><b>Column 1</b>: A consecutive number identifying the functional requirement.</li>
+      <li><b>Column 2</b>: A short description of the functional requirement. It is formulated 
+        as a request that should be handled.</li>
+      <li><b>Column 3</b>: A detailed description of the functional requirement..</li>
+    </ul>
+    <table>
+      <tr>
+        <th>Nr.</th>
+        <th>Short Description</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>rep_01</td>
+        <td>Register a simulation manager application.</td>
+        <td>
+          Every simulation manager application needs to register itself in the repository. 
+          The following informations are stored for each:
+        
+          <ul>
+            <li>Name of the application as a string.</li>
+            <li>Name of the person in charge of the application (optional)</li>
+            <li>Telephon number of the person in charge of the application (optional)</li>
+            <li>E-Mail of the person in charge of the application (optional)</li>
+            <li>Country where the application runs as string.</li>
+            <li>A unique identifier of the simulation manager application as a guid.</li>
+            <li>An identifier defining the location of the simulation manager application in the 
+              simulation network as an <code>INET</code> address.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_02</td>
+        <td>Unregister a simualtion manager application.</td>
+        <td>
+          <p>
+            A simulation manager application that has been registered in the repository can unregister 
+            itself. This function is only available for simualtion manager applications that 
+            are already registered, otherwise it is ignored.
+          </p>
+          <p>
+            Identification of a simulation manager application is done through the unique identifier 
+            (guid) of the application. This is stored in the repository and must match the identifier 
+            of the unregister request.
+          </p>
+          <p>
+            Whenever a valid unregister request arrives at the repository, all repository data 
+            (see rep_01) belonging to the respective simulation manager application will be deleted.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_03</td>
+        <td>Update a simulation manager application.</td>
+        <td>
+          <p>
+            Some, but no all, of the date in the repository can be updated. This can be necessary 
+            in case that some properties change. The unique identifier will be used to identify 
+            the simulation manager application for which the data should be updated. In case 
+            of valid update request, the following data may be changed:
+          </p>
+          <ul>
+            <li>Name of the simulation manager application as a string.</li>
+            <li>Name of the person in charge of the simulation manager application (optional)</li>
+            <li>Telephon number of the person in charge of the simulation manager application (optional)</li>
+            <li>E-Mail of the person in charge of the simulation manager application (optional)</li>
+            <li>An identifier defining the location of the simulation manager application in the 
+              simulation network as an <code>INET</code> address.</li>
+            <li></li>
+          </ul>
+          <p>All other data will be static and cannot be changed with an update request.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_04</td>
+        <td>Delete a simulation manager application.</td>
+        <td>
+          <p>
+            In some cases, it might be useful to be able to delete simulation manager application 
+            entries in the repository. For instance, if a simulation manager application installation 
+            is removed, there is no way to unregister the application from the repository. The 
+            delete request, however, enables the user to delete the appropriate entries.
+          </p>
+          <p>
+            The request can be done with the repository manager application (through the GUI). 
+            To identify the entry which should be deleted, the user is presented with a list 
+            of registered simulation manager applications from which he can choose from. Once 
+            an entry is selected, a deregister request will be executed in order to delete the 
+            appropriate entry.
+          </p>
+          <p>
+            Allowing this request is dangerous in a sense that all entries in the repository 
+            can be deleted. However, as long as no problem (and no requirements) in this direction 
+            occur, this request can be done without restriction. At a later stage, it might be 
+            possible to extend it to only allow this request for registered user (by querying 
+            for a password or similar).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_05</td>
+        <td>Registration of model manager application.</td>
+        <td>
+          <p>
+            The functionality is the same as for the simulation manager application (see rep_01 
+            - rep04). The following functionality is provided: <ul> <li>Register model manager 
+            application from the repository</li> <li>Unregister model manager application from 
+            the repository</li> <li>Update model manager application in the repository</li> <li>Remove 
+            model manager application from the repository</li> </ul>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_05</td>
+        <td>Create a federate category.</td>
+        <td>
+          <p>
+            A federate that is registered in the repository can be categorized. Each category 
+            can have zero to many federates that are logically grouped. Usually, this means that 
+            a category represents one federation execution. As a consequence, federates in a 
+            category should work together in a sense that the form a complete federation execution, 
+            where the outputs of one federate are consumed by another federate and so on.
+          </p>
+          <p>
+            The following informations are stored with each category: <ul> <li>The name of the 
+            category as string.</li> <li>A list of SOM's that are linked with this category.</li> 
+            <li>A boolean value indicating whether a category is closed or open. In a closed 
+            category, no additional federates can be added.</li> </ul>
+          </p>
+          <p>
+            Categories can be created in the repository manager application (through the GUI 
+            application). If a category already exists, this request will be ignored, otherwise, 
+            a new repository will be created. Repositories are organized in a flat dimension 
+            (as opposed to a hierachical organization).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_06</td>
+        <td>Update the federate category.</td>
+        <td>
+          <p>
+            The information stored along with a category in the repository can be changed. The 
+            following list indicates which values can be changed with an update request:
+          </p>
+          <ul>
+            <li>The name of the category</li>
+            <li>The boolean value indicating whether a category is closed or open.</li>
+          </ul>
+          <p>
+            If the name is changed to a value which is already defined in the repository, the 
+            request will be ignored. A change request can be performed with the repository manager 
+            application (through the GUI application).
+          </p>
+          <p>
+            The list of SOM's that are linked to the repository (see rep_05) is updated automatically 
+            whenever a SOM is added to the category. Therfore, it is not needed to update this 
+            values manually.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_07</td>
+        <td>Delete a federate category.</td>
+        <td>
+          <p>
+            An existing federate category in the repository can be deleted. All links to SOM's 
+            will be lost when a category is deleted. All informations about the category will 
+            be deleted as well (without backup).
+          </p>
+          <p>
+            This request can be performed with the repository manager application (through the 
+            GUI application).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_08</td>
+        <td>Add a SOM to the repository.</td>
+        <td>
+          <p>
+            A SOM (Simulation Object Model) can be added to the repository. A SOM defines the 
+            in- and output of a federate. It can be either added to no, one or more categories. 
+            It is possible that several federates comply to a single SOM (i.e. implementing the 
+            interface defined by the SOM). If the same SOM is already stored in the repository, 
+            the request will be ignored.
+          </p>
+          <p>
+            The SOM itself is complient with the IEEE HLA specification and is not modified by 
+            the repository. The values that are stored within a SOM can therefore defined by 
+            the standard.
+          </p>
+          <p>
+            Since the SOM itself needs some metadata, the SOM will be saved along with additional 
+            data. The following data is stored in such a SOM object:
+          </p>
+          <ul>
+            <li>A unique Id identifying the SOM.</li>
+            <li>A link the SOM on the local file path.</li>
+          </ul>
+          <p>This request can be performed with the model manager application.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_09</td>
+        <td>Delete a SOM from the repository</td>
+        <td>
+          <p>
+            A SOM can be deleted from the repository. All links to this SOM from any federate 
+            are deleted when this request is performed.
+          </p>
+          <p>
+            This request can be performed with the repository manager (through the GUI application).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_10</td>
+        <td>Add a federate to the repository.</td>
+        <td>
+          <p>
+            A federate can be added to the repository. In the repository, not the federate itself 
+            (i.e. the executable code) is stored, but just additional informations about it. 
+            The following informations are stored along with the federate
+          </p>
+          <ul>
+            <li>The name of the federate.</li>
+            <li>A description of the federate.</li>
+            <li>A unique identifier for the federate as a guid.</li>
+            <li>An identifier defining the location of the federate in the simulation network as 
+              an <code>INET</code> address.</li>
+            <li>An Id of the target executable this federate will be run in.</li>
+            <li>An Id of one or more SOM's to which this federate complies</li>
+            <li>A list of ID's that uniqeuly identifying simulation manager applications that have 
+              access to this federate. This prevents simulation manager applications without given 
+              access to the model from displaying this federate..</li>
+            <li>The Id of the model manager that holds this federate.</li>
+            <li>A link to the init data description.</li>
+          </ul>
+          <p>
+            The list of simulation manager application ID's will only used to filter the display 
+            in the GUI application of the simulation manager application. It is not actual implementation 
+            of the security. The implementation of the model manager itself will ensure that 
+            only simulation manager applications that have proper access to a federate are allowed 
+            to interact with them.
+          </p>
+          <p>This request can be performed with the model manager application.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_11</td>
+        <td>Update a federate in the repository.</td>
+        <td>
+          <p>
+            A federate that is already stored in the repository can be updated. This can be the 
+            case if the implementation of a federate has changed or the if the model owner wants 
+            to change the data associated with the federate. The following data can be changed 
+            in the repository:
+          </p>
+          <ul>
+            <li>The name of the federate.</li>
+            <li>The description of the federate</li>
+            <li>The identifier defining the location of the federate in the simulation network (the 
+              <code>INET</code> address.</li>
+            <li>The Id of the target executable this federate will be run in.</li>
+            <li>Links to SOM's can be added or removed.</li>
+            <li>The list of ID's that uniqeuly identifying simulation manager applications that have 
+              access to this federate.</li>
+          </ul>
+          <p>
+            This request can be performed with the model manager application (through the GUI 
+            application).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_12</td>
+        <td>Delete a federate from the repository.</td>
+        <td>
+          <p>
+            A federate can be deleted from the repository. The link to the SOM will be deleted, 
+            if such a link exists for the federate. All information about the federate currently 
+            stored in the repository will be lost.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_13</td>
+        <td>Create a backup of the repository.</td>
+        <td>
+          <p>
+            In order to prevent loss of all data, a backup can be created. The backup will store 
+            all data currently stored in the repository and will crate a file with a unique name 
+            (preferrably with the current date/time in its name).
+          </p>
+          <p>
+            This request can be performed with the repository manager application (through the 
+            GUI application).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>rep_14</td>
+        <td>Restore the repository from a backup.</td>
+        <td>
+          <p>
+            The data in the repository can be restored by using a backup file that has already 
+            been created. All data currently stored in the repository will be deleted and replaced 
+            by the data stored in the backup. No merge in any sense will be performed.
+          </p>
+          <p>
+            This request can be performed with the repository manager application (through the 
+            GUI application).
+          </p>
+        </td>
+      </tr>
+    </table>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="RepositoryHistory"></a><h2>Repository History</h2>
+    <p>
+      The repository stores data that can be changed. In general, it would be possible 
+      to store this changes in a history from where changes could be redone, viewed, etc. 
+      This functionality, however, is not implemented in the EODiSP respository.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Transactions"></a><h2>Transactions</h2>
+    <p>
+      Since the EODiSP respository can be accessed from different sources (e.g. simulation/model 
+      manager applications), it must provided the means to ensure that there are no problems 
+      related to synchronization.
+    </p>
+    <p>TBD -&gt; Using emft for transactions?</p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Design"></a><h2>Design</h2>
+    <p>TBD</p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="InterfaceDescription"></a><h2>Interface Description</h2><p></p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-02 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

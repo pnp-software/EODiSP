@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Test Case TC_208</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../useAndTestCases.html">Use And Test Cases</a> » <a href="TC_208.html">Test Case TC_208</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="active" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Test Case TC_208</h1><div class="section">This page describes one of the
+    <a href="../userManuals.html#TestCases">test cases</a>
+    of the EODiSP. The test case described in this page instantiates a nominal scenario 
+    of the use case
+  
+    <a href="UC_208.html">UC_208</a>.
+    <p>
+      This test case uses the <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE 
+      Simulator</a> as a test platform. The simulator is operated in its <a href="earthCAREConfiguration.html">default 
+      configuration</a>.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Overview">Overview</a></li><li><a href="#Steps">Steps</a></li></ul><div class="section"><a name="Overview"></a><h2>Overview</h2><p>
+    <table>
+      <tr>
+        <td><i>Identifier</i></td>
+        <td>TC_208</td>
+      </tr>
+      <tr>
+        <td><i>Name</i></td>
+        <td>Configure Model Manager Application Log</td>
+      </tr>
+      <tr>
+        <td><i>Primary Actor</i></td>
+         <td><a href="http://www.pnp-software.com/earthcare_simulator/overview.html#SimulationFederateOwners" class="external">ETH_2 Model Owner</a></td>
+      </tr>
+      <tr>
+        <td><i>Description</i></td>
+        <td>
+          Describes the steps to change the configuration of the logging facility used for 
+          the model manager application.
+        </td>
+      </tr>
+      <tr>
+        <td><i>Pre-Condition</i></td>
+        <td>
+          Test case <a href="TC_202.html">TC_202</a> (Set-up Model Manager Application) has 
+          been successfully completed.
+        </td>
+      </tr>
+      <tr>
+        <td><i>Post-Condition</i></td>
+        <td>The logging facility is changed to show customized logging information.</td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Steps"></a><h2>Steps</h2><p>
+    <ol>
+      <li>Actor closes the model manager application if it is still running.</li>
+      <li>Actor opens the configuration file of the logging module for the model manager application 
+        as described in the <a href="../userManuals.html#ConfigurationFiles">user manual</a>.</li>
+      <li>Actor changes the configuration values in the file to use a custom logging file. 
+        Such a custom file is by default available in the <code>conf</code> directory for 
+        each application. Thus, the actor uncomments the configuration value <code>use-custom-file</code>.</li>
+      <li>Actor may wish to adjust the settings in the <code>custom-log4j.conf</code> to his 
+        needs.</li>
+      <li>Actor starts the simulation manager.</li>
+      <li>System now uses the custom settings from the file and logs them accordingly.</li>
+    </ol>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-17 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

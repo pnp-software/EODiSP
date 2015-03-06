@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Use Cases And Test Cases</title><link rel="stylesheet" href="../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../index.html">Home</a> » Documentation » <a href="useAndTestCases.html">Use And Test Cases</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="Testing.html">Testing</a></li></ul><ul><li class="active-leaf"><a class="active" href="useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Use Cases And Test Cases</h1><div class="section">
+    <p>
+      The EODiSP user interface is specified through a set of use cases. This page introduces 
+      the use case concept as it is used in the EODiSP project and gives access to the 
+      detailed description of each EODiSP use case.
+    </p>
+    <p>
+      The EODiSP defines a set of <a href="userManuals.html#TestCases">test cases</a> that 
+      are used to illustrate how the EODiSP should be used and to verify that the EODiSP 
+      correctly implements its requirements. The test cases are defined as instantiations 
+      of the use cases applied to the <a href="../demonstrator.html">EODiSP demonstrator</a>. 
+      Each test case is therefore associated to a use case of which it is an instantiation. 
+      Note, however, that not all use cases have a test case associated to them. Use cases 
+      that are very simple or that are defined in terms of other use cases can be easily 
+      instantiated by the user and no test case is therefore defined for them. This page 
+      gives access to the detailed description of each EODiSP test case.
+    </p>
+    <p>
+      At present, the EODiSP is still under development. Hence, most of the links provided 
+      in this page point to empty placeholders.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#UseCaseConcept">Use Case Concept</a></li><li><a href="#EODiSPUseCases">EODiSP Use Cases</a></li><li><a href="#EODiSPTestCases">EODiSP Test Cases</a></li></ul><div class="section"><a name="UseCaseConcept"></a><h2>Use Case Concept</h2>
+    <p>
+      Use cases are a method to describe the interaction between an actor and the system. 
+      These entities are defined as follows:
+    </p>
+    <ul>
+      <li>An actor is a user of the system. This can be a person or another system interacting 
+        with the system to achieve a desired goal.</li>
+      <li>The system is the entity which reacts to interactions performed by an actor. It is 
+        able to achieve a desired goal. The goal which is to be achieved is specified in 
+        each use case. In the EODiSP, the system is one of the EODiSP applications.</li>
+    </ul>
+    <p>
+      A use case describes what happens when the actor interacts with the system. The interactions 
+      are performed in a sequential order. Therefore, a use case always starts with an 
+      actor interaction, followed by other interactions from the actor or reactions from 
+      the system. The use cases used throughout this section are goal-driven, meaning that 
+      a use case describes the actions to take (by the actor and the system) to fulfil 
+      a desired goal of the actor.
+    </p>
+    <p>In the EODiSP context, there are three kinds of actors:</p>
+    <ul>
+      <li>The simulation owner (the person who wishes to use the EODiSP to perform a simulation).</li>
+      <li>The model owner (the person who wishes to use the EODiSP to make one or more of his 
+        models available to a simulation manager)</li>
+      <li>The person who wishes to wrap a simulation package to transform it into an EODiSP-compatible 
+        simulation model (this will often be the same as the model owner).</li>
+    </ul>
+    <p>
+      Note that a use case does not describe the 'look and feel' of the graphical user 
+      interface. This is an implementation issue and shall be independent of what the system 
+      should provide. A use case describes interactions on the level of services. This 
+      makes use cases independent from the implementation. It also makes them reusable 
+      because they shall apply to every implementation of the system, regardless of how 
+      the graphical user interface looks like.
+    </p>
+    <p>
+      The format of the uses cases in this document is the one which is proposed by Craig 
+      Larman in <i>Applying UML and Patterns</i>.
+    </p>
+    <p>
+      Since it is much easier to read short use cases which have clearly defined boundaries 
+      than to read one big use case describing every aspect of an application, the dedicated 
+      use cases for each EODiSP application have been split into smaller, more readable 
+      use cases.
+    </p>
+    <p>
+      Every use case description has 3 subsections. The first one is the <i>Definitions</i> 
+      section. It includes a table defining the attributes of the use case, such as name, 
+      level, description, etc. This information is connected with the use case and shall 
+      make its intention clear. A detailed description of every attribute is provided in 
+      the following table:
+    </p>
+    <table>
+      <tr>
+        <TH WIDTH="20%">Attribute</TH>
+        <TH WIDTH="80%">Description</TH>
+      </tr>
+      <tr>
+        <td>Identifier</td>
+        <td>The use case identifier.</td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>
+          Every use case has a name which is intended to be descriptive and, if possible, unique.
+        </td>
+      </tr>
+      <tr>
+        <td>Primary Actor</td>
+        <td>
+          The primary actor is the actor having a goal requiring the assistance of the system. 
+          The use case describes how the primary actor can achieve this goal.
+        </td>
+      </tr>
+      <tr>
+        <td>Level</td>
+        <td>
+          Every use case is assigned a level. This level describes the intention of the use 
+          case. Three levels are defined. <i>Summary Level Uses Cases</i> represent collections 
+          of user goal level use cases. They describe how several use cases can be assembled 
+          together and in which order they can be executed. <i>User Goal Level User Cases</i> 
+          describe a goal which the actor can achieve by interacting with the system. These 
+          are normally the use cases of greatest interest. <i>Subfunction Level Use Cases</i> 
+          represent steps in a user goal use case. These use cases are described as such because 
+          they are used in different user goal use cases or because they are too complex to 
+          be directly integrated within them.
+        </td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td>
+          A high level description of the goal which shall be achieved by the use case. It 
+          is a summary of what can be found in more detail in the text of the use case.
+        </td>
+      </tr>
+      <tr>
+        <td>Pre-Condition</td>
+        <td>
+          A description of the states in which the system has to be prior to the start of the 
+          use case.
+        </td>
+      </tr>
+      <tr>
+        <td>Post-Condition</td>
+        <td>
+          A description of the state in which the system should be after the main success scenario 
+          of the use case has been run.
+        </td>
+      </tr>
+    </table>
+    <p>
+      The second subsection of a use case is the <i>Main Success Scenario</i>. This describes 
+      the interactions between the primary actor and the system to achieve the specified 
+      goal. The Main Success Scenario includes neither system failures, nor exceptions, 
+      nor alternative interactions which may be supported by the system. Therefore, it 
+      describes the interactions performed by most actors in most cases. If the main success 
+      scenario is finished, the primary actor's intended goal has been achieved. The description 
+      is given in text format. The sequence of interactions is taken into account by using 
+      a numbered list.
+    </p>
+    <p>
+      The third section is the <i>Alternative Flows</i>. This describes what can happen 
+      in addition to the main success scenario. This can be any system exception or alternative 
+      steps the primary actor can choose from. A step in the alternative flow can either 
+      occur at any time or at a certain step in the main success scenario. To highlight 
+      this, steps in an alternative flow are either marked with a '*' (asterisk) or a number. 
+      Steps which can occur at any time are marked with an asterisk. Steps which have a 
+      corresponding step in the main success scenario are marked with the same number as 
+      the one in the main success scenario plus a letter indicating different alternatives.
+    </p>
+    <p>
+      Some of the use cases might be very similar or even equal for different applications. 
+      This is mostly the case for use cases with level 'Subfunction'. Instead of having 
+      these use cases in one place, they are repeated for every application. This approach 
+      can be rather verbose but is considered more convenient for the reader.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="EODiSPUseCases"></a><h2>EODiSP Use Cases</h2><p>
+    The table below lists all the use cases and their associated test cases defined for 
+    the EODiSP. The first column in the table gives the use case identifier, the second 
+    column gives its name, and the last column gives the name of the test case associated 
+    to the use case. Where no test case is associated to a use case, a 'n.a.' entry is 
+    made in the last column.
+  
+    <table>
+      <tr>
+        <TH WIDTH="15%">Use Case ID</TH>
+        <TH WIDTH="70%">Use Case Name</TH>
+        <TH WIDTH="15%">Test Case ID</TH>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_100.html">UC_100</a></td>
+        <td>Simulation Manager Application Summary</td>
+        <td>n.a.</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_102.html">UC_102</a></td>
+        <td>Set-up Simulation Manager Application</td>
+        <td><a href="useAndTestCases/TC_102.html">TC_102</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_104.html">UC_104</a></td>
+        <td>Configure Simulation Experiment</td>
+        <td><a href="useAndTestCases/TC_104.html">TC_104</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_106.html">UC_106</a></td>
+        <td>Run Experiment</td>
+        <td><a href="useAndTestCases/TC_106.html">TC_106</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_108.html">UC_108</a></td>
+        <td>Load or Save Configuration</td>
+        <td><a href="useAndTestCases/TC_108.html">TC_108</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_110.html">UC_110</a></td>
+        <td>Experiment Abort</td>
+        <td><a href="useAndTestCases/TC_110.html">TC_110</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_112.html">UC_112</a></td>
+        <td>Configure Simulation Manager Application Log</td>
+        <td><a href="useAndTestCases/TC_112.html">TC_112</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_200.html">UC_200</a></td>
+        <td>Model Manager Application Summary</td>
+        <td>n.a.</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_202.html">UC_202</a></td>
+        <td>Set-up Model Manager Application</td>
+        <td><a href="useAndTestCases/TC_202.html">TC_202</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_204.html">UC_204</a></td>
+        <td>Manage Federates in the Model Manager Application.</td>
+        <td><a href="useAndTestCases/TC_204.html">TC_204</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_208.html">UC_208</a></td>
+        <td>Configure Model Manager Application Log</td>
+        <td><a href="useAndTestCases/TC_208.html">TC_208</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_302.html">UC_302</a></td>
+        <td>Generate Wrapper Code for an Excel Workbook</td>
+        <td><a href="useAndTestCases/TC_302.html">TC_302</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_304.html">UC_304</a></td>
+        <td>Generate Wrapper Code for an SMP2 simulation</td>
+        <td>n.a.</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_306.html">UC_306</a></td>
+        <td>Generate Wrapper Code for Matlab-Generated Code</td>
+        <td>n.a.</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_308.html">UC_308</a></td>
+        <td>Generate Wrapper Code for a Matlab Simulation</td>
+        <td><a href="useAndTestCases/TC_308.html">TC_308</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_310.html">UC_310</a></td>
+        <td>Generate Wrapper Code for Source Code</td>
+        <td><a href="useAndTestCases/TC_310.html">TC_310</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_312.html">UC_312</a></td>
+        <td>Generate Wrapper Code for a Standalone Executable</td>
+        <td><a href="useAndTestCases/TC_312.html">TC_312</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_314.html">UC_314</a></td>
+        <td>Generate Wrapper Code for a Data Processing Package</td>
+        <td>n.a.</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_316.html">UC_316</a></td>
+        <td>Creating a New SOM File</td>
+        <td><a href="useAndTestCases/TC_316.html">TC_316</a></td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/UC_318.html">UC_318</a></td>
+        <td>Deploy a federate</td>
+        <td><a href="useAndTestCases/TC_318.html">TC_318</a></td>
+      </tr>
+    </table>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="EODiSPTestCases"></a><h2>EODiSP Test Cases</h2>
+    The table below lists all the test cases defined for the EODiSP. Four groups of test 
+    cases are identified, one for each of the four applications provided by the EODiSP: 
+    the simulation manager application, the model manager application, the repository 
+    application, and the support application. The first column in the table gives the 
+    test case identifier, the second column gives its name, and the third column gives 
+    a one-letter identifier of the application to which the test case refers ('S' for 
+    the simulation manager application, 'M' for the model manager application, 'R' for 
+    the repository application, and 'U' for the support application).
+  
+    <p>
+      The test cases are described according to a two-part format. In the first part, a 
+      table gives a summary view of the test case. The summary table defines the name and 
+      objective of the test case; the actor who should execute the test case; the preconditions 
+      for the test case; and the post-conditions that should hold after successful execution 
+      of the test case. The second 
+      part gives the step-by-step procedure for executing the test case.
+    </p>
+    <table>
+      <tr>
+        <TH WIDTH="15%">Test Case ID</TH>
+        <TH WIDTH="70%">Test Case Name</TH>
+        <TH WIDTH="15%">Application</TH>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_102.html">TC_102</a></td>
+        <td>Set-up Simulation Manager Application</td>
+        <td align="center">S</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_104.html">TC_104</a></td>
+        <td>Configure Simulation Experiment</td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_106.html">TC_106</a></td>
+        <td>Run Experiment</td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_108.html">TC_108</a></td>
+        <td>Load or Save Configuration</td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_110.html">TC_110</a></td>
+        <td>Experiment Abort</td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_112.html">TC_112</a></td>
+        <td>Configure Simulation Manager Application Log</td>
+        <td>S</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_202.html">TC_202</a></td>
+        <td>Set-up Model Manager Application</td>
+        <td>M</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_204.html">TC_204</a></td>
+        <td>Manage Federates in the Model Manager Application.</td>
+        <td>M</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_208.html">TC_208</a></td>
+        <td>Configure Model Manager Application Log</td>
+        <td>M</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_302.html">TC_302</a></td>
+        <td>Generate Wrapper Code for an Excel Workbook</td>
+        <td>U</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_308.html">TC_308</a></td>
+        <td>Generate Wrapper Code for a Matlab Simulation</td>
+        <td>U</td>
+      </tr>      <tr>
+        <td><a href="useAndTestCases/TC_310.html">TC_310</a></td>
+        <td>Generate Wrapper Code for Source Code</td>
+        <td>U</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_312.html">TC_312</a></td>
+        <td>Generate Wrapper Code for a Standalone Executable</td>
+        <td>U</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_316.html">TC_316</a></td>
+        <td>Creating a New SOM File</td>
+        <td>U</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_318.html">TC_318</a></td>
+        <td>Deploy a federate</td>
+        <td>U</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_320.html">TC_320</a></td>
+        <td>Generate an HLA Wrapper Skeleton</td>
+        <td>U</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_402.html">TC_402</a></td>
+        <td>Set-up repository manager application</td>
+        <td>R</td>
+      </tr>
+      <tr>
+        <td><a href="useAndTestCases/TC_404.html">TC_404</a></td>
+        <td>Register Simulation Object Models (SOM) in the remote repository</td>
+        <td>R</td>
+      </tr>
+    </table>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-17 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

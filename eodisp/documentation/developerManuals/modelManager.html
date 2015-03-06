@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Functional Requirements of the Simulation Manager</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="modelManager.html">Functional Requirements of the Simulation Manager</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Functional Requirements of the Simulation Manager</h1><div class="section"><p>
+    This page lists and describes the functional requirements of the EODiSP model manager. 
+    The model manager is responsible to manage the federates running on a node.
+  </p></div><h2>Contents</h2><ul id="index"><li><a href="#Purposeofthemodelmanager">Purpose of the model manager</a></li><li><a href="#FunctionalRequirements">Functional Requirements</a></li><li><a href="#SimulationManagerRunner">Simulation Manager Runner</a></li></ul><div class="section"><a name="Purposeofthemodelmanager"></a><h2>Purpose of the model manager</h2>
+    <p>
+      The basic functionality of the model manager is to manage a repository of federates 
+      that can be started on request. The model manager does not directly host the federeates 
+      but runs them in their own virtual machine, i.e. in the Local RTI component. An overview 
+      of the model manager's funcitonality is given in the list below:
+    </p>
+    <ul>
+      <li>Starting a federate application</li>
+      <li>Kill a federate application</li>
+      <li>Provide a list of running federate applications</li>
+      <li>Provide information about running federates</li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="FunctionalRequirements"></a><h2>Functional Requirements</h2>
+    <p>
+      The following table is a list of detailed functional requirements. These requirements 
+      are not explicitely covered by the user requirements, but are implicitely needed. 
+      The table lists them more formally and in more detail. This requirements will be 
+      implemented by the core implementation of the EODiSP framework. The code for the 
+      repository resides in the core package (EODiSP core).
+    </p>
+    <p>The table is organised as follows:</p>
+    <ul>
+      <li><b>Column 1</b>: A consecutive number identifying the functional requirement.</li>
+      <li><b>Column 2</b>: A detailed description of the functional requirement.</li>
+    </ul>
+    <table>
+      <tr>
+        <th>Nr.</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>mm_01</td>
+        <td>Starting a federate</td>
+        <td>
+          <p>
+            Starting an application means to create a new virtual machine which hosts one or 
+            more federates. The model manager needs to make sure that the appropriate configuration 
+            is delivered to the virtual machine (Local RTI Component settings). All configuration 
+            parameters are provided by the simulation manager and include at least the following:
+          </p>
+          <ul>
+            <li>Network address (InetAddress ?) and id of the CRC</li>
+            <li>The id of the application to be started</li>
+            <li>Name of the federation execution the federates shall join (some federates may not 
+              need this). It is not supported to specify the federation execution name for each 
+              federate in one application individually.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>mm_02</td>
+        <td>Kill a federate application</td>
+        <td>
+          <p>
+            Forcibly kills the JVM that runs the application hosting the federates. The only 
+            parameter needed is the id of the application.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>mm_03</td>
+        <td>Provide a list of running federates</td>
+        <td>
+          <p>Provides the following information for each running federates:</p>
+          <ul>
+            <li>Id of the federate</li>
+            <li>The network address of the CRC the federate is joined to</li>
+            <li>Optional: The status of the federate (active/passive). Only possible if the federate 
+              implements this functionality according to the EODiSP Federate specification (TBD: 
+              link to spec).</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationManagerRunner"></a><h2>Simulation Manager Runner</h2>
+    <p>
+      A description of the application that shall be started indluding class/jar file(s) 
+      location, classpath, JVM parameters, working directory.)
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-02 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

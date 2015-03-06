@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Sample Wrappers</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../userManuals.html">User Manuals</a> » <a href="sampleWrappers.html">Sample Wrappers</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="active" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Sample Wrappers</h1><div class="section">
+    <p>
+      This page describes the sample wrappers provided with the EODiSP environment. In 
+      the EODiSP, <a href="../developerManuals/supportApplications.html#EODiSPWrappers">wrappers</a> 
+      are used to transform generic simulation packages into HLA-compliant federates. The 
+      wrappers presented in this page cover some typical cases of simulation packages that 
+      users might want to integrate with the EODiSP.
+    </p>
+    <p>
+      All the sample wrappers described in this page are integrated in and are used for 
+      the <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE Simulator</a> which 
+      was developed as a demonstrator for the EODiSP. The wrapper code can be accessed 
+      from the <a href="http://www.pnp-software.com/earthcare_simulator/download.html" class="external">download 
+      page</a> of the EarthCARE Simulator web site.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#ExcelSpreadsheetWrapper">Excel Spreadsheet Wrapper</a></li><li><a href="#SourceCodeWrapper">Source Code Wrapper</a></li><li><a href="#BinaryExecutableWrapper">Binary Executable Wrapper</a></li></ul><div class="section"><a name="ExcelSpreadsheetWrapper"></a><h2>Excel Spreadsheet Wrapper</h2>
+    <p>
+      The <a href="http://www.pnp-software.com/earthcare_simulator/HLAFederates.html" class="external"> <code>sim_controller</code> 
+      federate</a> of the EarthCARE Simulator provides an example of a wrapper for an excel 
+      spreadsheet. The excel spreadsheet serves two purposes:
+    </p>
+    <ul>
+      <li>It acts as a centralized repository for the configuration parameters for the simulation 
+        models and it allows the user to inspect and update the values of these parameters.
+      </li>
+      <li>It provides an interface through which the status of a simulation can be displayed 
+        and controlled.</li>
+    </ul>
+    <p>
+      This wrapper illustrates how excel cells can be mapped to HLA attributes and how 
+      the execution of excel macros can be commanded through the HLA interface.
+    </p>
+    <p>
+      The excel spreadsheet is accessed as a COM object. This sample wrapper therefore 
+      also serves as a template of how COM objects can be wrapped as HLA federates and 
+      included in EODiSP simulations. The wrapper is built around a Java-COM bridge (recall 
+      that the EODiSP infrastructure is implemented in Java). The wrapper uses the Java-COM 
+      bridge implementation provided with the <a href="http://www.eclipse.org/swt/" class="external">Standard 
+      Widget Toolkit</a> of the Eclipse platform.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SourceCodeWrapper"></a><h2>Source Code Wrapper</h2>
+    <p>
+      The <a href="http://www.pnp-software.com/earthcare_simulator/HLAFederates.html" class="external"> <code>orbit_propagator</code> 
+      federate</a> of the EarthCARE Simulator provides an example of a wrapper for a model 
+      implemented as source code. More specifically, the model is represented by a simple 
+      Java class and the wrapper maps the properties of this class to HLA attributes.
+    </p>
+    <p>
+      The EODiSP infrastructure is implemented in Java. The fact that the model is implemented 
+      in Java therefore simplifies its interface to the EODiSP infrastructure. 
+      If the model were implemented in some other language, then it should first be wrapped 
+      as a Java class and should then be integrated with the EODiSP as a Java class.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="BinaryExecutableWrapper"></a><h2>Binary Executable Wrapper</h2>
+    <p>
+      The <a href="http://www.pnp-software.com/earthcare_simulator/HLAFederates.html" class="external"> <code>lid_filter</code> 
+      federate</a> of the EarthCARE Simulator provides an example of a wrapper for a model 
+      implemented as a binary executable. This executable interfaces with its environment 
+      exclusively through input and output files. The wrapper illustrates how file-based input and 
+      output data can be handled through an HLA interface. Several approaches are possible.
+    </p>
+    <p>
+      In a first approach, input and output files are handled as streams of bytes. Since the
+      HLA does not directly support data streams, each
+      file is mapped to an HLA attribute of type 'array of bytes'. In order to handle files 
+      of very large size, the stream is broken 
+      up into chunks of fixed size that are transmitted in sequence.  
+    </p>
+    <p>
+      An alternative approach for handling input and output files through the HLA would be
+      to see the file as a URL. In this case, the HLA attribute to 
+      which the file is mapped is simply a string that holds the file's URL. This approach is
+      not implemented in the sample wrapper.
+    </p>
+    <p>
+      The third approach is useful when the file contains a list of parameters. This is 
+      typically the case of initialization files that define the configuration parameters 
+      for an executable program. In this case, the individual parameters are mapped to 
+      HLA attributes and the wrapper is responsible for serializing them to a file or for 
+      reading them from a file.
+    </p>
+    <p>
+      The execution of the program implementing the model is controlled by the wrapper. 
+      The wrapper encodes the logic that determines when the program execution should be 
+      triggered.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-11-04 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

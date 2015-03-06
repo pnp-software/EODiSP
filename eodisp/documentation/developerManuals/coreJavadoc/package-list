@@ -1,0 +1,15 @@
+org.eodisp.core.common
+org.eodisp.core.mm.application
+org.eodisp.core.mm.config
+org.eodisp.core.mm.helper
+org.eodisp.core.mm.service
+org.eodisp.core.repos.application
+org.eodisp.core.repos.config
+org.eodisp.core.repos.service
+org.eodisp.core.sm.application
+org.eodisp.core.sm.config
+org.eodisp.core.sm.control
+org.eodisp.core.sm.control.application
+org.eodisp.core.sm.control.proxies
+org.eodisp.core.sm.helper
+org.eodisp.core.sm.service

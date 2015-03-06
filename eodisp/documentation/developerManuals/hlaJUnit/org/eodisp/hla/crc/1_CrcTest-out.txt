@@ -1,0 +1,3 @@
+Update configuration entry 'transport' from command line to value: tcp
+INFO  [2006-11-27 13:18:38] [EODiSP CRC:main]: Started JERI at: tcp://localhost:14321
+INFO  [2006-11-27 13:18:39] [EODiSP CRC:main]: New Federate joined from new LRC [org.eodisp.hla.crc.TestLrcRemote@afa68a]

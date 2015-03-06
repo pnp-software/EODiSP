@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EODiSP HLA Architecture</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="hlaArchitecture.html">EODiSP HLA Architecture</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EODiSP HLA Architecture</h1><div class="section">
+    <p>
+      This page describes the architectural design of the EODiSP HLA software package. 
+      Please refer to the <a href="generalArchitecture.html">General Architecture</a> documentation 
+      for a description of the overall EODiSP architecture.
+    </p>
+    <p>
+      The EODiSP HLA provides an implementation of the High Level Architecture (HLA). This 
+      page gives a very brief introduction to this standard. Please refer to the official 
+      <a href="http://ieeexplore.ieee.org/xpl/standards.jsp?findtitle=1516&amp;letter=1516" class="external">IEEE 
+      1516 standard documents</a> for more information.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#HLAcomponents">HLA components</a></li><li><a href="#TheRTI">The RTI</a></li></ul><div class="section"><a name="HLAcomponents"></a><h2>HLA components</h2>
+    <p>
+      The High Level Architecture's structure envisages two main components: <i>The Runtime 
+      Infrastructure</i> (RTI) and several <i>federates</i>. A federate is a part of one 
+      simulation which, in HLA terms, is called a federation. Thus a federation is made 
+      up of several federates that have agreed upon a common set of data to be interchanged 
+      between them. The RTI provides the infrastructure that allows federates belonging 
+      to the same federation to communicate with each other in a distributed environment. 
+      Figure 1 shows how the federates interact with the RTI. Federates do not directly 
+      communicate with each other but always through the RTI.
+    </p>
+    <div class="figure"><a name="hla-general-structure.png"><img border="0" src="../../images/hla-general-structure.png" alt="Basic structure of the High Level Architecture (HLA)"></img></a><p>Figure 1: Basic structure of the High Level Architecture (HLA)</p></div>
+    <p>
+      Federates communicate with the RTI through a well defined interface. This interface, 
+      the <i>RTI Ambassador</i> interface, defines several services which a federate can 
+      call upon the RTI. A federate is only allowed to communicate through this service 
+      interface with the RTI. Callbacks from the RTI to the federate are defined through 
+      the <i>Federate Ambassador</i> interface. The RTI can call services on this interface 
+      to interact with the federates. Figure 2 shows the communication channels between 
+      a federate and the RTI.
+    </p>
+    <div class="figure"><a name="hla-ambassadors.png"><img border="0" src="../../images/hla-ambassadors.png" alt="Communication Channels between a federate and the RTI"></img></a><p>Figure 2: Communication Channels between a federate and the RTI</p></div>
+    <p>
+      The EODiSP HLA implements a subset of the services defined in the HLA IEEE standard 
+      only. A separate page lists the <a href="implementedHLAServices.html">HLA services</a> 
+      that are supported by the EODiSP implementation.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="TheRTI"></a><h2>The RTI</h2>
+    <p>
+      The runtime infrastructure (RTI) is implemented as a distributed component by itself, split 
+      into a <i>Central RTI Component</i> (the CRC) and one or more <i>Local RTI Components</i> 
+      (LRC). Figure 3 shows these components of the RTI.
+    </p>
+    <div class="figure"><a name="hla-rti-components.png"><img border="0" src="../../images/hla-rti-components.png" alt="Components of an RTI"></img></a><p>Figure 3: Components of an RTI</p></div>
+    <p>
+      Each of the RTI components (CRC and LRC) can run on a different node and each RTI 
+      component can communicate with any other component. This allows the LRC to directly 
+      communicate with another LRC but it also allows the CRC to communicate with any LRC. Note, 
+      however, that a federate never communicates with the CRC directly but always through 
+      the LRC. In practice this means that the LRC exposes the RTI Ambassador interface 
+      to the federate. Accordingly, the CRC does not communicate directly with a federate 
+      either but again through the LRC only. The LRC translates calls from the CRC to calls 
+      on the Federate Ambassador interface on the federate.
+    </p>
+    <p>
+      In the EODiSP, in order to make the RTI components manageable, both the LRC and CRC 
+      are instrumented 
+      with interfaces that correspond to the the Java Management Extension (JMX) standard.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-03-21 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

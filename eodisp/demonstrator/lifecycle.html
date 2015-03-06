@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EODiSP Simulation Life-Cycle</title><link rel="stylesheet" href="../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../index.html">Home</a> » <a href="../demonstrator.html">Demonstrator</a> » <a href="lifecycle.html">EODiSP Simulation Life-Cycle</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="">Documentation</span><ul><li class="leaf"><a class="" href="../documentation/requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../documentation/developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../documentation/userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../documentation/Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../documentation/useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="active" href="../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EODiSP Simulation Life-Cycle</h1><div class="section">
+    <p>
+      The control federate manages the life-cycle of a federation execution by using HLA 
+      <i>synchronization points </i>. Generally, synchronization points in HLA work as 
+      follows:
+    </p>
+    <ol>
+      <li>The control federate registers a synchronization point for a group of federates, 
+        called the <i>synchronization group</i>.</li>
+      <li>The RTI announces this newly registered synchronization point to all federates in 
+        the synchronization group.</li>
+      <li>Each federate of the synchronization group informs the RTI when it reaches the synchronization 
+        point (after receiving the sync point announcement).</li>
+      <li>The RTI informs all federates in the synchronization group that the synchronization 
+        point is achieved (the federation is synchronized at this point), as soon as all 
+        federates have informed the RTI that they achieved it.</li>
+      <li>The synchronization point is removed from the RTI</li>
+    </ol>
+    <p>
+      In the context of an EODiSP simulation the synchronization points are used to implement 
+      the start/stop and pause/resume functionality. However before synchronization points 
+      can come into play, two other problems need to be solved:
+    </p>
+    <ul>
+      <li>How does the control federate know that all federates that participate in a federation 
+        execution have joined?</li>
+      <li>How can the control federate get the handles of the federates that are part of a 
+        synchronization group?</li>
+    </ul>
+    <p>
+      The first problem can only (in a manner that is compliant with other RTI implementations) 
+      be solved by using the Management Object Model (MOM) of the RTI. The MOM is a standard 
+      HLA simulation object model (SOM) that publishes data about a current federation 
+      execution. This includes information about the joined federates. The control federate 
+      knows the number of federates (from the simulation manager) that will join a federation 
+      execution and hence, knows when all federates have joined a federation execution 
+      by subscribing to the MOM's <code>Federate</code> class and count its instances.
+    </p>.
+    <p>
+      The second problem stems from the fact that the control federate does not know if 
+      all of the federates that have joined to the federation execution, take part in the 
+      EODiSP simulation life-cycle (start/stop/pause/resume) as well. It is possible that 
+      only some of the joined federates are 100% EODiSP compatible federates, i.e. are 
+      federates that know about the EODiSP simulation life-cycle functionality and the 
+      associated synchronization points. The solution is again, that this information is 
+      received from the simulation manager, that means that the simulation manager tells 
+      the control federate how many of the federates that take part in the federation execution 
+      also take part in the EODiSP simulation life-cycle. Unfortunately this information 
+      is not enough, because building a synchronization group needs the handles of each 
+      federate that takes part in a synchronization (point). This information is only known 
+      by the participating federates themselves, just after they have joined (the join 
+      service returns the federate handle). Therefore each federate that wants to take 
+      part in the EODiSP simulation life-cycle, needs to publish an HLA interaction called 
+      'RegisterFederate( FederateHandle handle )'. The control federate subscribes to this 
+      interaction and waits until all federates have registered their handles (by sending 
+      the interaction). The control federates knows for how many 'RegisterHandle' interactions 
+      it has to wait for because it knows, from the simulation manager, how many federates 
+      take part in the EODiSP simulation life- cycle.
+    </p>
+    <p>
+      Now, that these problems are solves, synchronization points can be used to implement 
+      the start, stop, pause and resume functionality.
+    </p>
+    <h2>Start</h2>
+    <ol>
+      <li>The control federate registers the 'EODISP_START' synchronization point for the group 
+        of federates that were registered with the 'RegisterHandle' interaction (see above).</li>
+      <li>The federates in the group are informed about this synchronization point</li>
+      <li>Each federate (the control federates included) in the group sends a 'synchronization 
+        point achieved' to the RTI for this synchronization point when it is ready to start.</li>
+      <li>The RTI informs the control federate and all other federates that the synchronization 
+        point has been achieved. The federates can now start publishing data. Note, that 
+        only some federates will initially (after the 'EODISP_START' sync point has been 
+        reached) publish data, others will wait until they receive data from other federates.</li>
+    </ol>
+    <h2>Pause</h2>
+    <ol>
+      <li>The control federate registers the 'EODISP_PAUSE' synchronization point for the group 
+        of federates that take part in the EODiSP life-cycle (see above).</li>
+      <li>The federates in the group are informed about this synchronization point</li>
+      <li>Each federate (the control federates included) in the group sends a 'synchronization 
+        point achieved' to the RTI for this synchronization point when it is ready to pause.</li>
+      <li>The RTI informs the control federate and all other federates that the synchronization 
+        point has been achieved. The federates now pause, stop receiving and updating data.</li>
+    </ol>
+    <h2>Resume</h2>
+    <ol>
+      <li>The control federate registers the 'EODISP_RESUME' synchronization point for the 
+        group of federates that take part in the EODiSP life-cycle (see above).</li>
+      <li>The federates in the group are informed about this synchronization point</li>
+      <li>Each federate (the control federates included) in the group sends a 'synchronization 
+        point achieved' to the RTI for this synchronization point when it is ready to resume.</li>
+      <li>The RTI informs the control federate and all other federates that the synchronization 
+        point has been achieved. The federates resume, begin to publish and receive data.</li>
+    </ol>
+    <h2>Stop</h2>
+    <ol>
+      <li>The control federate registers the 'EODISP_STOP' synchronization point for the group 
+        of federates that take part in the EODiSP life-cycle (see above).</li>
+      <li>The federates in the group are informed about this synchronization point</li>
+      <li>Each federate (the control federates included) in the group sends a 'synchronization 
+        point achieved' to the RTI for this synchronization point when it is ready to stop.</li>
+      <li>The RTI informs the control federate and all other federates that the synchronization 
+        point has been achieved. The federates stop and resign from the federation execution.</li>
+    </ol>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#ControlFederatelife-cycle">Control Federate life-cycle</a></li><li><a href="#EODiSPFederateslife-cycle">EODiSP Federates life-cycle</a></li></ul><div class="section"><a name="ControlFederatelife-cycle"></a><h2>Control Federate life-cycle</h2><p>
+    <ol>
+      <li>Create Federation execution</li>
+      <li>Join Federation Execution</li>
+      <li>Do all subscriptions and publications</li>
+      <li>Register synchronization point: <code>EODISP_INIT</code> (other federates wait until 
+        they get announced of this synchronization point, they'll get announced even if they 
+        join the federation execution later). Note that this synchronization point will never 
+        be achieved</li>
+      <li>Wait until all EODiSP federates have sent the 'RegisterFederate(...)' interaction</li>
+      <li>Register and achieve (we've already done all publications and synchronizations in 
+        the first step) the synchronization point <code>EODISP_START</code>. The set of federates 
+        that take part in this synchronization is the set of federates that have sent the 
+        'RegisterFederate' interaction.</li>
+    </ol>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="EODiSPFederateslife-cycle"></a><h2>EODiSP Federates life-cycle</h2><p>
+    <ol>
+      <li>Join federation execution (Retry if not successful until it succeeds)</li>
+      <li>Await announcement of synchronization point <code>EODISP_INIT</code>. We need to 
+        wait for the control federate to subscribe to the <code>RegisterFederate</code> interaction.</li>
+      <li>Do all subscriptions and publications</li>
+      <li>Send interaction 'RegisterFederate' with local federate handle</li>
+      <li>Achieve and await federation synchronization at <code>EODISP_START</code></li>
+      <li>Either wait for event (reflectAttributeValues or receiveInteraction) or start updating 
+        attributes and sending interactions immediately</li>
+    </ol>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-06-05 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

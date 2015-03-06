@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EODiSP HLA Design</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="hlaDesign.html">EODiSP HLA Design</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EODiSP HLA Design</h1><div class="section">
+    <p>
+      This page describes the design of the EODiSP HLA software package. For a better understanding, 
+      it is recommended to read the <a href="hlaArchitecture.html">EODiSP HLA architecture page</a> 
+      first. Additionally, this document is best read in combination with the <a href="hlaJavadoc/index.html">EODiSP 
+      HLA API documentation</a>. This page contains references to classes and interfaces 
+      described in the API documentation and describes associations and interactions between 
+      them.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#PackageOverview">Package Overview</a></li><li><a href="#CRCPackage">CRC Package</a></li><li><a href="#LRCPackage">LRC Package</a></li></ul><div class="section"><a name="PackageOverview"></a><h2>Package Overview</h2>
+    <p>
+      Basically, the <a href="hlaArchitecture.html#TheRTI">RTI</a> design is split into 
+      three packages, namely the <code>crc</code>, <code>lrc</code> and a <code>common</code> 
+      package. The <code>common</code> package defines the remote interfaces of the CRC 
+      and LRC, whereas the other two packages contain the design of the CRC and LRC applications. 
+      The latter two packages depend on the <code>common</code> package but not on each 
+      other. The next figure shows these package dependencies in a UML package diagram.
+    </p>
+    <div class="figure"><a name="hla-package-dependency.png"><img border="0" src="../../images/hla-package-dependency.png" alt="EODiSP HLA packages and its dependencies"></img></a><p>Figure 1: EODiSP HLA packages and its dependencies</p></div>
+    <p>
+      The design is driven by the IEEE HLA standard. Two interfaces are defined in the 
+      standard: the <a href="hlaJavadoc/hla/rti1516/RTIambassador.html">RTIambassador</a> 
+      and the <a href="hlaJavadoc/hla/rti1516/FederateAmbassador.html">FederateAmbassador</a> 
+      interface. The <code>RTIambassador</code> is the interface of the runtime infrastructure 
+      as it is seen by a federate. The <code>FederateAmbassador</code> defines the callback 
+      interface of a federate as it is seen by the RTI. The EODiSP HLA or, more precisely, 
+      the LRC implements the <code>RTIambassador</code> interface. The <code>FederateAmbassador</code> 
+      interface needs to be implemented by a federate developer.
+    </p>
+    <p>
+      The following sections describe the <code>crc</code> and <code>lrc</code> packages 
+      in more detail, including their remote interfaces in the <code>common</code> package.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="CRCPackage"></a><h2>CRC Package</h2>
+    <p>
+      The central RTI component keeps track of its current federation executions and its 
+      joined federates along with their subscriptions and publications of object class 
+      attributes and interactions. By design, this information shall only be stored on 
+      the CRC and never on the LRC. This centralized approach makes sure that only the 
+      most up-to-date information is being accessed by any federate. In practice this means 
+      that the LRC does not save (cache) any information about subscriptions and publications 
+      of a federate, but always receives this information from the CRC.
+    </p>
+    <p>
+      The CRC makes available two remote interfaces, the <a href="hlaJavadoc/org/eodisp/hla/common/crc/CrcRemote.html">CrcRemote</a> 
+      and <a href="hlaJavadoc/org/eodisp/hla/common/crc/FederationExecutionRemote.html">FederationExecutionRemote</a> 
+      interfaces. The <code>CrcRemote</code> interface handles general queries not related 
+      to a particular federation execution, whereas the <code>FederationExecutionRemote</code> 
+      interface handles request targeted to a federation execution. Figure 2 shows the 
+      UML diagram of these interfaces.
+    </p>
+    <div class="figure"><a name="org.eodisp.hla.common.crc.png"><img border="0" src="../../images/org.eodisp.hla.common.crc.png" alt="Remote interfaces of the central RTI component"></img></a><p>Figure 2: Remote interfaces of the central RTI component</p></div>
+    <p>
+      The core design of the CRC is defined in the <code>crc</code> package. There's one 
+      central class, the <a href="hlaJavadoc/org/eodisp/hla/crc/Crc.html">Crc</a> class, 
+      from which most other classes and interfaces are reachable. It manages federation 
+      executions, which in turn manage their joined federates. The joined federates hold 
+      the subscriptions and publications of object classes and interactions.
+    </p>
+    <p>
+      The two remote interfaces, <code>CrcRemote</code> and <code>LrcRemote</code>, are 
+      implemented by dedicated <i>Impl</i> classes. The remote interfaces are not directly 
+      implemented by the core classes (namely, the <code>Crc</code> and <code>FederationExecution</code>) 
+      to make distinguish remote calls from local calls easier and to separate the remote 
+      interfaces from local interfaces/classes. Note that the <code>FederationExecution</code> 
+      class maintains a (strong) reference to the <code>FederationExecutionRemoteImpl</code> 
+      class. This is needed because the remote invocation method infrastructure used with 
+      EODiSP HLA does not use a distributed garbage collector. Having a reference from 
+      a federation execution makes sure that a instance of <code>FederationExecutionRemoteImpl</code> 
+      only gets garbage collected (and thus unexported) when the the federation execution 
+      is destroyed. Otherwise the instance of <code>FederationExecutionRemoteImpl</code> 
+      would possibly be garbage collected too early.
+    </p>
+    <div class="figure"><a name="org.eodisp.hla.crc.png"><img border="0" src="../../images/org.eodisp.hla.crc.png" alt="UML class diagram of the central RTI component (CRC)"></img></a><p>Figure 3: UML class diagram of the central RTI component (CRC)</p></div>
+    <p></p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="LRCPackage"></a><h2>LRC Package</h2>
+    <p>
+      The local RTI component manages one or more local federates. It routes service calls 
+      from these local federates to the CRC or to other federates (through their LRCs). 
+      An LRC does not save the state of a federation execution or federate but receives 
+      all information about subscriptions and publications from the <a href="#CRCPackage">CRC</a>.
+    </p>
+    <p>
+      The LRC exports two interfaces, the <a href="hlaJavadoc/org/eodisp/hla/common/lrc/LrcRemote.html">LrcRemote</a> 
+      interface (remote) to receive callbacks from the CRC and other LRCs, and the <a href="hlaJavadoc/hla/rti1516/RTIambassador.html">RTIambassador</a> 
+      interface (local) to receive service calls from its managed federates. The remote 
+      interface is shown in Figure 3.
+    </p>
+    <div class="figure"><a name="org.eodisp.hla.common.lrc.png"><img border="0" src="../../images/org.eodisp.hla.common.lrc.png" alt="Remote interface of the local RTI component"></img></a><p>Figure 4: Remote interface of the local RTI component</p></div>
+    <p>
+      With the current design, all callbacks from other LRCs and the CRC go through the 
+      LrcRemote interface. Another possible approach would have been to export a remote 
+      interface for each federate that is managed by the Lrc. However, exporting only one 
+      interface allows to transfer data that is needed by more than one local federate 
+      only once and then distribute this data to each federate locally.
+    </p>
+    <div class="figure"><a name="org.eodisp.hla.lrc.png"><img border="0" src="../../images/org.eodisp.hla.lrc.png" alt="UML class diagram of the local RTI component (LRC)"></img></a><p>Figure 5: UML class diagram of the local RTI component (LRC)</p></div>
+    <p>
+      The implementation of the <code>LrcRemote</code> interface takes the same approach 
+      as the remote interface implementations of the <code>crc</code> package. The <code>LrcRemote</code> 
+      interface is not directly implemented by the <a href="hlaJavadoc/org/eodisp/hla/lrc/Lrc.html">Lrc</a> 
+      class but by the <a href="hlaJavadoc/org/eodisp/hla/lrc/LrcRemoteImpl.html">LrcRemoteImpl</a> 
+      class. This makes distinction between calls originating from a local federate (through 
+      the <code>RtiAmbassador</code> interface) and calls origination from remote LRCs 
+      or CRCs easier and makes the remote interface independent of other <code>lrc</code> 
+      classes and interfaces.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-02 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

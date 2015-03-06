@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - EODiSP core Design</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="coreDesign.html">EODiSP core Design</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>EODiSP core Design</h1><div class="section">
+    <p>
+      This page describes the design of the EODiSP core software package. For a better 
+      understanding, it is recommended to read the <a href="coreArchitecture.html">EODiSP 
+      core architecture</a> page first. Additionally, this document is best read in combination 
+      with the <a href="coreJavadoc/index.html">EODiSP core API documentation</a>.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Overview">Overview</a></li><li><a href="#Repository">Repository</a></li><li><a href="#SimulationManager">Simulation Manager</a></li><li><a href="#ModelManager">Model Manager</a></li></ul><div class="section"><a name="Overview"></a><h2>Overview</h2>
+    <p>
+      The EODiSP core is split into three components: the <i>simulation manager application</i>, 
+      the <i>model manager application</i> and the <i>model repository</i>. The next sections 
+      provide an overview of the design of these components.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Repository"></a><h2>Repository</h2>
+    <p>
+      The model repository is a central place that stores information shared by the simulation 
+      manager and the model managers. The repository makes this information available through 
+      the <a href="coreJavadoc/org/eodisp/core/common/ReposModelService.html">ReposModelService</a> 
+      interface (the remote interface is made available to clients by a remote object 
+      exported through <a href="remoteDesign.html">EODiSP remote</a>). It is essential 
+      and necessary that both the simulation manager and the model manager applications 
+      have a connection to a repository in order to function properly. Since these two 
+      applications can be run in local mode (i.e. without any network connection), the 
+      model repository application can also be installed locally on the computer where a simulation 
+      will eventually be running.
+    </p>
+    <p>
+      The data in the repository is stored in an XML file. This was chosen because all 
+      persistent data in the EODiSP framework are stored in this way. It has the advantage 
+      of not adding additional dependencies to the application. The data model of the repository 
+      is shown as a UML class diagram in Figure 1.
+    </p>
+    <div class="figure"><a name="core-repository.png"><img border="0" src="../../images/core-repository.png" alt="Data stored with the model repository application."></img></a><p>Figure 1: Data stored with the model repository application.</p></div>
+    <p>
+      The <i>Repository</i> class serves as the root object from which all other objects 
+      are reachable. First, the Repository stores <i>Categories</i> and 
+      <a href="../../glossary.html#SOM"><i>SOM</i>'s</a>. 
+      A Category can be used to categorize different projects (e.g. an EarthCARE simulation 
+      could be a category that would hold all models that are relevant to the EarthCARE
+      simulation). This is useful for repository clients which are interested 
+      in only one ore some categories, since it limits the amount of data to be transfered. 
+      The categorization is done upon the SOM objects, hence the link from the Category 
+      to the SOM object. The back reference (the link from the SOM object to the Category 
+      object) is used in order to allow a SOM to participate in multiple Categories without 
+      redefining or copying the SOM.
+    </p>
+    <p>
+      The SOM object itself links to federates whose implementation conform to the specification 
+      in the SOM. The Federate object references objects with information such as the model 
+      manager application it will run on or the init declaration data it expects.
+    </p>
+    <p>
+      Additionally, the repository stores a unique Id for each model manager (<i>ModelManager</i> 
+      class) and simulation manager (<i>SimManager</i> class) application. These Id's will 
+      be stored as soon as an application registers itself with the repository. Repository 
+      clients do not store any information about the manager applications but hold only 
+      a reference in form of this Id. This, again, limits the need for data updates in 
+      case the information changes.
+    </p>
+    <p>
+      All data that are stored in the model repository should not be duplicated in another 
+      application to avoid update conflicts in case of changes. This is the reason why 
+      an EODiSP application can only work together with a functional model repository.
+    </p>
+    <p>
+      The data that is stored in the repository needs to be transferred over the network 
+      to repository clients (in the case of the EODiSP, this will be at least the simulation 
+      manager and the model manager applications). This is a common requirement in distributed 
+      applications or frameworks and it requires the objects to be transferred to be serializable. 
+      One option would be to write these objects manually. For the model repository, however, 
+      an existing solution has been chosen. The solution is called Service Data Objects 
+      (SDO). It is implemented as a thin layer on top of EMF, which is used to manage 
+      the XML data store of the repository. SDO in combination with EMF is capable of creating 
+      so called data graphs from an XML data store such as the one used in the model repository. 
+      These data graphs can be serialized and sent over the network. The form of a serialized 
+      data graph is itself XML. The transferred data graph can be used on the client side 
+      to perform changes. All these changes are recorded within the data graph in order 
+      to be sent them back to the model repository. The model repository will inspect the 
+      changes made by the client and commit them to the actual XML data store.
+    </p>
+    <p>
+      SDO is a specification from IBM. Its documentation is available at 
+      <a href="http://www-128.ibm.com/developerworks/library/specification/j-commonj-sdowmt/index.html" class="external">SDO 
+      specification</a>. It has a defined set of interfaces that allow a client to operate 
+      on a data graph in a generic way. This means that the client does not need to know where 
+      the data represented by the data graph is coming from. The client always operates on the 
+      same interfaces. This, in principle, would allow the model repository to change its 
+      storage back-end to something else than XML (e.g. a relational database).
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationManager"></a><h2>Simulation Manager</h2>
+    <p>
+      The simulation manager application consists of a core and a GUI part. Here, only 
+      the core part is described, the GUI part has its own <a href="guiDesign.html">documentation 
+      section</a>.
+    </p>
+    <p>
+      The core part of the simulation manager application is used mainly to encapsulate 
+      common, not GUI-related functionalities into separate packages. Thus, it provides services 
+      to work with the repository and to manipulate their own model data. This separation 
+      would make it possible to replace the whole GUI implementation.
+    </p>
+    <p>
+      In addition to the data on the repository, the simulation manager application stores 
+      some local data. The UML class diagram in the next figure shows its data model.
+    </p>
+    <div class="figure"><a name="core-smproject.png"><img border="0" src="../../images/core-smproject.png" alt="Data stored by the simulation manager application."></img></a><p>Figure 2: Data stored by the simulation manager application.</p></div>
+    <p>
+      The <i>SmProject</i> serves as the root class. It contains objects of two classes; 
+      Simulation experiments (<i>Experiments</i> object) and federations (<i>Federations</i> 
+      object). As mentioned above, the simulation manager application does not locally 
+      store information that is available from a repository. It does, however, store a 
+      remote Id of the object it references. This remote Id is of the form of a <a href="../../glossary.html#EMF">UUID</a> 
+      and can be used to retrieve a referenced object (with its data) from the repository. 
+      In the case of the simulation manager application, two objects store such a remote 
+      Id, the <i>LocalFederate</i> object, which is a reference to a <i>Federate</i> object 
+      in the repository, and the <i>LocalInitDecl</i> object, which is a reference to a 
+      <i>InitDecl</i> object in the repository.
+    </p>
+    <p>
+      The simulation manager core package implementation can be used through interfaces 
+      that expose the functionality of the application. For instance, the simulation manager 
+      application GUI uses this interface to retrieve data from the repository, to start 
+      a simulation experiment, etc. Two interfaces are defined for this purpose:
+    </p>
+    <ul>
+      <li>Interface for the simulation manager core functionality. This includes functions 
+        such as start an simulation experiment, connect to the repository, etc. This interface 
+        is described in the Javadoc documentation available at: 
+        <a href="coreJavadoc/org/eodisp/core/sm/service/SmCoreService.html">SmCoreService</a>. 
+        This interface is only available locally, i.e. it is not exported by the EODiSP remote 
+        package.</li>
+      <li>Interface to work with the project model of the simulation manager application. Hence, 
+        this is the access code for the data illustrated in Figure 2 above. This interface 
+        is described in the Javadoc documentation available at: <a href="coreJavadoc/org/eodisp/core/sm/service/SmModelService.html">SmModelService</a>. 
+        This interface is only available locally, i.e. it is not exported by the EODiSP remote 
+        package.</li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ModelManager"></a><h2>Model Manager</h2>
+    <p>
+      From a design point of view, the model manager application is very similar to the 
+      simulation manager application described in the previous section. It also consists of 
+      a core and a GUI component, and again, only the core part is described here. The GUI part 
+      has its own <a href="guiDesign.html">documentation section</a>.
+    </p>
+    <p>
+      The model manager has some data that it stores locally. This is illustrated in the 
+      UML class diagram in the next figure.
+    </p>
+    <div class="figure"><a name="core-mmproject.png"><img border="0" src="../../images/core-mmproject.png" alt="Data model of the the model manager application."></img></a><p>Figure 3: Data model of the the model manager application.</p></div>
+    <p>
+      The root object is the <i>MmProject</i>. It contains <i>LocalSOM</i> and <i>LocalFederate</i> 
+      objects with associated data. Unlike the simulation manager application, some data 
+      are stored locally <i>and</i> remotely on the repository. This is true for the name 
+      and description attribute of the <i>LocalFederate</i> object and the description 
+      attribute of the <i>LocalSOM</i> object. The reason to store this informations on 
+      both nodes is to avoid the situation where a model manager cannot connect to a repository 
+      and thus looses the informations about a Federate or SOM it actually owns. This data 
+      replication is however not critical because only one model manager (the owning one) 
+      can update this informations on the repository. Therefore, no update conflicts will 
+      occur. On the other hand, it makes it possible to register federates or SOM's in 
+      more than one repository without rewriting all the information.
+    </p>
+    <p>
+      In addition to the connection to the repository, the model manager serves  
+      as a remote component for the simulation manager. This is described in the core architecture 
+      documentation at <a href="coreArchitecture.html">Core Architecture</a>. This interface 
+      is defined in the EODiSP core package and is exported by using the facilities provided 
+      by the EODiSP remote package. The interface is described in the Javadoc documentation 
+      available at <a href="coreJavadoc/org/eodisp/core/common/ModelManagerRemote.html">ModelManagerRemote</a>. 
+      It provides methods to start and stop a federate on the model manager.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-16 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

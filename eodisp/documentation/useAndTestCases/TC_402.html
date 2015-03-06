@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Test Case TC_402</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../useAndTestCases.html">Use And Test Cases</a> » <a href="TC_402.html">Test Case TC_402</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="active" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Test Case TC_402</h1><div class="section">This page describes one of the
+    <a href="../userManuals.html#TestCases">test cases</a>of the EODiSP.
+    <p>
+      This test case uses the <a href="http://www.pnp-software.com/earthcare_simulator" class="external">EarthCARE 
+      Simulator</a> as a test platform. The simulator is operated in its <a href="earthCAREConfiguration.html">default 
+      configuration</a> .
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#Overview">Overview</a></li><li><a href="#Steps">Steps</a></li></ul><div class="section"><a name="Overview"></a><h2>Overview</h2>
+    <table WIDTH="90%" BORDER="1" CELLPADDING="4" CELLSPACING="0">
+      <tr>
+        <td><i>Identifier</i></td>
+        <td>TC_402</td>
+      </tr>
+      <tr>
+        <td><i>Name</i></td>
+        <td>Set-up repository manager application.</td>
+      </tr>
+      <tr>
+        <td><i>Primary Actor</i></td>
+        <td>
+          <a href="earthCAREConfiguration.html#SimulationManagerApplication">PnP_1 Simulation Owner</a>
+        </td>
+      </tr>
+      <tr>
+        <td><i>Description</i></td>
+        <td>
+          <p>
+            Set-up the repository manager application for the <a href="earthCAREConfiguration.html#SimulationRepositories">remote 
+            repository</a>.
+          </p>
+          <p>The same test case applies for the configuration with the local repository.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><i>Pre-Condition</i></td>
+        <td>The remote repository must be installed and running.</td>
+      </tr>
+      <tr>
+        <td><i>Post-Condition</i></td>
+        <td>
+          (1) The repository manager application runs. (2) The EODiSP network infrastructure 
+          is initialised. (3) The repository manager application is ready and can be used to 
+          to interact with the remote repository.
+        </td>
+      </tr>
+    </table>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Steps"></a><h2>Steps</h2><p>
+    <ol>
+      <li>Actor starts the repository manager application by entering the following command 
+        at the operating system prompt: <code>java -jar eodisp_rm.jar</code></li>
+      <li>System shows the GUI of the repository manager application to the actor.</li>
+      <li>Actor opens the preferences dialog by choosing <i>Preferences...</i> from the Settings 
+        menu.</li>
+      <li>Actor fills in information in the <i>General</i> Tab of the preferences dialog. Required 
+        is the <code>Repository URI</code>. The value to fill in is provided by the person 
+        that started the repository.</li>
+      <li>Actor chooses to save the values by pressing the <i>Save &amp; Exit</i> button.</li>
+      <li>System automatically saves the configuration.</li>
+      <li>Actor chooses to connect to the repository by either pressing the <i>connect icon</i> 
+        or by selecting <i>Connect</i> from the Repository menu.</li>
+      <li>System connects to the Repository and indicates an established connection by disabling 
+        the <i>connect icon</i></li>
+      <li>System automatically download all data from the repository.</li>
+      <li>System automatically updates the user interface to represent the current data from 
+        the repository.</li>
+    </ol>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-17 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

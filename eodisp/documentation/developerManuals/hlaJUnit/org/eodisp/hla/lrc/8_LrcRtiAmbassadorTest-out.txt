@@ -1,0 +1,81 @@
+WARN  [2006-11-27 13:18:56] [EODiSP LRC:main]: Configuration file '/tmp/LrcTmp49300/conf/log4j.conf' for 'Log4J Configuration' does not exist. A new configuration file will be created.
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Set log level to: DEBUG
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Init configuration of application module: org.eodisp.remote.application.RemoteAppModule
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Init configuration of application module: org.eodisp.hla.lrc.application.LrcAppModule
+WARN  [2006-11-27 13:18:56] [EODiSP LRC:main]: Configuration file '/tmp/LrcTmp49300/conf/remote.conf' for 'Network Configuration' does not exist. A new configuration file will be created.
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Saved 'Network Configuration' to '/tmp/LrcTmp49300/conf/remote.conf'
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Successfully loaded 'Network Configuration' from '/tmp/LrcTmp49300/conf/remote.conf'
+WARN  [2006-11-27 13:18:56] [EODiSP LRC:main]: Configuration file '/tmp/LrcTmp49300/conf/lrc.conf' for 'Local RTI Component (LRC) Configuration' does not exist. A new configuration file will be created.
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Saved 'Local RTI Component (LRC) Configuration' to '/tmp/LrcTmp49300/conf/lrc.conf'
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Successfully loaded 'Local RTI Component (LRC) Configuration' from '/tmp/LrcTmp49300/conf/lrc.conf'
+Update configuration entry 'transport' from system property org.eodisp.remote.transport to value: JXTA
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: No mapping to command line option for config entry: max-update-threads
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: No mapping to command line option for config entry: crc-uri
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Pre-Startup of application module: org.eodisp.remote.application.RemoteAppModule
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Pre-Startup of application module: org.eodisp.hla.lrc.application.LrcAppModule
+DEBUG [2006-11-27 13:18:56] [EODiSP LRC:main]: Startup of application module: org.eodisp.remote.application.RemoteAppModule
+DEBUG [2006-11-27 13:19:08] [EODiSP LRC:main]: JXTA network has been started. Connected with rendezvous: true
+DEBUG [2006-11-27 13:19:08] [EODiSP LRC:main]: Export org.eodisp.remote.registry.JeriRegistryImpl@1e903d5 with exporter: BasicJeriExporter[JxtaServerEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03],3d37a612-c73d-4284-9097-85ea4a905dde]
+INFO  [2006-11-27 13:19:08] [EODiSP LRC:main]: JXTA Peer ID: urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03
+DEBUG [2006-11-27 13:19:08] [EODiSP LRC:main]: Startup of application module: org.eodisp.hla.lrc.application.LrcAppModule
+DEBUG [2006-11-27 13:19:08] [EODiSP LRC:main]: Export org.eodisp.hla.lrc.LrcRemoteImpl@1c7980c with exporter: BasicJeriExporter[JxtaServerEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03],da815ad0-17e7-4f64-8728-a1a2b84a1a77]
+Proxy[LaunchServerRemote,BasicInvocationHandler[BasicObjectEndpoint[d7f222ef-96f0-4ca1-832c-d7cc7d14ccac,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033E4F4490AC8384450BF4DF165652238C603]]]]
+JUnit: Starting CRC ...
+JUnit: Started LRC and CRC Remote Process. Now start testing ...
+DEBUG [2006-11-27 13:19:32] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:32] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:32] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:32] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:37] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:37] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:37] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:37] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:37] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:38] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+Update: 3
+DEBUG [2006-11-27 13:19:38] [EODiSP LRC:main]: Call reflectAttributeValues on other LRC [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]]
+DEBUG [2006-11-27 13:19:40] [EODiSP LRC:(JSK) mux request dispatch]: Call reflect on LrcRemote
+DEBUG [2006-11-27 13:19:40] [EODiSP LRC:pool-1-thread-1]: Call reflect on federateAmbassador 'org.eodisp.hla.lrc.LrcRtiAmbassadorTest$2@9be2b5' with handles '[2, 3]'
+Reflect F1: 5
+DEBUG [2006-11-27 13:19:40] [EODiSP LRC:pool-1-thread-1]: Call reflect on federateAmbassador 'org.eodisp.hla.lrc.LrcRtiAmbassadorTest$3@40ece0' with handles '[2, 4, 3]'
+Reflect F2: 4
+4
+Update: 2
+DEBUG [2006-11-27 13:19:40] [EODiSP LRC:main]: Call reflectAttributeValues on other LRC [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]]
+DEBUG [2006-11-27 13:19:41] [EODiSP LRC:(JSK) mux request dispatch]: Call reflect on LrcRemote
+DEBUG [2006-11-27 13:19:41] [EODiSP LRC:pool-1-thread-1]: Call reflect on federateAmbassador 'org.eodisp.hla.lrc.LrcRtiAmbassadorTest$2@9be2b5' with handles '[2, 3]'
+Reflect F1: 3
+DEBUG [2006-11-27 13:19:41] [EODiSP LRC:pool-1-thread-1]: Call reflect on federateAmbassador 'org.eodisp.hla.lrc.LrcRtiAmbassadorTest$3@40ece0' with handles '[2, 4, 3]'
+Reflect F2: 2
+2
+Update: 1
+DEBUG [2006-11-27 13:19:41] [EODiSP LRC:main]: Call reflectAttributeValues on other LRC [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]]
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:(JSK) mux request dispatch]: Call reflect on LrcRemote
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:pool-1-thread-1]: Call reflect on federateAmbassador 'org.eodisp.hla.lrc.LrcRtiAmbassadorTest$2@9be2b5' with handles '[2, 3]'
+Reflect F1: 1
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:pool-1-thread-1]: Call reflect on federateAmbassador 'org.eodisp.hla.lrc.LrcRtiAmbassadorTest$3@40ece0' with handles '[2, 4, 3]'
+Updating 3 times (60MB of data): 3774ms
+Reflect F2: 0
+0
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:42] [EODiSP LRC:(JSK) mux request dispatch]: Announce Synchronization Point syncPoint_1 to federate(s) [Lhla.rti1516.FederateHandle;@79801c
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:(JSK) mux request dispatch]: Announce Synchronization Point syncPoint_1 to federate(s) [Lhla.rti1516.FederateHandle;@5f1ae9
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:(JSK) mux request dispatch]: Announce Synchronization Point syncPoint_1 to federate(s) [Lhla.rti1516.FederateHandle;@ec898a
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:43] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:44] [EODiSP LRC:(JSK) mux request dispatch]: Announce Synchronization Point syncPoint_1 to federate(s) [Lhla.rti1516.FederateHandle;@1c5ddd3
+DEBUG [2006-11-27 13:19:48] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:48] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:48] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:48] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+DEBUG [2006-11-27 13:19:48] [EODiSP LRC:main]: Getting proxy of CRC registry at urn:jxta:uuid-59616261646162614E504720503250330051A89E51D146B7B269A11939AB291303
+DEBUG [2006-11-27 13:19:48] [EODiSP LRC:main]: Register LrcRemote [Proxy[LrcRemote,BasicInvocationHandler[BasicObjectEndpoint[da815ad0-17e7-4f64-8728-a1a2b84a1a77,JxtaEndpoint[urn:jxta:uuid-59616261646162614E50472050325033D80CD031865048049BB6E766F637474A03]]]]] on CRC with handle [1]
+startReg for: 2
+Waited for: 4

@@ -1,0 +1,13 @@
+org.eodisp.remote.application
+org.eodisp.remote.config
+org.eodisp.remote.jeri.connection.fastmux
+org.eodisp.remote.jeri.connection.nomux
+org.eodisp.remote.jeri.internal.fastmux
+org.eodisp.remote.jeri.internal.nomux
+org.eodisp.remote.jeri.jxta
+org.eodisp.remote.jeri.tcp.fastmux
+org.eodisp.remote.launcher
+org.eodisp.remote.launcher.server
+org.eodisp.remote.launcher.server.application
+org.eodisp.remote.registry
+org.eodisp.remote.util

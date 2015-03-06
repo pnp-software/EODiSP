@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Functional Requirements of the Simulation Manager</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="simulationManager.html">Functional Requirements of the Simulation Manager</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Functional Requirements of the Simulation Manager</h1><div class="section"><p>
+    This page lists and describes the functional requirements of the EODiSP simulation 
+    manager. The simulation manager can initiate a federation execution based on a description 
+    of the (remote) federates that shall participate in that federation.
+  </p></div><h2>Contents</h2><ul id="index"><li><a href="#Purposeofthesimulationmanager">Purpose of the simulation manager</a></li><li><a href="#ConfigurationRequirements">Configuration Requirements</a></li><li><a href="#FunctionalRequirements">Functional Requirements</a></li></ul><div class="section"><a name="Purposeofthesimulationmanager"></a><h2>Purpose of the simulation manager</h2>
+    <p>
+      The simulation manager acts as the central controlling instance of a federation execution. 
+      It can start, stop, hold and monitor a federation execution. However it does not 
+      act directly as the HLA Central Runtime Infrastructure Component (CRC) but delegates 
+      it to an external CRC. This delegation ensures that CRC's from different vendors 
+      can be supported.
+    </p>
+    <p>
+      The following list summarises the basic functionality of the EODiSP simulation manager:
+    </p>
+    <ul>
+      <li>Starting a federation execution from a description of federates</li>
+      <li>Controlling the execution of a federation execution (hold, step, continue, stop, 
+        kill)</li>
+      <li>Monitoring the status of a federation execution (on hold, executing)</li>
+      <li>Getting a list of all federation executions and their joined federates</li>
+      <li>Configure the simulation manager</li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ConfigurationRequirements"></a><h2>Configuration Requirements</h2>
+    <p>
+      All of the simulation manager's configuration files reside in the directory <code>{working-dir}/config</code>. 
+      The working directory path shall be settable on the command line and through the 
+      Java System properties. The working directory's default location is: <code>{user.home}/.eodisp/simulation_manger</code>.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="FunctionalRequirements"></a><h2>Functional Requirements</h2>
+    <p>
+      The following table is a list of detailed functional requirements. These requirements 
+      are not explicitely covered by the user requirements, but are implicitely needed. 
+      The table lists them more formally and in more detail. This requirements will be 
+      implemented by the core implementation of the EODiSP framework. The code for the 
+      repository resides in the core package (EODiSP core).
+    </p>
+    <p>The table is organised as follows:</p>
+    <ul>
+      <li><b>Column 1</b>: A consecutive number identifying the functional requirement.</li>
+      <li><b>Column 2</b>: A detailed description of the functional requirement.</li>
+    </ul>
+    <table>
+      <tr>
+        <th>Nr.</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a name="sm_01"></a>sm_01
+        </td>
+        <td>Starting a federation execution</td>
+        <td>
+          <p>
+            The simulation manager informs the model managers that publish federates participating 
+            in the federation to be run to start the appropriate federates. It needed it also 
+            sends the init-data for each federates.
+          </p>
+          <p>A federation execution is successfully started when: ,</p>
+          <ul>
+            <li>the federation execution has been created</li>
+            <li>all federates have joined the federation execution</li>
+            <li>all federates have done their initial attribute and interaction subscriptions and 
+              publications</li>
+            <li>the first federate is ready to to send data (calling updateAttributeValues)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_02</td>
+        <td>Hold a federation execution</td>
+        <td>
+          <p>
+            Sets the federation execution on hold. In practice, a <i>hold</i> interaction is 
+            sent to the federatoin execution. If this method is called while the federation execution 
+            is already on hold, it is ignored.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_03</td>
+        <td>Step</td>
+        <td>
+          <p>
+            Sends the <code>step</code> interaction to the federation execution. If this method 
+            is called while the federation execution is not on hold, it is ignored.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_04</td>
+        <td>Continue</td>
+        <td>
+          <p>
+            Sends the <code>continue</code> interaction to the federation execution. If this 
+            method is called while the federation execution is not on hold, it is ignored.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_05</td>
+        <td>Stop</td>
+        <td>
+          <p>
+            Sends the <code>stop</code> interaction to the federation execution. In general this 
+            leaves the decision to the federates when/if they want to stop (resign from the federation 
+            execution). This is in contrast to the kill function which forcibly destroys the 
+            federation execution by directly advicing the model managers to kill the federates.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_06</td>
+        <td>Kill</td>
+        <td>
+          <p>
+            Informs the participating model managers to kill the federate processes that are 
+            joined to the current federation execution. Then it forcibly destroys the federation 
+            execution on the RTI (It is not yet clear how this can be achieved using standard 
+            HLA services only, probably through the MOM interaction <code>HLAmanager.HLAfederate.HLAservice.HLAresignFederationExecution</code> 
+            followed by a normal service call to <code>destroyFederationExecution</code>). Otherwise 
+            EODiSP HLA shall provide a custom service to achieve this behaviour (Desroying a 
+            federation exection, even though there are still federates joined).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_07</td>
+        <td>Get federation execution status</td>
+        <td>
+          <p>
+            Indicates the status of a federation execution. The status can be <code>on hold</code> 
+            or <code>executing</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_08</td>
+        <td>Getting a list of federation executions</td>
+        <td>
+          <p>
+            Returns a list of all fedearation executions which have been successfully started 
+            with <a href="#sm_01">sm_01</a>. It also returns the ids of the federates that are 
+            joined to these federatation executions including their status (active/passive). 
+            It should also be possible to get this list only for a specific federation execution.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>sm_09</td>
+        <td>Configure the simulation manager</td>
+        <td>
+          <p>
+            It shall be possible to configure the follwing elements of the simulation manager:
+          </p>
+          <ul>
+            <li><code>simulation manager id</code>: The unique identification of the simulation manager</li>
+            <li><code>name</code>: The name of the simulation manager. Should be unique among other 
+              simulation managers, but this must not nesessarely be the case</li>
+            <li><code>network configuration</code>: Defines how the simulation manager can be accessed. 
+              In case of using EODiSP remote this will point to the JXTA configuration.</li>
+            <li><code>repository location</code>: Specifies the location of the repository and how 
+              to connect to it.</li>
+          </ul>
+          <p>
+            This is not thought to be a complete list of all configuration elements and only 
+            records the most obvious.
+          </p>
+        </td>
+      </tr>
+    </table>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-02 by 
+                   ibirrer </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

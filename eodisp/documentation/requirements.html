@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - Requirements</title><link rel="stylesheet" href="../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../index.html">Home</a> » Documentation » <a href="requirements.html">Requirements</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="active-leaf"><a class="active" href="requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="" href="developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Requirements</h1><div class="section">
+    <p>
+      This page presents the high-level requirements of the EODiSP. For each requirement,
+      evidence - either through analysis or through testing - is provided to demonstrate
+      that the requirement is correctly implemented.
+    </p>
+    <p>
+      A more informal description of the EODiSP requirements can be found in the   
+      <a href="../overview.html">project overview page</a>.
+     </p>
+    
+  </div><h2>Contents</h2><ul id="index"><li><a href="#History">History</a></li><li><a href="#RequirementsList">Requirements List</a></li><li><a href="#GeneralRequirements">General Requirements</a></li><li><a href="#SimulationControlRequirements">Simulation Control Requirements</a></li><li><a href="#DistributionRequirements">Distribution Requirements</a></li><li><a href="#SimulationManagerApplicationRequirements">Simulation Manager Application Requirements</a></li><li><a href="#ModelManagerApplicationRequirements">Model Manager Application Requirements</a></li><li><a href="#SupportApplicationRequirements">Support Application Requirements</a></li><li><a href="#WrapperGenerationRequirements">Wrapper Generation Requirements</a></li><li><a href="#UseCaseRequirements">Use Case Requirements</a></li><li><a href="#LoggingRequirements">Logging Requirements</a></li><li><a href="#DataConversionRequirements">Data Conversion Requirements</a></li><li><a href="#OperationalRequirements">Operational Requirements</a></li><li><a href="#CodingRequirements">Coding Requirements</a></li></ul><div class="section"><a name="History"></a><h2>History</h2>
+    <p>
+      The EODiSP was developed in accordance with the ECSS-E-40 process. As part of this process,
+      two documents were produced in the early stages of the EODiSP project:
+      <ul> 
+      	<li>A <a class="pdf" href="../download/user-requirements.pdf">Concept and 
+      	Requirements Definition</a> document. This document defined the
+      	EODiSP requirements from a user's perspective. It also identified the main technical 
+      	problems expected in the project and the definition of a baseline solutions for them.
+      	</li> 
+      	<li>A <a class="pdf" href="../download/software-requirements.pdf">Software 
+      	Requirements Definition</a> document. This document defined the
+      	EODiSP requirements in a more formal way and from a software designer's perspective.</li> 
+      </ul>
+      The two documents were not maintained during the EODiSP design and implementation phase. 
+      They therefore no longer reflect the status of the EODiSP since they do not take account
+      of requirements-level decisions that were taken during the design and implementation phase.
+    </p>
+    <p>
+      At the end of the implementation phase, an updated list of requirements was therefore
+      generated that reflected the final implementation of the EODiSP. This list is presented
+      in the next section and was used as the basis for defining the verification plan for the
+      EODiSP.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="RequirementsList"></a><h2>Requirements List</h2>
+    <p>
+      This section presents the list of applicable requirements for the EODiSP. All requirements 
+      defined here are derived from requirements that were defined in 
+      	the requirements definition phase of the EODiSP project (see <a href="#History">previous 
+      	section</a>). For each original EODiSP requirement, there are three possibilities:
+     <ul>
+      	<li>The requirement has remained unchanged during the design and development phase and
+      	therefore it appears unchanged in the list below.</li>
+      	<li>The requirement has been modified during the design and development phase and
+      	it appears in the list below in its modified form.</li>
+      	<li>The requirement has been dropped during the design and development phase and
+      	it appears in the list below but is marked as 'Deleted'.</li>
+      </ul>
+	</p>      	
+    <p>  
+      The requirements are grouped in categories of logically related requirements.
+      For each requirement in the list below, the following information is provided:
+      <ul>
+      	<li>An alphanumerical reference that uniquely identifies the requirement. </li>
+      	<li>The text of the requirement.</li>
+      	<li>A reference to the original EODiSP requirement from which the requirement is derived. </li>
+      	<li>A flag indicating the change status of the requirement with respect to the 
+      	orginal EODiSP requirements. Four values are possible for this
+      	flag. A value of 'U' indicates that the requirement is taken over unchanged. A value of 
+      	'CT' indicates that the requirements has been changed but the change is terminological only
+      	and has been made to align the requirement terminology with general EODiSP terminology. A 
+      	value of 'CF' indicates that the requirements has been changed from a functional point of
+      	view. A value of 'D' indicates that the requirement has been deleted.</li>
+      	<li>A description of how the requirement is verified. Where appropriate, this may include 
+      	a reference to the <a href="Testing.html#Unit-LevelTests">unit-level test</a> or to the
+      	<a href="Testing.html#System-LevelTests">system-level test</a> where the requirement is tested.</li>
+      </ul>
+    </p>
+    <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="GeneralRequirements"></a><h2>General Requirements</h2><p>
+    	<p class="req_title">Requirement R-GR-2 (Source: 
+      		R6.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall provide a component-based software framework (the EODiSP Framework) 
+    to support the instantiation of simulation applications.</p><p class="req_verification"><i>Verification: </i>
+    			The <a href="../demonstrator.html">demonstrator</a> provides an example of a complete 
+    			simulation
+    			that is built by instantiating the EODiSP framework
+    		</p>
+    	<p class="req_title">Requirement R-GR-4 (Source: 
+      		R6.1-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>An application instantiated from the EODiSP Framework shall consist of two kinds 
+    		of high-level components: one simulation environment component and one or more simulation 
+    		models.</p><p class="req_verification"><i>Verification: </i>
+    			The EODiSP implements the simulation environment through the 
+    			<a href="../overview.html#EODiSPUserInterface">simulation manager application</a> 
+    			and the simulation models through <a href="../overview.html#AnHLA-BasedPlatform">HLA federates</a>.
+    		</p>
+    	<p class="req_title">Requirement R-GR-6 (Source: 
+      		R6.1-3, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Framework shall define the interfaces characterizing the two kinds 
+    		of components identified by the previous requirement and shall restrict the operations they declare 
+    		to have arguments of primitive type and return values of primitive type.</p><p class="req_verification"><i>Verification: </i>
+    			The EODiSP implements an <a href="../overview.html#AnHLA-BasedPlatform">HLA-based 
+    			archicture</a> and all models participating in a simulation must comply with the 
+    			interfaces defined by the HLA standard. HLA models obey the restrictions stated in the
+    			requirement.
+    		</p>
+    	<p class="req_title">Requirement R-GR-8 (Source: 
+      		S6.2-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>All the user inputs to be provided to the simulation manager applications shall conform 
+    		to the XML Schemas defined by the EODiSP.</p><p class="req_verification"><i>Verification: </i>
+    			The EODiSP input files are defined together with the XML schemas to which they must conform
+    			in the <a href="developerManuals/configFiles.html">EODiSP Configuration Files</a> page.
+    		</p>
+    	<p class="req_title">Requirement R-GR-10 (Source: 
+      		R6.4.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall provide the means to execute simulation experiments 
+    	consisting of one or more simulation runs.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_104.html">TC_104</a> and
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-GR-12 (Source: 
+      		R6.5-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODISP Framework shall implement a subset of the HLA standard.</p><p class="req_verification"><i>Verification: </i>
+    			The HLA services implemented by the EODiSP are listed in the
+    			<a href="developerManuals/implementedHLAServices.html">Table of Supported HLA Services</a>.
+    		</p>
+    	<p class="req_title">Requirement R-GR-14 (Source: 
+      		S7.2-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall implement the priority 1 services listed in the
+    		<a href="developerManuals/implementedHLAServices.html">Table of Supported HLA Services</a>.</p><p class="req_verification"><i>Verification: </i>
+    			A JUnit test is written for each priority 1 service. The test documentation and the 
+    			test execution report are available from the <a href="./Testing.html">testing page</a>.
+    		</p>
+    </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationControlRequirements"></a><h2>Simulation Control Requirements</h2><p>
+
+    	<p class="req_title">Requirement R-SC-2 (Source: 
+      		R6.4.2-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall provide the means to perform a 
+    		simulation in a step-by-step fashion.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SC-4 (Source: 
+      		R6.4.2-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall allow users to switch from step-by-step 
+    		to continuous simulation model and from continuous simulation mode to step-by-step mode at 
+    		any time during a simulation run.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SC-6 (Source: 
+      		R6.4.2-3, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall allow users to predefine the times 
+    		(either as simulation time or as clock time) when switches from step-by-step to continuous 
+    		simulation mode and from continuous to step-by-step simulation model should take place.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is not implemented because the HLA timing service is not supported and
+    			mode switching based on clock time is not regarded as useful (since the duration of
+    			a simulation is non-deterministic).
+    		</p>    	
+    	<p class="req_title">Requirement R-SC-8 (Source: 
+      		R6.4.2-4, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall allow users to advance a simulation 
+    		running in step-by-step 
+    	mode by one or more steps at a time.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SC-10 (Source: 
+      		R6.4.3-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall allow users to stop and restart simulation models 
+    	but only while a simulation is paused in step-by-step mode. </p><p class="req_verification"><i>Verification: </i>
+    			The EODiSP Simulation 
+    			Environment does
+    	not provide any means to accomplish model stop and restart: support for this kind of operation has
+    	to be provided by the model itself. Verification of the requirement cannot therefore be done at the level
+    	of the EODiSP.  
+    		</p>
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="DistributionRequirements"></a><h2>Distribution Requirements</h2><p>
+    	<p class="req_title">Requirement R-DI-2 (Source: 
+      		R7.2-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall be built upon a distribution middleware (the EODiSP Network).</p><p class="req_verification"><i>Verification: </i>
+    			The EODiSP is built upon the JXTA distribution middleware (see description of 
+    			<a href="developerManuals/generalArchitecture.html#EODiSP Core Framework">EODiSP Core
+    			Architecture)</a>.
+    		</p>
+    	<p class="req_title">Requirement R-DI-4 (Source: 
+      		S8.1-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Model Manager and Simulation Manager applications shall 
+    		provide a GUI-based interface to allow users to configure the EODiSP network.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_102.html">TC_102</a> and 
+    			<a href="useAndTestCases/TC_202.html">TC_202</a>.
+    		</p>
+    	<p class="req_title">Requirement R-DI-6 (Source: 
+      		S8.2-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Model Manager and Simulation Manager applications shall 
+    		allow users to save their network configuration. </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_102.html">TC_102</a> and 
+    			<a href="useAndTestCases/TC_202.html">TC_202</a>.
+    		</p>
+    	<p class="req_title">Requirement R-DI-8 (Source: 
+      		S8.2-2, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Model Manager and Simulation Manager applications 
+    		shall allow users to load a previously saved network configuration. 
+			</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_102.html">TC_102</a> and 
+    			<a href="useAndTestCases/TC_202.html">TC_202</a>.
+    		</p>
+    	<p class="req_title">Requirement R-DI-10 (Source: 
+      		R7.2-3, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP network shall use the internet as its default transmission infrastructure.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case <a href="useAndTestCases/TC_106.html">TC_106</a> 
+    			that runs a distributed simulation
+    			where models interact over the internet.
+    		</p>
+    	<p class="req_title">Requirement R-DI-12 (Source: 
+      		R7.2-4, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP network shall be compatible with ordinary firewall protections.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case <a href="useAndTestCases/TC_106.html">TC_106</a> 
+    			that runs a distributed simulation
+    			where models interact over the internet and some of the models are behind a firewall.
+    		</p>
+    	<p class="req_title">Requirement R-DI-14 (Source: 
+      		R7.2-6, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i> The EODiSP network shall allow a simulation to be run where the simulation models 
+    		are located on two 
+   or more different nodes possibly different from the node where the simulation manager application is located. </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case <a href="useAndTestCases/TC_106.html">TC_106</a> 
+    			that runs a distributed simulation
+    			where models are located on nodes other than the node where the simulation manager is running.
+    		</p>
+    	<p class="req_title">Requirement R-DI-16 (Source: 
+      		R7.2-6, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i> The EODiSP network shall support the execution of a simulation either in local mode
+    		(all models located on the same node as the simulation manager application) or in remote 
+    		mode (some models located on nodes other than that hosting the simulation manager application).
+ 			</p><p class="req_verification"><i>Verification: </i>
+    			Operation in remote mode is verified in test case <a href="useAndTestCases/TC_106.html">TC_106</a>.
+    			Operation in local mode is verified by running the same test case in local mode. 
+            This means that all EODiSP applications needed for this test case run on the same Unix platform node. 
+            These applications are: The simulation manager, model manager, repository and the crc application. 
+            Additional to this, 
+            the sim_controller federate is replaced with a 'sim_controller test' federate which does not
+            depend on Microsoft Excel. This makes it possible to run the the test case on a Linux machine.
+    		</p>
+    	<p class="req_title">Requirement R-DI-18 (Source: 
+      		G11.1.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i> The EODiSP shall provide a facility to monitor the reachability of participating 
+    		remote nodes in the network.
+ 			</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-DI-20 (Source: 
+      		G11.1.1-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i> The EODiSP shall provide log messages to the user in case of a network failure.
+ 			</p><p class="req_verification"><i>Verification: </i>
+    			The EODiSP is based on reliable network protocols (if HTTP is used, then the JXTA builds an acknowledgement
+    			mechanism on top of it). Other kinds of network failures (e.g. outages) cannot be detected at EODiSP level 
+    			since there	is no timing information about individual models participating in a simulation. 
+    		</p>    	
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SimulationManagerApplicationRequirements"></a><h2>Simulation Manager Application Requirements</h2><p>
+    	<p class="req_title">Requirement R-SM-2 (Source: 
+      		R9.4-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall provide a Simulation Manager Application to configure and 
+    		control the execution of a simulation experiment.  
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_102.html">TC_102</a>,
+    			<a href="useAndTestCases/TC_104.html">TC_104</a>, 
+    			and <a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SM-4 (Source: 
+      		S6.2-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The user inputs to be provided through the simulation manager application 
+    		shall conform to a format defined by the EODiSP. 
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_102.html">TC_102</a> and
+    			<a href="useAndTestCases/TC_104.html">TC_104</a>.
+    			The format of the input files is defined in the <a href="developerManuals/configFiles.html">
+    			configuration files</a> page of the EODiSP web site.
+    		</p>
+    	<p class="req_title">Requirement R-SM-6 (Source: 
+      		R9.5-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The Simulation Manager Application shall offer 
+			the means to control the execution of an EODiSP simulation experiment.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SM-8 (Source: 
+      		R9.5.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The simulation manager application shall provide a 
+    		GUI-based environment to define the configuration of a simulation experiment. 
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_104.html">TC_104</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SM-10 (Source: 
+      		R9.5.1-3, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall define the format to which 
+    		the configuration documents used in the simulation manager application must conform. 
+		    </p><p class="req_verification"><i>Verification: </i>
+    			The format and content of the EODiSP configuration files is defined in the
+    			<a href="userManuals.html#ConfigurationFiles">Configuration Files</a> page
+    			 of the user manual. The configuration files themselves can be downloaded from the
+    			<a href="../download.html">Download</a> page. 
+    		</p>
+    	<p class="req_title">Requirement R-SM-12 (Source: 
+      		R9.5.1-5, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The simulation manager application shall allow users to load existing 
+			configuration files into the environment. 
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_108.html">TC_108</a>.
+    		</p>
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ModelManagerApplicationRequirements"></a><h2>Model Manager Application Requirements</h2><p>
+    	<p class="req_title">Requirement R-MM-2 (Source: 
+      		R9.4-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall provide a Model Manager Application to configure and 
+    		control the participation in simulation experiments of a set of simulation models 
+    		owned by the same organization and residing on the same distribution node. 
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_202.html">TC_202</a>, and
+    			<a href="useAndTestCases/TC_204.html">TC_204</a>.
+    		</p>
+    	<p class="req_title">Requirement R-MM-4 (Source: 
+      		R9.6-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The Model Manager Application shall offer the means to load HLA compliant 
+    		models and to make the application aware of them.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_204.html">TC_204</a>.
+    		</p>
+    	<p class="req_title">Requirement R-MM-6 (Source: 
+      		R9.6-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The Model Manager Application shall offer the means to control 
+    		the accessibility of HLA compliant models loaded into the application.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_204.html">TC_204</a>.
+    		</p>	
+    	<p class="req_title">Requirement R-MM-8 (Source: 
+      		R9.6.1-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The configuration of a model manager application shall be 
+    		defined through a set of configuration files. 
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_204.html">TC_204</a>.
+    		</p>
+    	<p class="req_title">Requirement R-MM-10 (Source: 
+      		R9.6.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The model manager application shall provide a GUI-based environment 
+    		to define the accessibility configuration for HLA compliant models.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_204.html">TC_204</a>.
+    		</p>
+    	<p class="req_title">Requirement R-MM-12 (Source: 
+      		R9.6.1-3, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall define the format to which the configuration 
+			documents used in the model manager application must conform.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			The format and content of the model manager configuration files is defined in
+    			the <a href="userManuals.html#ConfigurationFiles">Configuration Files</a> 
+    			page of the user manual. All EODiSP
+    			configuration files can be downloaded from the
+    			<a href="../download.html">Download</a> page. 
+    		</p>
+    	<p class="req_title">Requirement R-MM-14 (Source: 
+      		S6.3-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The user inputs to be provided through the model manager application 
+    		shall conform to the format defined by the EODiSP.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_202.html">TC_202</a>.
+    			The format and content of the model manager configuration files is defined in
+    			the <a href="userManuals.html#ConfigurationFiles">Configuration Files</a> 
+    			page of the user manual.
+    		</p>
+    	<p class="req_title">Requirement R-MM-16 (Source: 
+      		R9.6.1-5, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The model manager application shall allow users to load existing 
+    		configuration files into the environment.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_206.html">TC_206</a>.
+    		</p>
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SupportApplicationRequirements"></a><h2>Support Application Requirements</h2><p>
+    	<p class="req_title">Requirement R-SA-2 (Source: 
+      		R9.4-3, Status: CF)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall provide a GUI-based support application to operate 
+    		the code generators for the simulation model wrappers.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>. The original requirement asked
+    			for the support application to be GUI-based. In view of its simplicity, the support
+    			application has instead
+    			been implemented as a command-line application.
+    		</p>
+    	<p class="req_title">Requirement R-SA-4 (Source: 
+      		R9.7-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The Support Application shall offer the means to assist a model owner 
+    		in creating wrapper code for supported types of models. The wrapper code shall be HLA compliant.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SA-6 (Source: 
+      		R9.7-2, Status: CF)
+      </p><p class="req_formulation"><i>Formulation: </i>A Support Application shall take as one of its input the SOM 
+    		document for the model whose wrapper code is being generated.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>. The original formulation of this
+    			requirement asked for the SOM to be generated automatically. This is only possible if
+    			a new kind of input file is defined that subsumes the SOM. This is regarded as 
+    			unnecesarily complicated. 
+    		</p>
+    	<p class="req_title">Requirement R-SA-8 (Source: 
+      		R9.7-3, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>A Support Application shall offer the means to attach default initialization 
+    		data to a simulation model. 
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is superceded: default initialization data are defined at the level
+    			of the individual models. As an example consider the 
+    			<a href="../demonstrator.html">EODiSP demonstrator</a> where default initialization
+    			data can be defined through the <code>sim_controller</code> model.
+    		</p>
+    	<p class="req_title">Requirement R-SA-10 (Source: 
+      		R9.7.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>A Support Application shall provide a GUI-based environment to support a model 
+    		owner in creating the wrapper code.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>. Existing support applications are
+    			implemented as command-line applications but Ant command files are provided to drive
+    			them from
+    			within the (GUI-based) Eclipse platform. 
+    		</p>
+    	<p class="req_title">Requirement R-SA-12 (Source: 
+      		S9.2-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP support application shall allow users to automatically generate 
+    		an HLA federated interface implementation skeleton from a SOM.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>.
+    		</p>
+    	<p class="req_title">Requirement R-SA-14 (Source: 
+      		R9.7.1-2, Status: CF)
+      </p><p class="req_formulation"><i>Formulation: </i>The configuration of a Support Application shall be defined through a 
+    		set of command line parameters.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>. The original formulation of this
+    			requirement asked for the configuration to be defined in an XML-based file. Given
+    			the small number of parameters in question, specification through a command-line 
+    			has been preferred. 
+    		</p>
+    	<p class="req_title">Requirement R-SA-16 (Source: 
+      		R9.7.1-3, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall define the XML Schemas or DTD's to which the configuration 
+    		documents used in a Support Application must conform.  
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is obsolete. See previous requirement.
+    		</p>
+    	<p class="req_title">Requirement R-SA-18 (Source: 
+      		R9.7.1-5, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>A Support Application shall allow users to load existing configuration 
+    		files into the environment.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is obsolete. See previous requirement.
+    		</p>
+    	
+    	<p class="req_title">Requirement R-SA-20 (Source: 
+      		R9.7.2-1, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>A Support Application shall provide a GUI-based environment through 
+    		which users can perform the tasks defined in table 9.7.2-1.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is already implied by the other requirements in this section.
+    		</p>
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="WrapperGenerationRequirements"></a><h2>Wrapper Generation Requirements</h2><p>
+    	<p class="req_title">Requirement R-WG-2 (Source: 
+      		S9.1-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP wrapper generators shall be controlled through one single 
+    		support application.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			The 
+    			<a href="developerManuals/supportApplications.html#SupportApplicationsforWrapperGeneration">
+    			wrapper generator support applications</a> can be run from inside the Eclipse platform
+    			using Ant files.
+    			Thus, although there may be several wrapper generator programs, the user can control and
+    			execute them from within one single application.
+    		</p>
+    	<p class="req_title">Requirement R-WG-4 (Source: 
+      		S10-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The wrapper generation process shall be implemented as it is described in 
+    		the figure of the section on 
+    		<a href="developerManuals/supportApplications.html#WrapperGenerators">wrapper
+    			generators</a>.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			The figure referred to in the requirement reflects the actual implementation of the 
+    			wrapper generators. 
+    		</p>
+    	<p class="req_title">Requirement R-WG-6 (Source: 
+      		S9.2-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP support application shall allow users to automatically generate 
+    		an HLA federated interface implementation skeleton from a SOM.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_320.html">TC_320</a>.
+    		</p>
+    	<p class="req_title">Requirement R-WG-8 (Source: 
+      		S9.2-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The HLA federate interface skeleton generate by the EODiSP support application 
+    		shall mark the points where package-specific code has to be provided by the user.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>.
+    		</p>
+    	<p class="req_title">Requirement R-WG-10 (Source: 
+      		S9.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP wrapper generators shall be implemented as two cooperating elements: 
+    		HLA federate interface implementation generator (for all wrappers) and wrapper generators 
+    		(for selected kinds of wrappers).
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified by the selected structure of the 
+    			<a href="developerManuals/supportApplications.html#WrapperGenerators">wrapper
+    			generators</a>. Test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a> verifies the requirement for the
+    			case of an excel-based model.
+    		</p>
+    	<p class="req_title">Requirement R-WG-12 (Source: 
+      		S10-2, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP wrapper generation process shall be driven by an Excel Workbook. The EODiSP 
+        wrapper shall generate a Java class for each worksheet in an Excel workbook. The resulting Java class shall provide
+        setter and getter methods for each named cell in each Excel Worksheet. Additionally, it shall provide 
+        listener interfaces for each button that is defined in the Excel workbook.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>.
+    		</p>
+    	<p class="req_title">Requirement R-WG-14 (Source: 
+      		S10.1-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP support application for wrapper generation shall provide the means 
+    		the automatically generate a wrapper for an excel workbook.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>.
+    		</p>
+    	<p class="req_title">Requirement R-WG-16 (Source: 
+      		S10.1-2, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The structure of the excel workbook wrapper shall be as in figure 10 of the SRD.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			Blockd (3) and (4) in figure 10 of the SRD have been merged into one single
+    			block that is generated automatically. 
+    			This requirement is verified in test case
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>.
+    		</p>
+    	<p class="req_title">Requirement R-WG-18 (Source: 
+      		S10.2-1, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP support application for wrapper generation shall provide the 
+    		means the automatically 
+    		generate a wrapper for an SMP2 model controlled through a SimSat 2000 application.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement has been dropped.
+    		</p>
+    	<p class="req_title">Requirement R-WG-20 (Source: 
+      		S10.2-1, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>The structure of the SMP2 wrapper shall be as in figure 10 of the SRD.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement has been dropped.
+    		</p>
+    	<p class="req_title">Requirement R-WG-22 (Source: 
+      		S11-1, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall provide sample wrappers for the simulation packages
+    		listed in the <a href="userManuals/sampleWrappers.html">sample wrapper page</a> of the EODiSP web site.
+		    </p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_302.html">TC_302</a>,
+    			<a href="useAndTestCases/TC_304.html">TC_304</a>,
+    			<a href="useAndTestCases/TC_306.html">TC_306</a>,
+    			<a href="useAndTestCases/TC_308.html">TC_308</a>,
+    			<a href="useAndTestCases/TC_310.html">TC_310</a>,
+    			<a href="useAndTestCases/TC_312.html">TC_312</a>, and
+    			<a href="useAndTestCases/TC_314.html">TC_314</a>.
+    		</p>
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="UseCaseRequirements"></a><h2>Use Case Requirements</h2><p>
+    	<p class="req_title">Requirement R-UC-2 (Source: 
+      		S12.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP GUI shall support all the use cases listed in the table
+    		in <a href="useAndTestCases.html#EODiSPUseCases">this section</a>.	</p><p class="req_verification"><i>Verification: </i>
+    			For each terminal use case, a dedicated test case is defined that demonstrates
+    			how the use case is supported by the EODiSP. The test cases are listed in the same
+    			<a href="useAndTestCases.html#EODiSPUseCases">table</a> that lists the 
+    			use cases.
+    		</p>
+    </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="LoggingRequirements"></a><h2>Logging Requirements</h2><p>
+    	<p class="req_title">Requirement R-LO-2 (Source: 
+      		R6.4.4-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODISP Framework shall provide a logging service to allow both the 
+    		simulation environment itself and the simulation models to log messages.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_112.html">TC_112</a> and <a href="useAndTestCases/TC_208.html">TC_208</a>.
+    		</p>
+    	<p class="req_title">Requirement R-LO-4 (Source: 
+      		R6.4.4-2, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>Logged messages shall be time-stamped with the simulation time (if one is available 
+    		for the running simulation) and with the host computer clock time.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases TBD.
+    		</p>
+    	<p class="req_title">Requirement R-LO-6 (Source: 
+      		R6.4.4-3, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall provide a default configuration 
+    		for the logging service where all incoming and outgoing messages for the simulation 
+    		environment are logged.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-LO-8 (Source: 
+      		R6.4.4-4, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP Simulation Environment shall pre-define a set of standard 
+    		events whose logging can be enabled and disabled by the user.</p><p class="req_verification"><i>Verification: </i>
+    			All the standard events pre-defined by the EODiSP are demonstrated in 
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>. These events are linked to the
+    			<a href="../overview.html#SimulationLifecycle">EODiSP synchronization points</a>.
+    			Given the small number of events and their low frequency of occurrence, no
+    			enabling and disabling facilities are provided.  
+    		</p>
+    	<p class="req_title">Requirement R-LO-10 (Source: 
+      		R6.4.4-5, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The standard events of the previous requirement shall include the start and stop of a 
+    		simulation run, and the transitions into and out of a step-by-step mode.</p><p class="req_verification"><i>Verification: </i>
+    			This requirement is verified in test cases
+    			<a href="useAndTestCases/TC_106.html">TC_106</a>.
+    		</p>
+    	<p class="req_title">Requirement R-LO-12 (Source: 
+      		S12.4-1, Status: CF)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall provided a predefined federate to log messages generated
+    		by other federates.</p><p class="req_verification"><i>Verification: </i>
+    			The requested federate is available as one of the 
+    			<a href="userManuals/sampleFederates.html">EODiSP sample federates</a>. Note that provision
+    			of a predefined federate  
+    			to report the currently active model (as requested in the original formulation of 
+    			this requirement)is not possible because
+    			the EODiSP can run in distributed mode and execution of the simulation models is 
+    			therefore not necessarily sequential.
+    		</p>    	
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="DataConversionRequirements"></a><h2>Data Conversion Requirements</h2><p>
+    	<p class="req_title">Requirement R-DC-2 (Source: 
+      		S9.3-1, Status: D)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP support application shall allow users to generate wrapper skeletons 
+    		that implement the data conversions identified in 
+    		<a href="developerManuals/supportApplications.html#DataConversion">this section</a>.</p><p class="req_verification"><i>Verification: </i>
+    			The EODiSP support application generates the part of the wrapper that is
+    			defined in the SOM. Addition of data conversion is trivial and not worth automating.
+    		</p>
+    	<p class="req_title">Requirement R-DC-4 (Source: 
+      		S9.3-2, Status: CT)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP environment shall provide sample federates to implement generic 
+    		data conversion algorithms.</p><p class="req_verification"><i>Verification: </i>
+    			<a href="userManuals/sampleFederates.html">Sample federates</a> are provided with 
+    			the EODiSP that show how to implement generic
+    			data conversions in an EODiSP wrapper.
+    		</p>
+	</p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="OperationalRequirements"></a><h2>Operational Requirements</h2><p>
+    	<p class="req_title">Requirement R-OR-2 (Source: 
+      		S12.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall be built to run on a Java Virtual Machine version 1.5.</p><p class="req_verification"><i>Verification: </i>
+    			All <a href="Testing.html#System-LevelTests">test cases</a> have been run on a Java Virtual 
+    			Machine version 1.5.
+    		</p>
+    	<p class="req_title">Requirement R-OR-4 (Source: 
+      		S12.2-1, Status: CF)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP shall only incorporate software packages that are available on open and
+    		free software licences.</p><p class="req_verification"><i>Verification: </i>
+    			The <a href="../download.html">download page</a> of the EODiSP web site lists all
+    			the licences applicable to the software packages that are incorporated in the EODiSP.
+    			In all cases, they are open and free licences.
+    		</p>
+    </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="CodingRequirements"></a><h2>Coding Requirements</h2><p>
+    	<p class="req_title">Requirement R-CR-2 (Source: 
+      		S5.1.1-1, Status: U)
+      </p><p class="req_formulation"><i>Formulation: </i>The EODiSP GUI code shall contain references to the use cases that is 
+    		implemented by the code.</p><p class="req_verification"><i>Verification: </i>
+			This can be verified by inspecting the code that is available from the
+			<a href="../download.html">Download</a> page.
+    		</p>
+    </p><div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-11-06 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

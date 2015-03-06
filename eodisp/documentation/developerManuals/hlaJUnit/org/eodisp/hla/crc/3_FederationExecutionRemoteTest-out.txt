@@ -1,0 +1,22 @@
+Update configuration entry 'transport' from command line to value: tcp
+INFO  [2006-11-27 13:18:44] [EODiSP CRC:main]: Started JERI at: tcp://localhost:14321
+INFO  [2006-11-27 13:18:45] [EODiSP CRC:main]: New Federate joined from new LRC [null]
+INFO  [2006-11-27 13:18:45] [EODiSP CRC:main]: New Federate joined from already connected LRC [null]
+INFO  [2006-11-27 13:18:45] [EODiSP CRC:main]: New Federate joined from new LRC [null]
+INFO  [2006-11-27 13:18:45] [EODiSP CRC:main]: New Federate joined from new LRC [org.eodisp.hla.crc.TestLrcRemote@1f9338f]
+INFO  [2006-11-27 13:18:45] [EODiSP CRC:main]: New Federate joined from new LRC [null]
+INFO  [2006-11-27 13:18:45] [EODiSP CRC:main]: New Federate joined from new LRC [null]
+INFO  [2006-11-27 13:18:45] [EODiSP CRC:main]: New Federate joined from new LRC [null]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from new LRC [null]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from new LRC [org.eodisp.hla.crc.TestLrcRemote@6f8b2b]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from already connected LRC [org.eodisp.hla.crc.TestLrcRemote@6f8b2b]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from new LRC [org.eodisp.hla.crc.TestLrcRemote@1de4dd8]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from already connected LRC [org.eodisp.hla.crc.TestLrcRemote@1de4dd8]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from already connected LRC [org.eodisp.hla.crc.TestLrcRemote@1de4dd8]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from new LRC [org.eodisp.hla.crc.TestLrcRemote@8b677f]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from already connected LRC [org.eodisp.hla.crc.TestLrcRemote@8b677f]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from new LRC [org.eodisp.hla.crc.TestLrcRemote@76db09]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from already connected LRC [org.eodisp.hla.crc.TestLrcRemote@76db09]
+{org.eodisp.hla.crc.TestLrcRemote@19d12cc=[2]}
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from already connected LRC [org.eodisp.hla.crc.TestLrcRemote@76db09]
+INFO  [2006-11-27 13:18:46] [EODiSP CRC:main]: New Federate joined from new LRC [org.eodisp.hla.crc.TestLrcRemote@dac21]

@@ -1,0 +1,10 @@
+ERROR  getEnum, Could not parse enum value in configuration entry: number. Return default value.
+ERROR - Could not parse enum value in configuration entry: number. Return default value.
+ERROR - Could not parse enum value in configuration entry: number. Return default value.
+ERROR - Could not parse enum value in configuration entry: number. Return default value.
+ERROR  getEnumSet, Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'
+ERROR - Could not parse enumSet value in configuration entry 'number' Return default value '[ONE]'

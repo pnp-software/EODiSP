@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EODiSP - GUI Design</title><link rel="stylesheet" href="../../style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="../../style/print.css" type="text/css" media="print"></link><link rel="shortcut icon" href="../../images/favicon.ico"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="simulation, HLA, RTI, distributed"></meta><meta name="description" content="EODiSP Open and Distributed Simulation Platform"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="../../index.html">EODiSP</a></h1></div><div id="nav-path"><a href="../../index.html">Home</a> » Documentation » <a href="../developerManuals.html">Developer Manuals</a> » <a href="guiDesign.html">GUI Design</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="../../overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="../../glossary.html">Glossary</a></li></ul><ul><li class="expanded"><span class="active">Documentation</span><ul><li class="leaf"><a class="" href="../requirements.html">Requirements</a></li></ul><ul><li class="leaf"><a class="active" href="../developerManuals.html">Developer Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../userManuals.html">User Manuals</a></li></ul><ul><li class="leaf"><a class="" href="../Testing.html">Testing</a></li></ul><ul><li class="leaf"><a class="" href="../useAndTestCases.html">Use And Test Cases</a></li></ul></li></ul><ul><li class="leaf"><a class="" href="../../demonstrator.html">Demonstrator</a></li></ul><ul><li class="leaf"><a class="" href="../../screenshots.html">Demos and Screenshots</a></li></ul><ul><li class="leaf"><a class="" href="../../download.html">Download</a></li></ul><ul><li class="leaf"><a class="" href="../../bugDatabase.html">Bug Database</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>GUI Design</h1><div class="section">
+    <p>
+      This page describes the technical design of the EODiSP GUI base framework. For a 
+      more general overview, please see the <a href="./guiArchitecture.html">EODiSP GUI 
+      Architecture</a> page.
+    </p>
+  </div><h2>Contents</h2><ul id="index"><li><a href="#MVCComponents">MVC Components</a></li><li><a href="#VisualComponents">Visual Components</a></li><li><a href="#Actions">Actions</a></li><li><a href="#ExecutionSequence">Execution Sequence</a></li></ul><div class="section"><a name="MVCComponents"></a><h2>MVC Components</h2>
+    <p>
+      As described in the <a href="./guiArchitecture.html">GUI Architecture</a>, the EODiSP 
+      GUI base framework is based on a slightly modified model-view-controller architecture. 
+      The next figure shows the class diagram with the corresponding classes. Classes in white 
+      are part of the EODiSP GUI framework and classes in red are part of the standard 
+      Java Swing framework.
+    </p>
+    <div class="figure"><a name="./org.eodisp.ui.common.base_small.png"><img border="0" src="../../images/./org.eodisp.ui.common.base_small.png" alt="MVC components in the EODiSP GUI base framework."></img></a><p>Figure 1: MVC components in the EODiSP GUI base framework.</p></div>
+    <p>
+      The names of the classes correspond to the parts in the MVC architecture. One notable 
+      difference is that there is an <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispApplicationController.html">EodispApplicationController</a> 
+      and an <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispController.html">EodispController</a> 
+      class. The <code>EodispApplicationController</code> is a container for <code>EodispController</code> 
+      classes and is responsible for their creation and management, such as adding and 
+      removing controllers. The controller classes in turn correspond to the controllers 
+      in the MVC architecture. Hence, they are responsible for creating and managing their 
+      frames and views.
+    </p>
+    <p>
+      Similar to the concept with the controller classes is the one for the frames in the 
+      GUI framework, although a bit more complicated. There is one <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispMainFrame.html">EodispMainFrame</a> 
+      and several <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispFrame.html">EodispFrames</a> 
+      and <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispView.html">EodispViews</a>. 
+      Especially the connection to the Java Swing classes might be a bit confusing, since 
+      the <code>EodispMainFrame</code> is derived from a <code>JFrame</code> whereas the 
+      <code>EodispFrame</code> indirectly holds a <code>JPanel</code>. This stems from 
+      the fact that the names of these Java Swing components does not correspond to the 
+      names in the MVC architecture, even though the concept is very similar. In Java Swing, 
+      a <code>JFrame</code> is the topmost container for a GUI application, or, in other 
+      words, it is the frame for the whole application. Several <code>JPanels</code> can 
+      be embedded in such a <code>JFrame</code>. A <code>JPanel</code> then displays a 
+      visual component (e.g. a <code>JTree</code>). Hence, in Java Swing there is only 
+      one <code>JFrame</code>, but several <code>JPanels</code> that embed visual components.
+    </p>
+    <p>
+      This concept is quite similar to the modified MVC architecture used in the EODiSP 
+      GUI framework. The names of the components are a bit different, though. The connection 
+      between the components of the Java Swing and the EODiSP GUI framework concerning 
+      frames and views is as follows:
+    </p>
+    <ul>
+      <li>A <code>JFrame</code> correspond to a <code>EodispMainFrame</code>. There is only 
+        one such frame and it acts as the topmost container for the application, where several 
+        <code>EodispFrames</code> can be embedded.</li>
+      <li>A <code>JPanel</code> correspond to a <code>EodispFrame</code>. An important difference 
+        to a <code>JPanel</code> in Java Swing is, that an <code>EodispFrame</code> acts 
+        as a management container for several <code>EodispViews</code>. This means, several 
+        <code>EodispViews</code> can be attached to an <code>EodispFrame</code>, where one 
+        of this views is the currently active view (i.e. the view which is displayed in the 
+        user interface).</li>
+      <li>A visual component in Java Swing correspond to a <code>EodispView</code>. A view, 
+        however, has some additional functionality such as managing the connection to an 
+        <code>EodispModel</code>. It also has a back reference to the <code>EodispFrame</code> 
+        in which the view is embedded.</li>
+    </ul>
+    <p></p>
+    <p>
+      The <code>SimpleInternalFrame</code> is derived from the <code>JPanel</code> class 
+      and acts therefore as a frame in the EODiSP GUI framework. The purpose of this class 
+      is to extend the functionality of the <code>EodispFrame</code> with additional features 
+      such as a text bar which shows the title and an icon of the active view. It can also 
+      have its own tool bar.
+    </p>
+    <p>
+      The visual component that is displayed at a given time in an <code>EodispFrame</code> 
+      is retrieved from the currently active <code>EodispView</code>. This means, whenever 
+      the active view in a frame changes, the visual component that is displayed also changes 
+      automatically.
+    </p>
+    <p>
+      It is important to note that the visual placement of the frames is the responsibility 
+      of the <code>EodispMainFrame</code>. It has to know how to layout the frames in the 
+      application (at least the initial placement).
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="VisualComponents"></a><h2>Visual Components</h2>
+    <p>
+      Visual components are these parts of the application which are able to show data 
+      from a model to a user. This can be a tree, a list, etc. These components are directly 
+      taken from the Java Swing framework. For the EODiSP GUI framework, each of these 
+      components is wrapped by an EODiSP component. This is done to insert some behaviour 
+      that is common to all EODiSP GUI applications in one place in the code. For instance, 
+      a <code>JTree</code> is wrapped by an <a href="./guiJavadoc/org/eodisp/ui/common/components/EodispTree.html">EodispTree</a>. 
+      This tree sets some behaviour, such as that it should not be editable, etc. In the 
+      EODiSP GUI framework, a visual component is referenced by a <code>EodispView</code>. 
+      This view can of course override this common behaviour if necessary.
+    </p>
+    <p>
+      Whenever a visual component is used in an EODiSP GUI application, a EODiSP wrapper 
+      class for the original Java Swing component should be used. This ensures that common 
+      behaviour can be set in one place instead of setting it for every instance of the 
+      component.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Actions"></a><h2>Actions</h2>
+    <p>
+      Actions are used to let a user interact with a GUI application. This can be done 
+      through the use of a menu bar, a tool bar, or a context menu. In an EODiSP application, 
+      all three possibilities can be used and are summarized as <i>interaction interface</i>. 
+      The management of this interaction interface is quite extensive since it must support 
+      many features. To handle this, the EODiSP GUI has extended the standard Java Swing 
+      <code>Action</code> interface to include additional information. This is the <a href="./guiJavadoc/org/eodisp/ui/common/actions/EodispAction.html">EodispAction</a> 
+      class. In general, an action can be used to build all of the three possible interfaces 
+      included in the interaction interface. The <code>EodispAction</code> class includes 
+      information such as which interface shall be built upon it.
+    </p>
+    <p>
+      The following list summarizes the features that must be supported by an <code>EodispAction</code>.
+    </p>
+    <ul>
+      <li>An action can be static or dynamic. <li>A static action is always present, but can 
+        be enabled and disabled at runtime. It cannot be removed from the interaction interfaces.</li> 
+        <li>A dynamic action can be added or removed from the interaction interfaces at runtime.</li> 
+        <li>An action is either static or dynamic, but not both. This cannot be changed at 
+        runtime.</li></li>
+      <li>An action can specify under which item it shall appear in the menu bar (including 
+        sub-menus).</li>
+      <li>An action can specify in which interaction interface it shall appear.</li>
+      <li>Every <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispView.html">EodispView</a> 
+        and every <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispFrame.html">EodispFrame</a> 
+        can declare which actions it provides.</li>
+      <li>An action is only active and/or visible if the frame or view which declares it is 
+        visible.</li>
+    </ul>
+    <p>
+      To handle all of these features, an interaction management has been created for the 
+      EODiSP GUI base framework. It can handle contributions to any of the interaction 
+      interfaces from an <a href="./guiJavadoc/org/eodisp/ui/common/actions/ActionSourceHandler.html">ActionSourceHandler</a> 
+      (an interface which is implemented by all classes that want to contribute to the 
+      interaction interface), and is able to create a complete tool bar and menu bar which 
+      can be displayed by the <code>EodispMainFrame</code>. Figure 2 shows the class diagram 
+      of the interaction management. The white classes are part of the EODiSP GUI base 
+      framework and the red classes are part of the Java Swing framework.
+    </p>
+    <div class="figure"><a name="./org.eodisp.ui.common.actions_small.png"><img border="0" src="../../images/./org.eodisp.ui.common.actions_small.png" alt="Class diagram of the interaction management."></img></a><p>Figure 2: Class diagram of the interaction management.</p></div>
+    <p>
+      The important parts of the interaction management are the <a href="./guiJavadoc/org/eodisp/ui/common/actions/EodispMenuManager.html">EodispMenuManager</a> 
+      and the <a href="./guiJavadoc/org/eodisp/ui/common/actions/EodispActionRegistry.html">EodispActionRegistry</a>. 
+      The <code>EodispMenuManager</code> class is responsible for creating the menu and 
+      the tool bar. In order to be able to create the menu and tool bar, it uses the data 
+      from the <code>EodispActionRegistry</code> class. This class is a registry for all 
+      <code>EodispActions</code> (i.e. static and dynamic) in the EODiSP GUI. Whenever 
+      an action is added, removed, or otherwise altered, the registry will fire an event. 
+      The <code>EodispMenuManger</code> catches the event by implementing the <a href="./guiJavadoc/org/eodisp/ui/common/events/EodispActionListener.html">EodispActionListener</a> 
+      class. Whenever such an event occurs, the EodispMenuManager updates the menu and 
+      tool bar as needed.
+    </p>
+    <p>
+      There is one special action that needs to be mentioned. This is the <a href="./guiJavadoc/org/eodisp/ui/common/actions/EmfAction.html">EmfAction</a>. 
+      This is a dynamic action especially used for EMF commands. It works together with 
+      the EMF edit code that is generated to handle XML model data (e.g. an application's 
+      project file). An <code>EmfAction</code> is always dynamic and holds an EMF command 
+      that can be executed on the EMF's command stack. Such a command might be adding or 
+      removing a model item from the model. Furthermore, <code>EmfActions</code> are always 
+      created at runtime whenever one is needed. This will ensure that only those actions 
+      are available through the interaction interface which can be executed on the model. 
+      For example, if a node in the project's tree is selected, only EmfActions for adding 
+      <it>valid</it> children will be created.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="ExecutionSequence"></a><h2>Execution Sequence</h2>
+    <p>
+      Figure 3 shows a sequence diagram which illustrates the starting sequence of an EODiSP 
+      GUI application. The instances shown in the sequence diagram might be a bit confusing 
+      or misleading since it shows instances of the base classes from the EODiSP GUI framework. 
+      In reality, these instances are instances of a concrete application. For example, 
+      the instance of an <code>EodispModel</code> could be the <code>SMProjectTreeModel</code>. 
+      This would be the real component serving as a model for the tree showing data from 
+      the simulation manager project file. Although this instances might be incorrect, 
+      the starting sequence remains the same. This, hopefully, is less confusing than introducing 
+      new classes.
+    </p>
+    <div class="figure"><a name="./org.eodisp.ui.common.base.start-seq.png"><img border="0" src="../../images/./org.eodisp.ui.common.base.start-seq.png" alt="Sequence diagram of the starting sequence"></img></a><p>Figure 3: Sequence diagram of the starting sequence</p></div>
+    <p>
+      The sequence in the figure first shows the creation of an <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispApplicationController.html">EodispApplicationController</a>. 
+      This instance is created by the an <a href="./guiJavadoc/org/eodisp/ui/common/application/EodispAppBase.html">EodispAppBase</a> 
+      instance. The <code>EodispApplicationController</code> is responsible for creating 
+      the <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispMainFrame.html">EodispMainFrame</a> 
+      and all <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispController.html">EodispControllers</a> 
+      of the application. An <code>EodispController</code> in turn creates its <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispFrame.html">EodispFrames</a>, 
+      <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispView.html">EodispViews</a>, 
+      and the <a href="./guiJavadoc/org/eodisp/ui/common/base/EodispModel.html">EodispModels</a> 
+      and connects them together.
+    </p>
+    <p>
+      After everything has been created, the <code>EodispMainFrame</code> adds the tool 
+      and menu bar, layout all frames as appropriate and shows itself on the screen.
+    </p>
+    <p>
+      The sequence diagram shows only the most important method calls to start an application. 
+      It explains how the MVC components are connected together and how they are created.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-05-16 by 
+                   pasetti </td></tr></table></div></div><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script><script type="text/javascript">
+            _uacct = "UA-542213-3";
+            urchinTracker();
+          </script></body></html>

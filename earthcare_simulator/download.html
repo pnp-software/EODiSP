@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>EarthCARE Simulator - Download / Install</title><link rel="stylesheet" href="style/main.css" type="text/css" media="screen"></link><link rel="stylesheet" href="style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="author" content="P&amp;P Software GmbH"></meta><meta name="keywords" content="EODiSP, EarhCARE, distributed, HLA"></meta><meta name="description" content="EarthCARE Simulator based on the EODiSP"></meta></head><body><div id="page"><div id="header"><a name="_top"></a><h1><a href="index.html">EarthCARE Simulator</a></h1></div><div id="nav-path"><a href="index.html">Home</a> » <a href="download.html">Download / Install</a></div><div id="main"><div id="header-main"></div><div id="navigation"><ul><li class="leaf"><a class="" href="overview.html">Overview</a></li></ul><ul><li class="leaf"><a class="" href="simulationPackages.html">Simulation Packages</a></li></ul><ul><li class="leaf"><a class="" href="HLAFederates.html">HLA Federates</a></li></ul><ul><li class="active-leaf"><a class="active" href="download.html">Download / Install</a></li></ul><ul><li class="leaf"><a class="external" href="http://www.pnp-software.com/contact-us.html">Contact</a></li></ul></div><div id="content"><h1>Download / Install</h1><h2>Contents</h2><ul id="index"><li><a href="#InstallPaths">Install Paths</a></li><li><a href="#Requirements">Requirements</a></li><li><a href="#EarthCAREFederateBundles">EarthCARE Federate Bundles</a></li><li><a href="#SOMFiles">SOM Files</a></li><li><a href="#SWTDlls">SWT Dlls</a></li><li><a href="#JMatlinkDll">JMatlink Dll</a></li></ul><div class="section"><a name="InstallPaths"></a><h2>Install Paths</h2>
+    <p>
+      This page makes reference to the Model Manager's data directory (<b><code>$MM_DATA_DIR</code></b>) 
+      to explain the install location of the various downloads. The location of this directory 
+      is explained in detail in the <a href="http://eodisp.org/documentation/userManuals.html#ConfigurationFiles" class="external">Configuration 
+      Files</a> page of the EODiSP website. Usually the data directory of the model manager 
+      is located at:
+    </p>
+    <div class="source">$USER_HOME/.eodisp/model_manager/data</div>
+    <p>while <code>$USER_HOME</code> is, on Windows, usually located at</p>
+    <div class="source">C:\Documents and Settings\&lt;username&gt;</div>
+    <p>on Unix/Linux at</p>
+    <div class="source">/home/&lt;username&gt;</div>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="Requirements"></a><h2>Requirements</h2><p>
+    <ul>
+      <li>The EODiSP <a href="http://eodisp.org/overview.html#EODiSPUserInterface" class="external">Model Manager 
+        Application</a> is installed on the target computer.</li>
+      <li>The <code>$MM_DATA_DIR/lib</code> directory contains the <b><code>eodisp_wrapper-0.1.1.jar</code></b> 
+        file. This file can be downloaded from the <a href="http://eodisp.org/download.html" class="external">download 
+        page</a> of the EODiSP website.</li>
+      <li>For the Excel <i>sim_sontroller</i> federate, the <a href="#SWTDlls"><b>SWT dlls</b></a> 
+        must be available in the Windows search path.</li>
+      <li>For the <i>matlab_display</i> federate, the <a href="#JMatlinkDll"><b>JMatlink dll</b></a> 
+        must be available in the Windows search path.</li>
+      <li>The <a href="#SOMFiles">Simulation Object Model (SOM)</a> file of each federate bundle 
+        has been registered with the <a href="http://eodisp.org/overview.html#EODiSPUserInterface" class="external">EODiSP 
+        Repository</a></li>
+    </ul>
+  </p><div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="EarthCAREFederateBundles"></a><h2>EarthCARE Federate Bundles</h2>
+    <p>
+      Each federate is available as an EODiSP bundle that is ready to be installed on a 
+      <a href="http://eodisp.org/overview.html#EODiSPUserInterface" class="external">Model Manager Application</a>. 
+      For most of the EarthCARE federates, a bundle takes the form of a jar file, some 
+      are are delivered as a directory. For your convenience, all bundles (jar- and directory-bundles) 
+      are available in one zip file:
+    </p>
+    <ul>
+      <li><a href="./download/earthcare_federates.zip">earthcare_federates.zip</a></li>
+    </ul>
+    <p>
+      Installing the bundles is a matter of unzipping this file into the <code>$MM_DATA_DIR/federates</code> 
+      directory.
+    </p>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SOMFiles"></a><h2>SOM Files</h2>
+    <p>
+      A SOM file defines the interface of a federate. For each of the EarthCARE federates, 
+      the SOM file can be downloaded below:
+    </p>
+    <ul>
+      <li><a href="./download/LidFilter.som">LidFilter.som</a></li>
+      <li><a href="./download/Lidar.som">Lidar.som</a></li>
+      <li><a href="./download/LidarRet1.som">LidarRet1.som</a></li>
+      <li><a href="./download/LwMsiLidarRadar.som">LwMsiLidarRadar.som</a></li>
+      <li><a href="./download/McLwSimMain.som">McLwSimMain.som</a></li>
+      <li><a href="./download/McSimMain.som">McSimMain.som</a></li>
+      <li><a href="./download/MsiRet.som">MsiRet.som</a></li>
+      <li><a href="./download/OrbitPropagator.som">OrbitPropagator.som</a></li>
+      <li><a href="./download/RadFilter.som">RadFilter.som</a></li>
+      <li><a href="./download/Radar.som">Radar.som</a></li>
+      <li><a href="./download/SceneCreator.som">SceneCreator.som</a></li>
+      <li><a href="./download/SimController.som">SimController.som</a></li>
+      <li><a href="./download/MatlabDisplay.som">MatlabDisplay.som</a></li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="SWTDlls"></a><h2>SWT Dlls</h2>
+    <p>
+      The following downloads are provided for convenience and all files were originally 
+      downloaded from the <a href="http://eclipse.org" class="external">Eclipse</a> website. Information 
+      about the licence that apply to these files can be found <a href="http://www.eclipse.org/legal/epl/notice.php" class="external">here</a>.
+    </p>
+    <p>
+      To make these dlls available they need to be in the Windows path. The simplest way 
+      to achieve this, is to copy all dll files to <code>C:\WINDOWS</code>.
+    </p>
+    <ul>
+      <li><a href="./download/swt-win32-3232.dll">swt-win32-3232.dll</a></li>
+      <li><a href="./download/swt-awt-win32-3232.dll">swt-awt-win32-3232.dll</a></li>
+      <li><a href="./download/swt-gdip-win32-3232.dll">swt-gdip-win32-3232.dll</a></li>
+      <li><a href="./download/swt-wgl-win32-3232.dll">swt-wgl-win32-3232.dll</a></li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div><div class="section"><a name="JMatlinkDll"></a><h2>JMatlink Dll</h2>
+    <p>
+      The following download is provided for convenience and the dll file was originally 
+      downloaded from the <a href="http://jmatlink.sourceforge.net/" class="external">jmatlink.sourceforge.net</a> 
+      website. A copy of the JMatlink license is available <a href="download/jmatlink_license.txt">here</a>.
+    </p>
+    <p>
+      To make this dll available it needs to be in the Windows path. The simplest way to 
+      achieve this, is to copy the dll file to <code>C:\WINDOWS</code>.
+    </p>
+    <ul>
+      <li><a href="download/JMatLink.dll">JMatLink.dll</a></li>
+    </ul>
+  <div class="gotToTop"><a href="#_top">top ^</a></div></div></div><div id="footer-main"></div></div><div id="footer"><table><tr><td align="left">© 2006, <a href="http://www.pnp-software.com/">P&amp;P Software</a></td><td align="right">Last updated: 
+                  2006-11-27 by 
+                   eglimi </td></tr></table></div></div></body></html>
